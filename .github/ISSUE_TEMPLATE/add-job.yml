@@ -1,0 +1,78 @@
+name: Add a job
+description: A PhD, postdoc, faculty, research, or internship position.
+title: 'Add: '
+labels: [entry, job]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A maintainer will turn this into a file under `data/jobs/`. Adding it
+        yourself is faster: see [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md).
+
+  - type: input
+    id: name
+    attributes:
+      label: Position title
+      placeholder: Postdoctoral Researcher in Program Verification
+    validations:
+      required: true
+
+  - type: input
+    id: institution
+    attributes:
+      label: Institution or employer
+      placeholder: Example University
+    validations:
+      required: true
+
+  - type: dropdown
+    id: position_type
+    attributes:
+      label: Kind
+      description: Research covers research engineers and research scientists.
+      options:
+        - phd
+        - postdoc
+        - faculty
+        - research
+        - internship
+    validations:
+      required: true
+
+  - type: input
+    id: areas
+    attributes:
+      label: Research areas
+      description: One or more area slugs from CONTRIBUTING.md, comma separated.
+      placeholder: formal-methods, verification
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      placeholder: Delft, Netherlands
+
+  - type: input
+    id: deadline
+    attributes:
+      label: Closing date
+      description: Write "open until filled" if there is no fixed date.
+      placeholder: 2026-10-15 23:59 UTC+1
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Official advertisement
+      description: The employer's own posting. Not a job board or aggregator.
+      placeholder: https://example.org/jobs/postdoc-verification
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else

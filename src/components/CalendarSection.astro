@@ -1,0 +1,57 @@
+---
+/**
+ * The month calendar: the grid, its controls, and the search box.
+ *
+ * `data-calendar` carries the selected tab so the day-detail popup can show
+ * the same dates the cell does. The page's script keeps it up to date.
+ */
+import type { CalendarRegions, ShowMode } from '../lib/views.ts';
+
+export interface Props {
+  calendar: CalendarRegions;
+  mode?: ShowMode;
+  searchId: string;
+}
+
+const { calendar, mode = 'all', searchId } = Astro.props;
+---
+
+<section class="cal-section" data-calendar={mode} aria-labelledby="cal-title">
+  <div class="cal-bar">
+    <button class="cal-nav" type="button" data-cal-prev aria-label="Previous month">
+      <span aria-hidden="true">&lsaquo;</span>
+    </button>
+    <h2 class="cal-title" id="cal-title" aria-live="polite">{calendar.monthTitle}</h2>
+    <button class="cal-nav" type="button" data-cal-next aria-label="Next month">
+      <span aria-hidden="true">&rsaquo;</span>
+    </button>
+    <button class="cal-today" type="button" data-cal-today>Today</button>
+
+    <div class="cal-search">
+      <label class="sr-only" for={searchId}>Search entries</label>
+      <input
+        id={searchId}
+        type="search"
+        data-search
+        placeholder="Search acronym, name, or topic"
+        autocomplete="off"
+        spellcheck="false"
+      />
+    </div>
+  </div>
+
+  <div class="cal-grid-view" id="cal-grid" set:html={calendar.grid} />
+  <div class="cal-agenda" id="cal-agenda" set:html={calendar.agenda} />
+  {/*
+    The legend is also the category filter. The wrapper is what the filter
+    binding listens on, and it survives every repaint; only its contents are
+    replaced.
+  */}
+  <div
+    id="cal-legend"
+    data-filter-group="kind"
+    role="group"
+    aria-label="Filter by category"
+    set:html={calendar.legend}
+  />
+</section>

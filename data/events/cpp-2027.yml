@@ -1,0 +1,28 @@
+id: cpp-2027
+name: International Conference on Certified Programs and Proofs
+acronym: CPP 2027
+type: conference
+areas:
+  - theorem-proving
+  - verification
+  - types
+deadline: 2026-09-10T23:59:00
+deadline_timezone: AoE
+deadlines:
+  - label: Abstract
+    date: 2026-09-03T23:59:00
+    timezone: AoE
+  - label: Paper
+    date: 2026-09-10T23:59:00
+    timezone: AoE
+start_date: 2027-01-11
+end_date: 2027-01-12
+location: Mexico City
+country: Mexico
+colocated_with: POPL 2027
+url: https://popl27.sigplan.org/home/CPP-2027
+source: https://popl27.sigplan.org/home/CPP-2027
+last_verified: 2026-08-02
+notes: >-
+  Deadlines expire at the end of the day anywhere on Earth. The call states
+  that they are strict and that there will be no extensions.

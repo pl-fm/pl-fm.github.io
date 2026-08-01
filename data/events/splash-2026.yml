@@ -1,0 +1,16 @@
+id: splash-2026
+name: ACM SIGPLAN Conference on Systems, Programming, Languages, and Applications
+acronym: SPLASH 2026
+type: conference
+areas:
+  - programming-languages
+  - program-analysis
+start_date: 2026-10-03
+end_date: 2026-10-09
+location: Oakland, California
+country: United States
+description: Hosts OOPSLA and Onward!, colocated with ISSTA 2026.
+url: https://2026.splashcon.org/
+source: https://2026.splashcon.org/dates
+last_verified: 2026-08-02
+notes: Both OOPSLA 2026 submission rounds have closed.

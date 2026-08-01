@@ -1,0 +1,16 @@
+id: fmcad-2026
+name: Conference on Formal Methods in Computer-Aided Design
+acronym: FMCAD 2026
+type: conference
+areas:
+  - formal-methods
+  - verification
+  - model-checking
+start_date: 2026-09-14
+end_date: 2026-09-18
+location: Graz
+country: Austria
+url: https://fmcad.org/FMCAD26/
+source: https://fmcad.org/FMCAD26/
+last_verified: 2026-08-02
+notes: Submissions have closed. VSTTE 2026 is colocated on 14 September.

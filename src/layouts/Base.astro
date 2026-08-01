@@ -1,0 +1,87 @@
+---
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Contribute from '../components/Contribute.astro';
+import DetailDialog from '../components/DetailDialog.astro';
+import { SITE } from '../../site.config.mjs';
+import { url } from '../lib/paths.ts';
+
+export interface Props {
+  /** Appears after `PLFM | `. Omit on the home page. */
+  title?: string;
+  description?: string;
+  /** Overrides the canonical URL, for pages served at two paths. */
+  canonical?: string;
+  /** Set on pages that do not need the detail panel. */
+  detail?: boolean;
+}
+
+const {
+  title,
+  description = SITE.description,
+  canonical,
+  detail = true,
+} = Astro.props;
+
+const pageTitle = title ? `${SITE.title} | ${title}` : `${SITE.title} | Calendar`;
+const canonicalUrl = new URL(canonical ?? Astro.url.pathname, SITE.url).href;
+const ogImage = new URL(url('/og.svg'), SITE.url).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
+    <link rel="sitemap" href={url('/sitemap.xml')} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PLFM" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+
+    <meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#101012" media="(prefers-color-scheme: dark)" />
+
+    {/* Applies the stored choice before first paint so the theme never flashes. */}
+    <script is:inline>
+      try {
+        var stored = localStorage.getItem('plfm-theme');
+        if (stored === 'light' || stored === 'dark') {
+          document.documentElement.dataset.theme = stored;
+        }
+      } catch (e) {
+        /* private browsing, or storage disabled */
+      }
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <SiteHeader />
+
+    <main id="main" class="wrap">
+      <slot />
+      <Contribute />
+    </main>
+
+    <SiteFooter />
+    {detail && <DetailDialog />}
+
+    <script>
+      import { initChrome } from '../scripts/chrome.ts';
+      initChrome();
+    </script>
+  </body>
+</html>

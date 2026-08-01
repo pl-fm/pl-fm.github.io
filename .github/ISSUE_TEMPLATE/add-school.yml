@@ -1,0 +1,91 @@
+name: Add a school or mentoring workshop
+description: A summer school, winter school, doctoral school, or mentoring workshop.
+title: 'Add: '
+labels: [entry, school]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A maintainer will turn this into a file under `data/schools/`. Adding it
+        yourself is faster: see [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md).
+
+  - type: input
+    id: name
+    attributes:
+      label: Full name
+      placeholder: Oregon Programming Languages Summer School
+    validations:
+      required: true
+
+  - type: input
+    id: acronym
+    attributes:
+      label: Acronym and year
+      placeholder: OPLSS 2027
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Kind
+      options:
+        - summer-school
+        - winter-school
+        - doctoral-school
+        - mentoring
+    validations:
+      required: true
+
+  - type: input
+    id: areas
+    attributes:
+      label: Topics
+      description: One or more area slugs from CONTRIBUTING.md, comma separated.
+      placeholder: programming-languages, logic, types
+    validations:
+      required: true
+
+  - type: input
+    id: dates
+    attributes:
+      label: Dates
+      description: Write TBA if they have not been announced.
+      placeholder: 2027-06-14 to 2027-06-25
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      placeholder: Eugene, Oregon, United States
+
+  - type: input
+    id: application
+    attributes:
+      label: Application deadline
+      placeholder: 2027-03-15 23:59 AoE
+
+  - type: input
+    id: eligibility
+    attributes:
+      label: Who can apply
+      description: 'Any of: students, phd, postdocs, everyone.'
+      placeholder: students, phd
+
+  - type: input
+    id: funding
+    attributes:
+      label: Funding
+      description: Travel support, registration waivers, or similar. Leave blank if there is none.
+      placeholder: Travel support available
+
+  - type: input
+    id: source
+    attributes:
+      label: Official page
+      placeholder: https://example.org/oplss/2027
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else

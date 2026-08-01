@@ -1,0 +1,27 @@
+id: ecoop-2027
+name: European Conference on Object-Oriented Programming
+acronym: ECOOP 2027
+type: conference
+areas:
+  - programming-languages
+  - types
+  - program-analysis
+deadline: 2026-11-19T23:59:00
+deadline_timezone: AoE
+deadlines:
+  - label: Round 1
+    date: 2026-11-19T23:59:00
+    timezone: AoE
+  - label: Round 2
+    date: 2027-02-11T23:59:00
+    timezone: AoE
+start_date: 2027-06-28
+end_date: 2027-07-02
+location: Turin
+country: Italy
+url: https://2027.ecoop.org/
+source: https://2027.ecoop.org/dates
+last_verified: 2026-08-02
+notes: >-
+  Two submission rounds. Round 1 notification is 28 January 2027, round 2
+  notification is 8 April 2027.

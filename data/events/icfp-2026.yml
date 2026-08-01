@@ -1,0 +1,16 @@
+id: icfp-2026
+name: ACM SIGPLAN International Conference on Functional Programming
+acronym: ICFP 2026
+type: conference
+areas:
+  - functional-programming
+  - programming-languages
+  - types
+start_date: 2026-08-24
+end_date: 2026-08-29
+location: Indianapolis, Indiana
+country: United States
+url: https://icfp26.sigplan.org/
+source: https://icfp26.sigplan.org/
+last_verified: 2026-08-02
+notes: Submissions have closed.

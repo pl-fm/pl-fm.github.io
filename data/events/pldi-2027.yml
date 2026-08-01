@@ -1,0 +1,17 @@
+id: pldi-2027
+name: ACM SIGPLAN Conference on Programming Language Design and Implementation
+acronym: PLDI 2027
+type: conference
+areas:
+  - programming-languages
+  - compilers
+  - program-analysis
+deadline_tba: true
+start_date: 2027-06-05
+end_date: 2027-06-11
+location: Atlanta, Georgia
+country: United States
+url: https://conf.researchr.org/home/pldi-2027
+source: https://conf.researchr.org/home/pldi-2027
+last_verified: 2026-08-02
+notes: Part of FCRC 2027. No call for papers has been published yet.

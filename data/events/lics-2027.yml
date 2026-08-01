@@ -1,0 +1,17 @@
+id: lics-2027
+name: ACM/IEEE Symposium on Logic in Computer Science
+acronym: LICS 2027
+type: symposium
+areas:
+  - logic
+  - semantics
+  - types
+deadline_tba: true
+start_date: 2027-06-21
+end_date: 2027-06-24
+location: Montreal
+country: Canada
+url: https://lics.siglog.org/
+source: https://lics.siglog.org/
+last_verified: 2026-08-02
+notes: No call for papers has been published yet.

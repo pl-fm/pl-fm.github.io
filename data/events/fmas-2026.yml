@@ -1,0 +1,30 @@
+id: fmas-2026
+name: International Workshop on Formal Methods for Autonomous Systems
+acronym: FMAS 2026
+type: workshop
+areas:
+  - formal-methods
+  - verification
+deadline: 2026-08-17T23:59:00
+deadline_timezone: AoE
+deadlines:
+  - label: Abstract
+    date: 2026-08-14T23:59:00
+    timezone: AoE
+  - label: Paper
+    date: 2026-08-17T23:59:00
+    timezone: AoE
+start_date: 2026-11-17
+end_date: 2026-11-18
+location: Southampton
+country: United Kingdom
+colocated_with: ICFEM 2026
+description: >-
+  Eighth edition. Formal verification techniques for autonomous and robotic
+  systems.
+url: https://fmasworkshop.github.io/FMAS2026/
+source: https://fmasworkshop.github.io/FMAS2026/
+last_verified: 2026-08-02
+notes: >-
+  At least one author per accepted paper must register for on-site attendance.
+  Attending or presenting online is free.

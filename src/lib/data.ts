@@ -1,0 +1,276 @@
+/**
+ * Reads and validates the YAML files under `data/`.
+ *
+ * The site is generated entirely from these files. Nothing here reaches the
+ * browser: pages serialise the validated result into the page instead.
+ *
+ * Build-time only. Do not import from browser code.
+ */
+
+import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { join, resolve } from 'node:path';
+import { parse as parseYaml } from 'yaml';
+import { SCHEMAS } from './schema.ts';
+import { instantOf, isValidDate } from './dates.ts';
+import type { Collection, Entry, EventEntry, JobEntry, SchoolEntry } from './types.ts';
+
+export interface DataIssue {
+  file: string;
+  field?: string;
+  message: string;
+  level: 'error' | 'warning';
+}
+
+export interface LoadResult {
+  entries: Entry[];
+  issues: DataIssue[];
+}
+
+export const COLLECTIONS: readonly Collection[] = [
+  'deadlines',
+  'events',
+  'schools',
+  'jobs',
+];
+
+function dataRoot(): string {
+  return resolve(process.env.PLFM_DATA_DIR ?? join(process.cwd(), 'data'));
+}
+
+function listYaml(dir: string): string[] {
+  let names: string[];
+  try {
+    names = readdirSync(dir);
+  } catch {
+    return [];
+  }
+  return names
+    .filter((n) => /\.(ya?ml)$/i.test(n))
+    .filter((n) => !n.startsWith('.') && !n.startsWith('_'))
+    .filter((n) => statSync(join(dir, n)).isFile())
+    .sort();
+}
+
+/**
+ * Loads every collection. Errors are collected rather than thrown so the
+ * validator can report all of them at once.
+ */
+export function loadAll(): LoadResult {
+  const root = dataRoot();
+  const entries: Entry[] = [];
+  const issues: DataIssue[] = [];
+  const seenIds = new Map<string, string>();
+
+  for (const collection of COLLECTIONS) {
+    const dir = join(root, collection);
+    for (const fileName of listYaml(dir)) {
+      const relative = `data/${collection}/${fileName}`;
+      const raw = readFileSync(join(dir, fileName), 'utf8');
+
+      let doc: unknown;
+      try {
+        doc = parseYaml(raw);
+      } catch (error) {
+        issues.push({
+          file: relative,
+          message: `YAML could not be parsed: ${(error as Error).message}`,
+          level: 'error',
+        });
+        continue;
+      }
+
+      if (doc === null || typeof doc !== 'object' || Array.isArray(doc)) {
+        issues.push({
+          file: relative,
+          message:
+            'expected a single entry per file, written as top-level `key: value` pairs',
+          level: 'error',
+        });
+        continue;
+      }
+
+      const parsed = SCHEMAS[collection].safeParse(doc);
+      if (!parsed.success) {
+        for (const issue of parsed.error.issues) {
+          issues.push({
+            file: relative,
+            field: issue.path.join('.') || undefined,
+            message:
+              issue.code === 'unrecognized_keys'
+                ? `unknown field(s): ${(issue as { keys?: string[] }).keys?.join(', ')}`
+                : issue.message,
+            level: 'error',
+          });
+        }
+        continue;
+      }
+
+      const entry = { ...parsed.data, collection } as Entry;
+
+      const expectedStem = fileName.replace(/\.(ya?ml)$/i, '');
+      if (expectedStem !== entry.id) {
+        issues.push({
+          file: relative,
+          field: 'id',
+          message: `id "${entry.id}" should match the file name "${expectedStem}"`,
+          level: 'error',
+        });
+      }
+
+      const firstSeenIn = seenIds.get(entry.id);
+      if (firstSeenIn) {
+        issues.push({
+          file: relative,
+          field: 'id',
+          message: `id "${entry.id}" is already used by ${firstSeenIn}`,
+          level: 'error',
+        });
+      } else {
+        seenIds.set(entry.id, relative);
+      }
+
+      issues.push(...checkSemantics(entry, relative));
+      entries.push(entry);
+    }
+  }
+
+  return { entries, issues: issues.sort((a, b) => a.file.localeCompare(b.file)) };
+}
+
+/** Checks that need more than one field to make sense. */
+function checkSemantics(entry: Entry, file: string): DataIssue[] {
+  const found: DataIssue[] = [];
+  const error = (message: string, field?: string) =>
+    found.push({ file, field, message, level: 'error' });
+  const warn = (message: string, field?: string) =>
+    found.push({ file, field, message, level: 'warning' });
+
+  // A day of slack, so a machine running ahead of UTC does not flag an entry
+  // verified earlier the same day.
+  const verified = instantOf(entry.last_verified, 'UTC');
+  if (verified !== null && verified > Date.now() + 86_400_000) {
+    error('last_verified is in the future', 'last_verified');
+  }
+
+  if ('start_date' in entry && entry.start_date && entry.end_date) {
+    const start = instantOf(entry.start_date, 'UTC');
+    const end = instantOf(entry.end_date, 'UTC', true);
+    if (start !== null && end !== null && end < start) {
+      error('end_date falls before start_date', 'end_date');
+    }
+  }
+
+  if (entry.collection === 'events' || entry.collection === 'deadlines') {
+    const event = entry as EventEntry;
+    if (event.deadline && !event.deadline_timezone) {
+      warn(
+        'deadline has no deadline_timezone; most calls use AoE',
+        'deadline_timezone',
+      );
+    }
+    if (event.deadline && event.start_date) {
+      const deadline = instantOf(event.deadline, event.deadline_timezone, true);
+      const start = instantOf(event.start_date, 'UTC', true);
+      if (deadline !== null && start !== null && deadline > start) {
+        warn('deadline falls after the event starts', 'deadline');
+      }
+    }
+    if (event.type === 'colocated' && !event.colocated_with) {
+      warn('a colocated event should name its parent venue', 'colocated_with');
+    }
+  }
+
+  if (entry.collection === 'schools') {
+    const school = entry as SchoolEntry;
+    if (school.application_deadline && school.start_date) {
+      const deadline = instantOf(
+        school.application_deadline,
+        school.application_deadline_timezone,
+        true,
+      );
+      const start = instantOf(school.start_date, 'UTC', true);
+      if (deadline !== null && start !== null && deadline > start) {
+        warn(
+          'application_deadline falls after the school starts',
+          'application_deadline',
+        );
+      }
+    }
+  }
+
+  if (entry.collection === 'jobs') {
+    const job = entry as JobEntry;
+    if (job.posted && !isValidDate(job.posted)) {
+      error('posted is not a valid date', 'posted');
+    }
+  }
+
+  return found;
+}
+
+let cached: Entry[] | null = null;
+
+/**
+ * Validated entries for the site build. Throws on the first error so a broken
+ * data file can never ship.
+ */
+export function loadEntries(): Entry[] {
+  if (cached) return cached;
+
+  const { entries, issues } = loadAll();
+  const errors = issues.filter((i) => i.level === 'error');
+  if (errors.length > 0) {
+    const detail = errors
+      .map((e) => `  ${e.file}${e.field ? ` (${e.field})` : ''}: ${e.message}`)
+      .join('\n');
+    throw new Error(
+      `${errors.length} invalid data ${errors.length === 1 ? 'entry' : 'entries'}. Run \`npm run validate\` for the full report.\n${detail}`,
+    );
+  }
+
+  cached = entries;
+  return entries;
+}
+
+export function entriesIn(collection: Collection): Entry[] {
+  return loadEntries().filter((e) => e.collection === collection);
+}
+
+/** Deadline-bearing records: standalone calls plus events that carry one. */
+export function deadlineEntries(): EventEntry[] {
+  return loadEntries().filter(
+    (e): e is EventEntry => e.collection === 'deadlines' || e.collection === 'events',
+  );
+}
+
+export function schoolEntries(): SchoolEntry[] {
+  return loadEntries().filter((e): e is SchoolEntry => e.collection === 'schools');
+}
+
+export function jobEntries(): JobEntry[] {
+  return loadEntries().filter((e): e is JobEntry => e.collection === 'jobs');
+}
+
+/**
+ * The most recent day anyone checked a source, across every entry.
+ *
+ * This is what the site reports as its last update. Build time would be
+ * misleading: rebuilding does not mean a single deadline was rechecked.
+ */
+export function lastVerified(): string | null {
+  const dates = loadEntries()
+    .map((entry) => entry.last_verified)
+    .filter(Boolean)
+    .sort();
+  return dates.at(-1) ?? null;
+}
+
+/** True when the repository still contains only demonstration data. */
+export function hasOnlySampleData(): boolean {
+  const entries = loadEntries();
+  return entries.length > 0 && entries.every((e) => e.sample === true);
+}
+
+export function sampleCount(): number {
+  return loadEntries().filter((e) => e.sample === true).length;
+}

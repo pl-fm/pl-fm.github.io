@@ -1,0 +1,22 @@
+id: concur-2026
+name: International Conference on Concurrency Theory
+acronym: CONCUR 2026
+type: conference
+areas:
+  - concurrency
+  - semantics
+  - formal-methods
+start_date: 2026-09-01
+end_date: 2026-09-05
+location: Liverpool
+country: United Kingdom
+colocated_with: CONFEST 2026
+description: >-
+  Part of CONFEST 2026, alongside FMICS 2026 and the joint QEST and FORMATS
+  conference.
+url: https://confest-2026.github.io/concur/
+source: https://confest-2026.github.io/
+last_verified: 2026-08-02
+notes: >-
+  Main conference submissions have closed. Some CONFEST workshop deadlines may
+  still be open.

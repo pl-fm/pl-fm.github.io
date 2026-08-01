@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="PLFM: a community calendar for programming languages and formal methods">
+  <rect width="1200" height="630" fill="#fcfcfb" />
+  <g font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" fill="#17171a">
+    <text x="96" y="286" font-size="104" font-weight="600" letter-spacing="-3">PLFM</text>
+    <text x="96" y="352" font-size="34" fill="#17171a">A community calendar for programming languages</text>
+    <text x="96" y="398" font-size="34" fill="#17171a">and formal methods.</text>
+    <text x="96" y="470" font-size="24" fill="#5f5f68">Deadlines · Events · Schools · Jobs</text>
+  </g>
+  <rect x="96" y="502" width="1008" height="1" fill="#e4e3de" />
+  <text x="96" y="546" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" fill="#5f5f68">Community-maintained</text>
+  <rect x="96" y="152" width="56" height="3" fill="#2a5cb8" />
+</svg>

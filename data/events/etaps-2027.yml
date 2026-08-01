@@ -1,0 +1,31 @@
+id: etaps-2027
+name: European Joint Conferences on Theory and Practice of Software
+acronym: ETAPS 2027
+type: conference
+areas:
+  - formal-methods
+  - programming-languages
+  - semantics
+  - verification
+deadline: 2026-10-15T23:59:00
+deadline_timezone: AoE
+deadlines:
+  - label: Paper
+    date: 2026-10-15T23:59:00
+    timezone: AoE
+    note: ESOP round 2, FoSSaCS, TACAS and iFS
+  - label: Artifact
+    date: 2026-10-29T23:59:00
+    timezone: AoE
+    note: Mandatory for TACAS
+start_date: 2027-04-10
+end_date: 2027-04-15
+location: Copenhagen
+country: Denmark
+description: >-
+  Joint conferences covering ESOP, FoSSaCS, TACAS and iFS. Satellite events run
+  on 10 and 11 April, the main conferences from 12 to 15 April.
+url: https://etaps.org/2027/
+source: https://etaps.org/2027/cfp/
+last_verified: 2026-08-02
+notes: The call states that deadlines are firm and will not be extended.

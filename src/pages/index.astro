@@ -1,0 +1,94 @@
+---
+/**
+ * The whole site, on one page. The tabs above the calendar are a filter, not
+ * navigation: they narrow the grid and the two lists below it together.
+ */
+import Base from '../layouts/Base.astro';
+import CalendarSection from '../components/CalendarSection.astro';
+import SampleNotice from '../components/SampleNotice.astro';
+import { SITE } from '../../site.config.mjs';
+import { loadEntries } from '../lib/data.ts';
+import { todayKey } from '../lib/dates.ts';
+import { EMPTY_FILTER } from '../lib/filter.ts';
+import { jsonPayload } from '../lib/render.ts';
+import { SHOW_OPTIONS } from '../lib/taxonomy.ts';
+import { homeView } from '../lib/views.ts';
+
+const now = Date.now();
+const today = todayKey();
+const [year, month] = today.split('-').map(Number);
+
+// Jobs keep to their own data folder; everything else is on the calendar.
+const entries = loadEntries().filter((entry) => entry.collection !== 'jobs');
+
+// The static page is the unfiltered view. A reader arriving at `#events` gets
+// the tab switched on load, by the page's own script.
+const show = 'all';
+const state = { ...EMPTY_FILTER, show };
+const view = homeView({
+  entries,
+  state,
+  now,
+  today,
+  year: year!,
+  month: month!,
+});
+---
+
+<Base>
+  <div
+    data-page="home"
+    data-year={year}
+    data-month={month}
+    data-built-day={today}
+  >
+    <SampleNotice />
+
+    {/* Buttons rather than links: they filter the page in place. */}
+    <div
+      class="viewtabs"
+      role="group"
+      aria-label="Show"
+      data-filter-group="show"
+    >
+      {
+        SHOW_OPTIONS.map((option) => (
+          <button
+            class="viewtab"
+            type="button"
+            data-value={option.value}
+            aria-pressed={option.value === show ? 'true' : 'false'}
+          >
+            {option.label}
+          </button>
+        ))
+      }
+    </div>
+
+    <CalendarSection calendar={view} mode={show} searchId="plfm-search" />
+
+    <section class="section" aria-labelledby="month-heading">
+      <h2 class="section-title" id="month-heading">{view.monthHeading}</h2>
+      <div id="month-list" set:html={view.monthList} />
+    </section>
+
+    <section class="section" aria-labelledby="upcoming-heading">
+      <h2 class="section-title" id="upcoming-heading">{view.upcomingHeading}</h2>
+      <p class="result-count" id="upcoming-count">{view.count}</p>
+      <div id="upcoming-list" set:html={view.upcomingList} />
+      <p class="section-note">{SITE.maintainerNote}</p>
+    </section>
+
+    <script
+      type="application/json"
+      id="plfm-entries"
+      is:inline
+      set:html={jsonPayload(entries)}
+    />
+  </div>
+
+  <script>
+    import { initHome } from '../scripts/home.ts';
+    initHome();
+  </script>
+</Base>

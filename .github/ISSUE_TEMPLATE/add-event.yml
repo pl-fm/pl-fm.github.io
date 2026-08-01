@@ -1,0 +1,93 @@
+name: Add a conference or workshop
+description: A conference, workshop, seminar, symposium, or community event, with its submission deadline if it has one.
+title: 'Add: '
+labels: [entry, event]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill in what you know. Leave anything unannounced blank rather than
+        guessing, and say so in the notes. A maintainer will turn this into a
+        file under `data/events/`.
+
+        Adding the file yourself is faster: see [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md).
+
+  - type: input
+    id: name
+    attributes:
+      label: Full name
+      placeholder: Principles of Programming Languages
+    validations:
+      required: true
+
+  - type: input
+    id: acronym
+    attributes:
+      label: Acronym and year
+      description: This is what appears in the calendar.
+      placeholder: POPL 2027
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Kind
+      options:
+        - conference
+        - workshop
+        - seminar
+        - symposium
+        - community-meeting
+        - colocated
+    validations:
+      required: true
+
+  - type: input
+    id: areas
+    attributes:
+      label: Research areas
+      description: One or more slugs from the list in CONTRIBUTING.md, comma separated.
+      placeholder: programming-languages, formal-methods
+    validations:
+      required: true
+
+  - type: input
+    id: deadline
+    attributes:
+      label: Submission deadline
+      description: 'Date and time as printed on the call, plus the timezone. Write TBA if it has not been announced.'
+      placeholder: 2026-07-09 23:59 AoE
+
+  - type: input
+    id: rounds
+    attributes:
+      label: Other rounds
+      description: Abstract, artifact, and any other deadlines, if the call has them.
+      placeholder: Abstract 2026-07-02 23:59 AoE; Artifact 2026-09-25 23:59 AoE
+
+  - type: input
+    id: dates
+    attributes:
+      label: Event dates
+      description: Write TBA if they have not been announced.
+      placeholder: 2027-01-17 to 2027-01-23
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      placeholder: Paris, France
+
+  - type: input
+    id: source
+    attributes:
+      label: Official page
+      description: The venue's own call for papers or announcement. Not an aggregator.
+      placeholder: https://example.org/popl-2027/call-for-papers
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else
+      description: Colocation, unusual submission rules, or what is still unannounced.

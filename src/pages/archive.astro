@@ -1,0 +1,80 @@
+---
+import Base from '../layouts/Base.astro';
+import { loadEntries } from '../lib/data.ts';
+import { todayKey } from '../lib/dates.ts';
+import { jsonPayload } from '../lib/render.ts';
+import { archiveView } from '../lib/views.ts';
+
+const now = Date.now();
+const today = todayKey();
+
+// Jobs are not surfaced anywhere at the moment, so they stay out of the
+// archive too. The data files and the code paths are still in place.
+const entries = loadEntries().filter((entry) => entry.collection !== 'jobs');
+const view = archiveView(entries, now, 'all');
+---
+
+<Base
+  title="Archive"
+  description="Past conferences, workshops, schools, and closed positions in programming languages and formal methods."
+>
+  <div data-page="archive" data-built-day={today}>
+    <section class="section" aria-labelledby="archive-heading">
+      <h2 class="section-title" id="archive-heading">Archive</h2>
+      <p class="section-note">
+        Entries stay here after their date passes. Nothing is deleted because it
+        is old.
+      </p>
+
+      <div class="controls">
+        <div class="filters">
+          <span class="filters-label" id="filter-label-year">Year</span>
+          <div
+            class="filter-set"
+            role="group"
+            aria-labelledby="filter-label-year"
+            data-filter-group="year"
+          >
+            <button class="filter" type="button" data-value="all" aria-pressed="true">
+              All
+            </button>
+            {
+              view.years.map((year) => (
+                <button
+                  class="filter"
+                  type="button"
+                  data-value={String(year)}
+                  aria-pressed="false"
+                >
+                  {year}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+        <p class="result-count" id="archive-count" style="margin-top:0">{view.count}</p>
+      </div>
+    </section>
+
+    {
+      view.sections.map((section) => (
+        <section class="section">
+          <h3 class="section-title">{section.title}</h3>
+          <div data-archive-section set:html={section.html} />
+        </section>
+      ))
+    }
+
+    <script
+      type="application/json"
+      id="plfm-entries"
+      is:inline
+      set:html={jsonPayload(entries)}
+    />
+  </div>
+
+  <script>
+    import { initArchive } from '../scripts/archive.ts';
+    initArchive();
+  </script>
+</Base>
