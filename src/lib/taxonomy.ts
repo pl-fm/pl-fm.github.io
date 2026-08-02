@@ -2,7 +2,7 @@
  * The controlled vocabularies used across the site.
  *
  * Adding a value here is all it takes to make it usable in a data file: the
- * validator, the filter bars, and the labels below all read from these lists.
+ * validator, the filters, and the labels all read from these lists.
  * Client-safe, so no imports beyond types.
  */
 
@@ -13,7 +13,6 @@ import type {
   EventType,
   Kind,
   Moment,
-  PositionType,
   SchoolType,
 } from './types.ts';
 
@@ -87,22 +86,6 @@ export const SCHOOL_TYPE_LABELS: Record<SchoolType, string> = {
   mentoring: 'Mentoring',
 };
 
-export const POSITION_TYPES: readonly PositionType[] = [
-  'phd',
-  'postdoc',
-  'faculty',
-  'research',
-  'internship',
-];
-
-export const POSITION_TYPE_LABELS: Record<PositionType, string> = {
-  phd: 'PhD',
-  postdoc: 'Postdoc',
-  faculty: 'Faculty',
-  research: 'Research',
-  internship: 'Internship',
-};
-
 export const AUDIENCES: readonly Audience[] = [
   'students',
   'phd',
@@ -121,22 +104,15 @@ export const KIND_LABELS: Record<Kind, string> = {
   conference: 'Conference',
   workshop: 'Workshop',
   school: 'School',
-  job: 'Job',
 };
 
-/**
- * The legend below the calendar, in the order it reads.
- *
- * Deadlines lead because they are the only dates a reader can miss. `job` is
- * last and only ever appears on a calendar that carries jobs, which the home
- * page does not.
- */
+/** The legend below the calendar. Deadlines lead: they are the only dates a
+ * reader can miss. */
 export const CATEGORIES: readonly Category[] = [
   'deadline',
   'conference',
   'workshop',
   'school',
-  'job',
 ];
 
 export const CATEGORY_LABELS: Record<Category, string> = {
@@ -144,7 +120,6 @@ export const CATEGORY_LABELS: Record<Category, string> = {
   conference: 'Conference',
   workshop: 'Workshop',
   school: 'School',
-  job: 'Job',
 };
 
 /** What each legend entry means, for the button's tooltip. */
@@ -153,7 +128,6 @@ export const CATEGORY_HINTS: Record<Category, string> = {
   conference: 'Conferences and symposia, on the days they run',
   workshop: 'Workshops and colocated events, on the days they run',
   school: 'Summer, winter, and doctoral schools, on the days they run',
-  job: 'Position closing dates',
 };
 
 /**
@@ -180,24 +154,20 @@ export function areaLabels(areas: readonly string[]): string[] {
 }
 
 /**
- * Collapses an entry's specific type onto the four buckets used for calendar
+ * Collapses an entry's specific type onto the buckets used for calendar
  * colours. Keeping this small is deliberate: the calendar should read as a
  * calendar, not as a legend.
  */
-export function kindOf(entry: {
-  collection: string;
-  type?: string;
-}): Kind {
+export function kindOf(entry: { collection: string; type?: string }): Kind {
   if (entry.collection === 'schools') return 'school';
-  if (entry.collection === 'jobs') return 'job';
   if (entry.type === 'workshop' || entry.type === 'colocated') return 'workshop';
   return 'conference';
 }
 
 /**
  * The legend bucket for one dated moment. A deadline is a deadline whatever it
- * belongs to, so the conference that owns it only decides the colour of the
- * date the conference itself begins.
+ * belongs to, so the entry that owns it only decides the colour of the date it
+ * begins on.
  */
 export function categoryOf(
   entry: { collection: string; type?: string },

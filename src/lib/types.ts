@@ -1,12 +1,12 @@
 /**
  * Shape of every record in `data/`.
  *
- * This module has no imports on purpose: it is bundled into the browser
- * alongside the filtering and rendering helpers, so it must stay free of any
- * Node or validation dependencies. The runtime schema lives in `schema.ts`.
+ * No imports on purpose: this is bundled into the browser alongside the
+ * filtering and rendering helpers, so it must stay free of any Node or
+ * validation dependencies. The runtime schema lives in `schema.ts`.
  */
 
-export type Collection = 'deadlines' | 'events' | 'schools' | 'jobs';
+export type Collection = 'events' | 'schools';
 
 export type Area =
   | 'programming-languages'
@@ -40,20 +40,13 @@ export type SchoolType =
   | 'doctoral-school'
   | 'mentoring';
 
-export type PositionType =
-  | 'phd'
-  | 'postdoc'
-  | 'faculty'
-  | 'research'
-  | 'internship';
-
 export type Audience = 'students' | 'phd' | 'postdocs' | 'everyone';
 
 /**
- * Timezones a deadline may be expressed in. `AoE` (Anywhere on Earth, UTC-12)
- * is the convention across most PL and formal methods venues. Fixed offsets
- * such as `UTC+2` are accepted; named zones are deliberately not, because
- * resolving them correctly would need a timezone database.
+ * Timezone a deadline is expressed in. `AoE` (Anywhere on Earth, UTC-12) is
+ * the convention across most PL and formal methods venues. Fixed offsets such
+ * as `UTC+2` are accepted; named zones are not, because resolving them would
+ * need a timezone database.
  */
 export type DeadlineTimezone = string;
 
@@ -61,10 +54,7 @@ export type DeadlineTimezone = string;
 export interface DeadlineSlot {
   /** Short label, for example `Abstract`, `Paper`, `Artifact`. */
   label?: string;
-  /**
-   * Local wall-clock time as written on the call for papers, for example
-   * `2026-07-09T23:59:00`. Absent when the venue has not announced one.
-   */
+  /** Local wall-clock time as written on the call, e.g. `2026-07-09T23:59:00`. */
   date?: string;
   timezone?: DeadlineTimezone;
   /** Set when the deadline is known to exist but has not been announced. */
@@ -84,13 +74,11 @@ interface BaseEntry {
   source: string;
   /** ISO date on which a human last checked `source`. Required. */
   last_verified: string;
-  /** Marks demonstration data that is not a real announcement. */
-  sample?: boolean;
   notes?: string;
 }
 
 export interface EventEntry extends BaseEntry {
-  collection: 'events' | 'deadlines';
+  collection: 'events';
   type: EventType;
   /** Primary submission deadline, when one has been announced. */
   deadline?: string;
@@ -104,7 +92,7 @@ export interface EventEntry extends BaseEntry {
   dates_tba?: boolean;
   location?: string;
   country?: string;
-  /** Parent venue for workshops and colocated events, for example `POPL 2027`. */
+  /** Parent venue for workshops and colocated events, e.g. `POPL 2027`. */
   colocated_with?: string;
 }
 
@@ -125,23 +113,10 @@ export interface SchoolEntry extends BaseEntry {
   recurring?: string;
 }
 
-export interface JobEntry extends BaseEntry {
-  collection: 'jobs';
-  position_type: PositionType;
-  institution: string;
-  location?: string;
-  country?: string;
-  deadline?: string;
-  deadline_timezone?: DeadlineTimezone;
-  open_until_filled?: boolean;
-  /** Date after which the listing should leave the archive view ordering. */
-  posted?: string;
-}
-
-export type Entry = EventEntry | SchoolEntry | JobEntry;
+export type Entry = EventEntry | SchoolEntry;
 
 /** Coarse grouping of an entry, used for the type labels on rows. */
-export type Kind = 'conference' | 'workshop' | 'school' | 'job';
+export type Kind = 'conference' | 'workshop' | 'school';
 
 /**
  * What a date on the calendar represents. Every dated moment falls into
@@ -154,11 +129,10 @@ export type Moment = 'deadline' | 'event' | 'school';
  * legend below it filters on.
  *
  * A date is read first as a deadline or not: `PLDI` in a cell means something
- * quite different on the day its call closes than on the day it opens, and
- * colouring both conference-blue hid that. So `deadline` wins over the kind of
- * entry it belongs to, and the remaining categories say what is running.
+ * quite different on the day its call closes than on the day it opens, so
+ * `deadline` wins over the kind of entry it belongs to.
  */
-export type Category = 'deadline' | 'conference' | 'workshop' | 'school' | 'job';
+export type Category = 'deadline' | 'conference' | 'workshop' | 'school';
 
 /** One dated thing to place on a calendar grid. */
 export interface CalendarItem {
@@ -181,5 +155,4 @@ export interface CalendarItem {
   what: string;
   areas: Area[];
   collection: Collection;
-  sample?: boolean;
 }

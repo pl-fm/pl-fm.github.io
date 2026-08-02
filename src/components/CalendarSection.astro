@@ -5,18 +5,16 @@
  * `data-calendar` carries the selected tab so the day-detail popup can show
  * the same dates the cell does. The page's script keeps it up to date.
  */
-import type { CalendarRegions, ShowMode } from '../lib/views.ts';
+import type { CalendarRegions } from '../lib/views.ts';
 
 export interface Props {
   calendar: CalendarRegions;
-  mode?: ShowMode;
-  searchId: string;
 }
 
-const { calendar, mode = 'all', searchId } = Astro.props;
+const { calendar } = Astro.props;
 ---
 
-<section class="cal-section" data-calendar={mode} aria-labelledby="cal-title">
+<section class="cal-section" data-calendar="all" aria-labelledby="cal-title">
   <div class="cal-bar">
     <button class="cal-nav" type="button" data-cal-prev aria-label="Previous month">
       <span aria-hidden="true">&lsaquo;</span>
@@ -28,9 +26,9 @@ const { calendar, mode = 'all', searchId } = Astro.props;
     <button class="cal-today" type="button" data-cal-today>Today</button>
 
     <div class="cal-search">
-      <label class="sr-only" for={searchId}>Search entries</label>
+      <label class="sr-only" for="plfm-search">Search entries</label>
       <input
-        id={searchId}
+        id="plfm-search"
         type="search"
         data-search
         placeholder="Search acronym, name, or topic"
@@ -43,15 +41,13 @@ const { calendar, mode = 'all', searchId } = Astro.props;
   <div class="cal-grid-view" id="cal-grid" set:html={calendar.grid} />
   <div class="cal-agenda" id="cal-agenda" set:html={calendar.agenda} />
   {/*
-    The colour key, which is also the category filter: each button switches its
-    own colour on and off, so combinations the tabs above cannot express are
-    still reachable. The wrapper is what the filter binding listens on, and it
-    survives every repaint; only its contents are replaced.
+    The colour key, which is also the category filter. This wrapper is what the
+    filter binding listens on and it survives every repaint; only its contents
+    are replaced.
   */}
   <div
     id="cal-legend"
     data-filter-group="category"
-    data-filter-multi
     role="group"
     aria-label="Categories: colour key, and a filter for the calendar"
     set:html={calendar.legend}

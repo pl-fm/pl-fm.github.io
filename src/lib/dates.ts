@@ -57,6 +57,16 @@ const MONTHS_SHORT = [
 
 export const WEEKDAYS_SHORT = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
+export const WEEKDAYS_LONG = [
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
+];
+
 const DATE_PATTERN =
   /^(\d{4})-(\d{2})(?:-(\d{2})(?:[T ](\d{2}):(\d{2})(?::(\d{2}))?)?)?$/;
 
@@ -166,7 +176,7 @@ export function formatDate(value: string | undefined | null): string {
 }
 
 /** `23:59` when the entry carries a time, empty otherwise. */
-export function formatTime(value: string | undefined | null): string {
+function formatTime(value: string | undefined | null): string {
   const parsed = parseDate(value);
   if (!parsed || parsed.precision !== 'minute') return '';
   return `${pad(parsed.hour)}:${pad(parsed.minute)}`;
@@ -219,25 +229,17 @@ export function formatDateRange(
   return `${MONTHS_SHORT[a.month - 1]} ${a.day}, ${a.year} to ${MONTHS_SHORT[b.month - 1]} ${b.day}, ${b.year}`;
 }
 
-export function monthName(month: number, long = true): string {
-  const table = long ? MONTHS_LONG : MONTHS_SHORT;
-  return table[month - 1] ?? '';
+export function monthName(month: number): string {
+  return MONTHS_LONG[month - 1] ?? '';
 }
 
 export function formatMonthYear(year: number, month: number): string {
   return `${monthName(month)} ${year}`;
 }
 
-/**
- * Days from now until the given moment, rounded towards zero. Used for the
- * short `in 12 days` hints beside imminent deadlines.
- */
-export function daysUntil(instant: number, now: number): number {
-  return Math.floor((instant - now) / 86_400_000);
-}
-
+/** The short `in 12 days` hint beside an imminent deadline. */
 export function relativeDeadline(instant: number, now: number): string {
-  const days = daysUntil(instant, now);
+  const days = Math.floor((instant - now) / 86_400_000);
   if (days < 0) return 'closed';
   if (days === 0) return 'today';
   if (days === 1) return 'tomorrow';

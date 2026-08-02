@@ -1,5 +1,0 @@
-blank_issues_enabled: true
-contact_links:
-  - name: Add an entry yourself
-    url: https://github.com/plfm-community/plfm/blob/main/CONTRIBUTING.md
-    about: One YAML file in data/ is all it takes. This is the fastest route.

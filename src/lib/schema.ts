@@ -13,7 +13,6 @@ import {
   AREAS,
   AUDIENCES,
   EVENT_TYPES,
-  POSITION_TYPES,
   SCHOOL_TYPES,
   TIMEZONE_PATTERN,
 } from './taxonomy.ts';
@@ -23,12 +22,10 @@ function enumOf<T extends string>(values: readonly T[]) {
   return z.enum(values as unknown as [T, ...T[]]);
 }
 
-const dateString = z
-  .string()
-  .refine(isValidDate, {
-    message:
-      'expected YYYY-MM, YYYY-MM-DD, or YYYY-MM-DDTHH:MM (and a date that exists)',
-  });
+const dateString = z.string().refine(isValidDate, {
+  message:
+    'expected YYYY-MM, YYYY-MM-DD, or YYYY-MM-DDTHH:MM (and a date that exists)',
+});
 
 const timezone = z.string().regex(TIMEZONE_PATTERN, {
   message: 'expected AoE, UTC, local, or a fixed offset such as UTC+2',
@@ -74,7 +71,6 @@ const base = {
   description: z.string().max(400).optional(),
   source: url,
   last_verified: dateString,
-  sample: z.boolean().optional(),
   notes: z.string().max(400).optional(),
 };
 
@@ -126,28 +122,7 @@ export const schoolSchema = z
     path: ['application_deadline_tba'],
   });
 
-export const jobSchema = z
-  .object({
-    ...base,
-    position_type: enumOf(POSITION_TYPES),
-    institution: z.string().min(2).max(160),
-    location: z.string().max(120).optional(),
-    country: z.string().max(80).optional(),
-    deadline: dateString.optional(),
-    deadline_timezone: timezone.optional(),
-    open_until_filled: z.boolean().optional(),
-    posted: dateString.optional(),
-  })
-  .strict()
-  .refine((j) => Boolean(j.deadline) || j.open_until_filled === true, {
-    message:
-      'a job needs either a `deadline` or `open_until_filled: true`, so it can expire correctly',
-    path: ['deadline'],
-  });
-
 export const SCHEMAS = {
-  deadlines: eventSchema,
   events: eventSchema,
   schools: schoolSchema,
-  jobs: jobSchema,
 } as const;

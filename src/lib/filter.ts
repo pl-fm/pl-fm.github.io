@@ -8,19 +8,12 @@
  * Client-safe: no imports beyond types, dates, and taxonomy.
  */
 
-import {
-  daysInMonth,
-  instantOf,
-  dayKey,
-  parseDate,
-  toDayKey,
-} from './dates.ts';
+import { daysInMonth, instantOf, dayKey, toDayKey } from './dates.ts';
 import {
   areaLabels,
   categoryOf,
   kindOf,
   EVENT_TYPE_LABELS,
-  POSITION_TYPE_LABELS,
   SCHOOL_TYPE_LABELS,
 } from './taxonomy.ts';
 import type {
@@ -28,15 +21,8 @@ import type {
   Category,
   Entry,
   EventEntry,
-  JobEntry,
   SchoolEntry,
 } from './types.ts';
-
-/**
- * A job that is open until filled with no deadline stops being shown once its
- * listing is this old, so the board does not accumulate dead links.
- */
-export const OPEN_LISTING_MONTHS = 12;
 
 export interface DeadlineOccurrence {
   entry: EventEntry;
@@ -115,25 +101,14 @@ export function deadlineIsTba(entry: EventEntry): boolean {
   return (entry.deadlines ?? []).some((slot) => slot.tba && !slot.date);
 }
 
-/** Moment an event or school stops being upcoming. */
-export function endInstant(
-  entry: EventEntry | SchoolEntry,
-): number | null {
-  const last = entry.end_date ?? entry.start_date;
-  return instantOf(last, 'UTC', true);
-}
-
-export function startInstant(entry: EventEntry | SchoolEntry): number | null {
+export function startInstant(entry: Entry): number | null {
   return instantOf(entry.start_date, 'UTC');
 }
 
-export function isPastEvent(
-  entry: EventEntry | SchoolEntry,
-  now: number,
-): boolean {
-  const end = endInstant(entry);
-  if (end === null) return false; // undated or TBA entries stay upcoming
-  return end < now;
+export function isPastEvent(entry: Entry, now: number): boolean {
+  // Undated or TBA entries stay upcoming.
+  const end = instantOf(entry.end_date ?? entry.start_date, 'UTC', true);
+  return end !== null && end < now;
 }
 
 export function schoolDeadlineInstant(school: SchoolEntry): number | null {
@@ -142,25 +117,6 @@ export function schoolDeadlineInstant(school: SchoolEntry): number | null {
     school.application_deadline_timezone,
     true,
   );
-}
-
-export function jobDeadlineInstant(job: JobEntry): number | null {
-  return instantOf(job.deadline, job.deadline_timezone, true);
-}
-
-export function isExpiredJob(job: JobEntry, now: number): boolean {
-  const deadline = jobDeadlineInstant(job);
-  if (deadline !== null) return deadline < now;
-  if (!job.open_until_filled) return false;
-
-  const listed = parseDate(job.posted ?? job.last_verified);
-  if (!listed) return false;
-  const cutoff = Date.UTC(
-    listed.year,
-    listed.month - 1 + OPEN_LISTING_MONTHS,
-    Math.min(listed.day, daysInMonth(listed.year, listed.month + OPEN_LISTING_MONTHS)),
-  );
-  return cutoff < now;
 }
 
 /* ------------------------------------------------------------------------ */
@@ -175,8 +131,8 @@ function shortLabel(label: string): string {
   return label.replace(/\s+(19|20)\d{2}$/, '');
 }
 
-/** Turns deadline-bearing entries into one calendar item per announced round. */
-export function deadlineCalendarItems(entries: EventEntry[]): CalendarItem[] {
+/** One calendar item per announced submission round. */
+function deadlineItems(entries: EventEntry[]): CalendarItem[] {
   const items: CalendarItem[] = [];
   for (const entry of entries) {
     for (const occurrence of deadlineOccurrences(entry)) {
@@ -197,7 +153,6 @@ export function deadlineCalendarItems(entries: EventEntry[]): CalendarItem[] {
           : 'Submission deadline',
         areas: entry.areas,
         collection: entry.collection,
-        sample: entry.sample,
       });
     }
   }
@@ -205,7 +160,7 @@ export function deadlineCalendarItems(entries: EventEntry[]): CalendarItem[] {
 }
 
 /** One item per event, placed on its start date. */
-export function eventCalendarItems(entries: EventEntry[]): CalendarItem[] {
+function eventItems(entries: EventEntry[]): CalendarItem[] {
   const items: CalendarItem[] = [];
   for (const entry of entries) {
     const key = dayKey(entry.start_date);
@@ -223,14 +178,13 @@ export function eventCalendarItems(entries: EventEntry[]): CalendarItem[] {
       what: EVENT_TYPE_LABELS[entry.type] ?? 'Event',
       areas: entry.areas,
       collection: entry.collection,
-      sample: entry.sample,
     });
   }
   return items;
 }
 
 /** School application deadlines, plus the schools themselves. */
-export function schoolCalendarItems(entries: SchoolEntry[]): CalendarItem[] {
+function schoolItems(entries: SchoolEntry[]): CalendarItem[] {
   const items: CalendarItem[] = [];
   for (const entry of entries) {
     const label = entry.acronym ?? entry.name;
@@ -242,7 +196,6 @@ export function schoolCalendarItems(entries: SchoolEntry[]): CalendarItem[] {
       kind: 'school' as const,
       areas: entry.areas,
       collection: entry.collection,
-      sample: entry.sample,
     };
 
     const application = dayKey(entry.application_deadline);
@@ -271,22 +224,21 @@ export function schoolCalendarItems(entries: SchoolEntry[]): CalendarItem[] {
 }
 
 /**
- * Everything dated, for the main calendar: submission deadlines, the events
- * they belong to, schools, and school application deadlines.
+ * Everything dated: submission deadlines, the events they belong to, schools,
+ * and school application deadlines.
  */
 export function combinedCalendarItems(entries: Entry[]): CalendarItem[] {
   const events = entries.filter(
-    (entry): entry is EventEntry =>
-      entry.collection === 'events' || entry.collection === 'deadlines',
+    (entry): entry is EventEntry => entry.collection === 'events',
   );
   const schools = entries.filter(
     (entry): entry is SchoolEntry => entry.collection === 'schools',
   );
 
   return [
-    ...deadlineCalendarItems(events),
-    ...eventCalendarItems(events),
-    ...schoolCalendarItems(schools),
+    ...deadlineItems(events),
+    ...eventItems(events),
+    ...schoolItems(schools),
   ];
 }
 
@@ -295,10 +247,7 @@ export function combinedCalendarItems(entries: Entry[]): CalendarItem[] {
  * deadlines and school application deadlines, so every moment lands in exactly
  * one bucket.
  */
-export function itemsShowing(
-  items: CalendarItem[],
-  show: string,
-): CalendarItem[] {
+export function itemsShowing(items: CalendarItem[], show: string): CalendarItem[] {
   if (show === 'all') return items;
   const wanted =
     show === 'deadlines' ? 'deadline' : show === 'events' ? 'event' : 'school';
@@ -335,18 +284,14 @@ export function itemsInMonth(
 /* ------------------------------------------------------------------------ */
 
 export interface FilterState {
-  /** Research area slug, or `all`. */
-  area: string;
-  /** Collection-specific type slug, or `all`. */
-  type: string;
   /**
    * The legend below the calendar. Selecting none means no restriction rather
    * than an empty calendar, so the cleared state and the everything state are
    * the same thing and there is no way to end up looking at nothing.
    *
-   * Unlike the others this selects on calendar items, not on entries: a
-   * conference is on the calendar twice, and `deadline` should keep the date
-   * its call closes while dropping the date it opens.
+   * This selects on calendar items, not on entries: a conference is on the
+   * calendar twice, and `deadline` should keep the date its call closes while
+   * dropping the date it opens.
    */
   categories: Category[];
   /**
@@ -359,28 +304,10 @@ export interface FilterState {
 }
 
 export const EMPTY_FILTER: FilterState = {
-  area: 'all',
-  type: 'all',
   categories: [],
   show: 'all',
   query: '',
 };
-
-export function matchesArea(entry: Entry, area: string): boolean {
-  if (area === 'all') return true;
-  return entry.areas.includes(area as Entry['areas'][number]);
-}
-
-export function matchesType(entry: Entry, type: string): boolean {
-  if (type === 'all') return true;
-  if (entry.collection === 'jobs') {
-    return (entry as JobEntry).position_type === type;
-  }
-  if (entry.collection === 'schools') {
-    return (entry as SchoolEntry).type === type;
-  }
-  return (entry as EventEntry).type === type;
-}
 
 /** Whether a legend selection admits a category. Selecting none admits all. */
 export function inCategories(
@@ -400,37 +327,33 @@ export function itemsInCategories(
 }
 
 /** How many items each legend button stands for, so it can show a count. */
-export function countByCategory(
-  items: CalendarItem[],
-): Record<Category, number> {
-  const counts = {
+export function countByCategory(items: CalendarItem[]): Record<Category, number> {
+  const counts: Record<Category, number> = {
     deadline: 0,
     conference: 0,
     workshop: 0,
     school: 0,
-    job: 0,
-  } as Record<Category, number>;
+  };
   for (const item of items) counts[item.category] += 1;
   return counts;
 }
 
 /** Words a query is matched against. Cheap to build, so it is not cached. */
 function haystack(entry: Entry): string {
-  const parts: string[] = [entry.name, entry.acronym ?? '', entry.description ?? ''];
-  parts.push(...areaLabels(entry.areas), ...entry.areas);
+  const parts: string[] = [
+    entry.name,
+    entry.acronym ?? '',
+    entry.description ?? '',
+    entry.location ?? '',
+    entry.country ?? '',
+    ...areaLabels(entry.areas),
+    ...entry.areas,
+  ];
 
-  if (entry.collection === 'jobs') {
-    const job = entry as JobEntry;
-    parts.push(job.institution, job.location ?? '', job.country ?? '');
-    parts.push(POSITION_TYPE_LABELS[job.position_type] ?? '');
-  } else if (entry.collection === 'schools') {
-    const school = entry as SchoolEntry;
-    parts.push(school.location ?? '', school.country ?? '');
-    parts.push(SCHOOL_TYPE_LABELS[school.type] ?? '');
+  if (entry.collection === 'schools') {
+    parts.push(SCHOOL_TYPE_LABELS[entry.type] ?? '');
   } else {
-    const event = entry as EventEntry;
-    parts.push(event.location ?? '', event.country ?? '', event.colocated_with ?? '');
-    parts.push(EVENT_TYPE_LABELS[event.type] ?? '');
+    parts.push(entry.colocated_with ?? '', EVENT_TYPE_LABELS[entry.type] ?? '');
   }
 
   return parts.join(' ').toLowerCase();
@@ -443,40 +366,9 @@ export function matchesQuery(entry: Entry, query: string): boolean {
   return q.split(/\s+/).every((token) => text.includes(token));
 }
 
-/**
- * The entry-level filters. The legend is deliberately not among them: it
- * selects dates, not entries, and is applied to calendar items instead.
- */
-export function matchesFilter(entry: Entry, state: FilterState): boolean {
-  return (
-    matchesArea(entry, state.area) &&
-    matchesType(entry, state.type) &&
-    matchesQuery(entry, state.query)
-  );
-}
-
-/* ------------------------------------------------------------------------ */
-/*  Sorting                                                                  */
-/* ------------------------------------------------------------------------ */
-
 /** Undated entries sort last rather than first. */
-function orderKey(instant: number | null): number {
-  return instant ?? Number.POSITIVE_INFINITY;
-}
-
-export function byStartDateDescending(
-  a: EventEntry | SchoolEntry,
-  b: EventEntry | SchoolEntry,
-): number {
+export function byStartDateDescending(a: Entry, b: Entry): number {
   const left = startInstant(a) ?? Number.NEGATIVE_INFINITY;
   const right = startInstant(b) ?? Number.NEGATIVE_INFINITY;
   return right - left || a.name.localeCompare(b.name);
 }
-
-export function byJobDeadline(a: JobEntry, b: JobEntry): number {
-  return (
-    orderKey(jobDeadlineInstant(a)) - orderKey(jobDeadlineInstant(b)) ||
-    a.institution.localeCompare(b.institution)
-  );
-}
-

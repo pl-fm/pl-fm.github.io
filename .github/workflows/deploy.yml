@@ -35,6 +35,9 @@ jobs:
       - name: Check data files
         run: npm run validate
 
+      - name: Check types
+        run: npm run check
+
       - name: Build
         run: npm run build
 

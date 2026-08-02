@@ -3,14 +3,12 @@
  * subscribe disclosure.
  */
 
-import { detail } from '../lib/render.ts';
-import { escapeHtml } from '../lib/render.ts';
+import { detail, escapeHtml } from '../lib/render.ts';
 import {
   combinedCalendarItems,
   itemsInCategories,
   itemsShowing,
-  matchesFilter,
-  EMPTY_FILTER,
+  matchesQuery,
 } from '../lib/filter.ts';
 import { formatDate } from '../lib/dates.ts';
 import { CATEGORY_LABELS } from '../lib/taxonomy.ts';
@@ -80,17 +78,12 @@ function openDay(day: string, trigger: HTMLElement | null): void {
   const categories = (container?.dataset.categories ?? '')
     .split(',')
     .filter(Boolean) as Category[];
-  const state = {
-    ...EMPTY_FILTER,
-    show: container?.dataset.calendar ?? 'all',
-    query: container?.dataset.query ?? '',
-    categories,
-  };
+  const query = container?.dataset.query ?? '';
 
   const items: CalendarItem[] = itemsInCategories(
     itemsShowing(
-      combinedCalendarItems(entries().filter((entry) => matchesFilter(entry, state))),
-      state.show,
+      combinedCalendarItems(entries().filter((entry) => matchesQuery(entry, query))),
+      container?.dataset.calendar ?? 'all',
     ),
     categories,
   ).filter((item) => item.date === day);

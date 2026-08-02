@@ -1,14 +1,13 @@
 /**
- * Wires the filter bars and the search box to a render callback.
+ * Wires the calendar tabs, the legend, and the search box to a render callback.
  *
  * The markup owns the initial state: whichever button carries
  * `aria-pressed="true"` when the page loads is the one the static HTML was
  * rendered with.
  *
- * A group is a set of tabs by default — one value at a time. Marking it
- * `data-filter-multi` makes it a set of independent toggles instead, which is
- * what the legend under the calendar needs: turning `Deadline` off should not
- * mean turning `School` on.
+ * The `show` group behaves as tabs — one value at a time. The `category` group
+ * is a set of independent toggles instead: turning `Deadline` off should not
+ * turn `School` on.
  */
 
 import { EMPTY_FILTER, type FilterState } from '../lib/filter.ts';
@@ -26,8 +25,7 @@ export interface FilterUi {
  * The legend only offers the categories its tab can produce, so a selection
  * made under one tab may mean nothing under the next: picking `Conference` and
  * then switching to `Schools` would otherwise leave an empty calendar with no
- * obvious cause. Clearing it is also the honest reading of a tab, which is a
- * change of subject rather than a further narrowing of the current one.
+ * obvious cause.
  *
  * Shared with the address bar, which can switch tabs without a click.
  */
@@ -41,6 +39,13 @@ function pressed(group: HTMLElement): string {
   return active?.dataset.value ?? 'all';
 }
 
+/** Every toggle a multi-select group offers, in the group's own order. */
+function values(group: HTMLElement): string[] {
+  return [...group.querySelectorAll<HTMLElement>('button[data-value]')]
+    .map((button) => button.dataset.value ?? '')
+    .filter((value) => value && value !== 'all');
+}
+
 /**
  * Which toggles in a multi-select group are on.
  *
@@ -49,32 +54,25 @@ function pressed(group: HTMLElement): string {
  * page whose toggles have each been switched back on in the same state.
  */
 function pressedAll(group: HTMLElement): string[] {
-  const buttons = [...group.querySelectorAll<HTMLElement>('button[data-value]')].filter(
-    (button) => button.dataset.value !== 'all',
+  const on = [...group.querySelectorAll<HTMLElement>('button[data-value]')].filter(
+    (button) =>
+      button.dataset.value !== 'all' &&
+      button.getAttribute('aria-pressed') === 'true',
   );
-  const on = buttons.filter(
-    (button) => button.getAttribute('aria-pressed') === 'true',
-  );
-  return on.length === buttons.length ? [] : on.map((button) => button.dataset.value!);
+  return on.length === values(group).length ? [] : on.map((b) => b.dataset.value!);
 }
 
 /**
- * Switches one toggle in a multi-select group, given what is currently on.
- *
- * Turning the last one off would leave nothing to look at, so it comes back
- * round to everything, which is also where `Show all` goes. Between those, the
- * result is kept in the group's own order so the state does not depend on the
- * order the toggles were clicked in.
+ * Switches one toggle, given what is currently on. Turning the last one off
+ * would leave nothing to look at, so it comes back round to everything, which
+ * is also where `Show all` goes.
  */
 function toggle(
   current: readonly string[],
   value: string,
   group: HTMLElement,
 ): string[] {
-  const present = [...group.querySelectorAll<HTMLElement>('button[data-value]')]
-    .map((button) => button.dataset.value ?? '')
-    .filter((v) => v && v !== 'all');
-
+  const present = values(group);
   const on = new Set(current.length === 0 ? present : current);
   if (on.has(value)) on.delete(value);
   else on.add(value);
@@ -89,14 +87,9 @@ export function bindFilters(
   root: ParentNode = document,
 ): FilterUi {
   const state: FilterState = { ...EMPTY_FILTER, categories: [] };
-  const groups = root.querySelectorAll<HTMLElement>('[data-filter-group]');
 
-  for (const group of groups) {
+  for (const group of root.querySelectorAll<HTMLElement>('[data-filter-group]')) {
     const name = group.dataset.filterGroup;
-    const multi = group.hasAttribute('data-filter-multi');
-
-    if (name === 'area') state.area = pressed(group);
-    if (name === 'type') state.type = pressed(group);
     if (name === 'show') state.show = pressed(group);
     if (name === 'category') state.categories = pressedAll(group) as Category[];
 
@@ -107,16 +100,12 @@ export function bindFilters(
       if (!button || !group.contains(button)) return;
       const value = button.dataset.value ?? 'all';
 
-      if (multi) {
-        // The legend is repainted on every change, so the state is the thing
-        // to update here; the buttons are redrawn from it rather than toggled
-        // in place.
-        if (name === 'category') {
-          state.categories =
-            value === 'all'
-              ? []
-              : (toggle(state.categories, value, group) as Category[]);
-        }
+      if (name === 'category') {
+        // The legend is repainted on every change, so the state is the thing to
+        // update here; the buttons are redrawn from it rather than toggled in
+        // place.
+        state.categories =
+          value === 'all' ? [] : (toggle(state.categories, value, group) as Category[]);
         onChange(state);
         return;
       }
@@ -124,10 +113,8 @@ export function bindFilters(
       for (const other of group.querySelectorAll<HTMLElement>('button[data-value]')) {
         other.setAttribute('aria-pressed', String(other === button));
       }
-      if (name === 'area') state.area = value;
-      if (name === 'type') state.type = value;
-      // Runs before the callback, so the tab and the legend it clears are
-      // drawn in the same pass rather than one repaint apart.
+      // Runs before the callback, so the tab and the legend it clears are drawn
+      // in the same pass rather than one repaint apart.
       if (name === 'show') selectShow(state, value);
       onChange(state);
     });
@@ -148,9 +135,5 @@ export function bindFilters(
     search.form?.addEventListener('submit', (event) => event.preventDefault());
   }
 
-  return {
-    state,
-    refresh: () => onChange(state),
-  };
+  return { state, refresh: () => onChange(state) };
 }
-

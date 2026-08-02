@@ -11,8 +11,8 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { parse as parseYaml } from 'yaml';
 import { SCHEMAS } from './schema.ts';
-import { instantOf, isValidDate } from './dates.ts';
-import type { Collection, Entry, EventEntry, JobEntry, SchoolEntry } from './types.ts';
+import { instantOf } from './dates.ts';
+import type { Collection, Entry } from './types.ts';
 
 export interface DataIssue {
   file: string;
@@ -26,12 +26,7 @@ export interface LoadResult {
   issues: DataIssue[];
 }
 
-export const COLLECTIONS: readonly Collection[] = [
-  'deadlines',
-  'events',
-  'schools',
-  'jobs',
-];
+const COLLECTIONS: readonly Collection[] = ['events', 'schools'];
 
 function dataRoot(): string {
   return resolve(process.env.PLFM_DATA_DIR ?? join(process.cwd(), 'data'));
@@ -152,7 +147,7 @@ function checkSemantics(entry: Entry, file: string): DataIssue[] {
     error('last_verified is in the future', 'last_verified');
   }
 
-  if ('start_date' in entry && entry.start_date && entry.end_date) {
+  if (entry.start_date && entry.end_date) {
     const start = instantOf(entry.start_date, 'UTC');
     const end = instantOf(entry.end_date, 'UTC', true);
     if (start !== null && end !== null && end < start) {
@@ -160,48 +155,39 @@ function checkSemantics(entry: Entry, file: string): DataIssue[] {
     }
   }
 
-  if (entry.collection === 'events' || entry.collection === 'deadlines') {
-    const event = entry as EventEntry;
-    if (event.deadline && !event.deadline_timezone) {
+  if (entry.collection === 'events') {
+    if (entry.deadline && !entry.deadline_timezone) {
       warn(
         'deadline has no deadline_timezone; most calls use AoE',
         'deadline_timezone',
       );
     }
-    if (event.deadline && event.start_date) {
-      const deadline = instantOf(event.deadline, event.deadline_timezone, true);
-      const start = instantOf(event.start_date, 'UTC', true);
+    if (entry.deadline && entry.start_date) {
+      const deadline = instantOf(entry.deadline, entry.deadline_timezone, true);
+      const start = instantOf(entry.start_date, 'UTC', true);
       if (deadline !== null && start !== null && deadline > start) {
         warn('deadline falls after the event starts', 'deadline');
       }
     }
-    if (event.type === 'colocated' && !event.colocated_with) {
+    if (entry.type === 'colocated' && !entry.colocated_with) {
       warn('a colocated event should name its parent venue', 'colocated_with');
     }
   }
 
   if (entry.collection === 'schools') {
-    const school = entry as SchoolEntry;
-    if (school.application_deadline && school.start_date) {
+    if (entry.application_deadline && entry.start_date) {
       const deadline = instantOf(
-        school.application_deadline,
-        school.application_deadline_timezone,
+        entry.application_deadline,
+        entry.application_deadline_timezone,
         true,
       );
-      const start = instantOf(school.start_date, 'UTC', true);
+      const start = instantOf(entry.start_date, 'UTC', true);
       if (deadline !== null && start !== null && deadline > start) {
         warn(
           'application_deadline falls after the school starts',
           'application_deadline',
         );
       }
-    }
-  }
-
-  if (entry.collection === 'jobs') {
-    const job = entry as JobEntry;
-    if (job.posted && !isValidDate(job.posted)) {
-      error('posted is not a valid date', 'posted');
     }
   }
 
@@ -232,25 +218,6 @@ export function loadEntries(): Entry[] {
   return entries;
 }
 
-export function entriesIn(collection: Collection): Entry[] {
-  return loadEntries().filter((e) => e.collection === collection);
-}
-
-/** Deadline-bearing records: standalone calls plus events that carry one. */
-export function deadlineEntries(): EventEntry[] {
-  return loadEntries().filter(
-    (e): e is EventEntry => e.collection === 'deadlines' || e.collection === 'events',
-  );
-}
-
-export function schoolEntries(): SchoolEntry[] {
-  return loadEntries().filter((e): e is SchoolEntry => e.collection === 'schools');
-}
-
-export function jobEntries(): JobEntry[] {
-  return loadEntries().filter((e): e is JobEntry => e.collection === 'jobs');
-}
-
 /**
  * The most recent day anyone checked a source, across every entry.
  *
@@ -263,14 +230,4 @@ export function lastVerified(): string | null {
     .filter(Boolean)
     .sort();
   return dates.at(-1) ?? null;
-}
-
-/** True when the repository still contains only demonstration data. */
-export function hasOnlySampleData(): boolean {
-  const entries = loadEntries();
-  return entries.length > 0 && entries.every((e) => e.sample === true);
-}
-
-export function sampleCount(): number {
-  return loadEntries().filter((e) => e.sample === true).length;
 }

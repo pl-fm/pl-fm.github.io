@@ -5,18 +5,14 @@ import { todayKey } from '../lib/dates.ts';
 import { jsonPayload } from '../lib/render.ts';
 import { archiveView } from '../lib/views.ts';
 
-const now = Date.now();
 const today = todayKey();
-
-// Jobs are not surfaced anywhere at the moment, so they stay out of the
-// archive too. The data files and the code paths are still in place.
-const entries = loadEntries().filter((entry) => entry.collection !== 'jobs');
-const view = archiveView(entries, now, 'all');
+const entries = loadEntries();
+const view = archiveView(entries, Date.now(), 'all');
 ---
 
 <Base
   title="Archive"
-  description="Past conferences, workshops, schools, and closed positions in programming languages and formal methods."
+  description="Past conferences, workshops, and schools in programming languages and formal methods."
 >
   <div data-page="archive" data-built-day={today}>
     <section class="section" aria-labelledby="archive-heading">

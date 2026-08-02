@@ -2,25 +2,21 @@
  * The calendar feed registry.
  *
  * Adding a filtered feed means adding one entry to `FEEDS`. The endpoint at
- * `src/pages/feeds/[feed].ics.ts` and the feed listing page both read from this
- * list, so nothing else needs touching.
+ * `src/pages/feeds/[feed].ics.ts` reads from this list, so nothing else needs
+ * touching.
  *
  * Build-time only.
  */
 
 import { formatDeadline, formatDateRange } from './dates.ts';
-import {
-  deadlineOccurrences,
-  jobDeadlineInstant,
-} from './filter.ts';
+import { deadlineOccurrences } from './filter.ts';
 import {
   AREA_LABELS,
   EVENT_TYPE_LABELS,
-  POSITION_TYPE_LABELS,
   SCHOOL_TYPE_LABELS,
 } from './taxonomy.ts';
 import type { IcsEvent } from './ics.ts';
-import type { Area, Entry, EventEntry, JobEntry, SchoolEntry } from './types.ts';
+import type { Area, Entry, EventEntry, SchoolEntry } from './types.ts';
 
 /** Host part of every UID. Kept constant so subscriptions stay stable. */
 const UID_DOMAIN = 'plfm';
@@ -34,15 +30,11 @@ function areaNames(entry: Entry): string[] {
 }
 
 function place(entry: Entry): string | undefined {
-  const value = entry as { location?: string; country?: string };
-  if (value.location && value.country && !value.location.includes(value.country)) {
-    return `${value.location}, ${value.country}`;
+  const { location, country } = entry;
+  if (location && country && !location.includes(country)) {
+    return `${location}, ${country}`;
   }
-  return value.location ?? value.country;
-}
-
-function sampleNote(entry: Entry): string {
-  return entry.sample ? '\nSample entry: this is demonstration data, not a real announcement.' : '';
+  return location ?? country;
 }
 
 /** One all-day event per announced submission round. */
@@ -63,7 +55,7 @@ function deadlineEvents(entry: EventEntry): IcsEvent[] {
         `Source: ${entry.source}`,
       ]
         .filter(Boolean)
-        .join('\n') + sampleNote(entry),
+        .join('\n'),
       location: place(entry),
       url: entry.url ?? entry.source,
       categories: [EVENT_TYPE_LABELS[entry.type], ...areaNames(entry), 'Deadline'],
@@ -75,11 +67,10 @@ function deadlineEvents(entry: EventEntry): IcsEvent[] {
 /** The event itself, spanning its dates. */
 function eventEvents(entry: EventEntry): IcsEvent[] {
   if (!entry.start_date) return [];
-  const short = entry.acronym ?? entry.name;
   return [
     {
       uid: uid(entry.id, 'event'),
-      summary: short,
+      summary: entry.acronym ?? entry.name,
       description: [
         entry.name,
         entry.description ?? '',
@@ -87,7 +78,7 @@ function eventEvents(entry: EventEntry): IcsEvent[] {
         `Source: ${entry.source}`,
       ]
         .filter(Boolean)
-        .join('\n') + sampleNote(entry),
+        .join('\n'),
       location: place(entry),
       url: entry.url ?? entry.source,
       categories: [EVENT_TYPE_LABELS[entry.type], ...areaNames(entry)],
@@ -118,7 +109,7 @@ function schoolEvents(entry: SchoolEntry): IcsEvent[] {
         `Source: ${entry.source}`,
       ]
         .filter(Boolean)
-        .join('\n') + sampleNote(entry),
+        .join('\n'),
       location: place(entry),
       url: entry.url ?? entry.source,
       categories: [SCHOOL_TYPE_LABELS[entry.type], ...areaNames(entry), 'Deadline'],
@@ -132,7 +123,7 @@ function schoolEvents(entry: SchoolEntry): IcsEvent[] {
       summary: short,
       description: [entry.name, entry.description ?? '', `Source: ${entry.source}`]
         .filter(Boolean)
-        .join('\n') + sampleNote(entry),
+        .join('\n'),
       location: place(entry),
       url: entry.url ?? entry.source,
       categories: [SCHOOL_TYPE_LABELS[entry.type], ...areaNames(entry)],
@@ -144,35 +135,11 @@ function schoolEvents(entry: SchoolEntry): IcsEvent[] {
   return out;
 }
 
-function jobEvents(entry: JobEntry): IcsEvent[] {
-  if (!entry.deadline || jobDeadlineInstant(entry) === null) return [];
-  return [
-    {
-      uid: uid(entry.id, 'job'),
-      summary: `${entry.name} closes (${entry.institution})`,
-      description: [
-        `${entry.name}, ${entry.institution}`,
-        `Deadline: ${formatDeadline(entry.deadline, entry.deadline_timezone)}`,
-        `Source: ${entry.source}`,
-      ].join('\n') + sampleNote(entry),
-      location: place(entry),
-      url: entry.url ?? entry.source,
-      categories: [
-        POSITION_TYPE_LABELS[entry.position_type],
-        ...areaNames(entry),
-        'Deadline',
-      ],
-      start: entry.deadline,
-    },
-  ];
-}
-
 /** Every dated moment an entry contributes to a calendar. */
-export function icsEventsFor(entry: Entry): IcsEvent[] {
-  if (entry.collection === 'jobs') return jobEvents(entry as JobEntry);
-  if (entry.collection === 'schools') return schoolEvents(entry as SchoolEntry);
-  const event = entry as EventEntry;
-  return [...deadlineEvents(event), ...eventEvents(event)];
+function icsEventsFor(entry: Entry): IcsEvent[] {
+  return entry.collection === 'schools'
+    ? schoolEvents(entry)
+    : [...deadlineEvents(entry), ...eventEvents(entry)];
 }
 
 export interface FeedDefinition {
@@ -185,39 +152,44 @@ export interface FeedDefinition {
   moments?: (entry: Entry) => IcsEvent[];
 }
 
-function inArea(area: Area) {
-  return (entry: Entry): boolean => entry.areas.includes(area);
-}
-
-const isEventLike = (entry: Entry): boolean =>
-  entry.collection === 'events' || entry.collection === 'deadlines';
+const isEvent = (entry: Entry): entry is EventEntry => entry.collection === 'events';
 
 /** Only the deadline moments, dropping the event itself. */
 function deadlinesOnly(entry: Entry): IcsEvent[] {
-  if (!isEventLike(entry)) return icsEventsFor(entry);
-  return deadlineEvents(entry as EventEntry);
+  return isEvent(entry) ? deadlineEvents(entry) : icsEventsFor(entry);
+}
+
+/** A per-area deadline feed, which is most of the registry below. */
+function areaFeed(slug: string, area: Area, label: string): FeedDefinition {
+  return {
+    slug,
+    title: `PLFM: ${label} deadlines`,
+    description: `Submission deadlines for venues tagged ${label}.`,
+    select: (entry) => isEvent(entry) && entry.areas.includes(area),
+    moments: deadlinesOnly,
+  };
 }
 
 export const FEEDS: FeedDefinition[] = [
   {
     slug: 'all',
     title: 'PLFM: everything',
-    description: 'Every deadline, event, school, and job tracked by PLFM.',
+    description: 'Every deadline, event, and school tracked by PLFM.',
     select: () => true,
   },
   {
     slug: 'deadlines',
     title: 'PLFM: submission deadlines',
     description: 'Conference and workshop submission deadlines.',
-    select: isEventLike,
+    select: isEvent,
     moments: deadlinesOnly,
   },
   {
     slug: 'events',
     title: 'PLFM: events',
     description: 'Conferences, workshops, seminars, and community events.',
-    select: isEventLike,
-    moments: (entry) => eventEvents(entry as EventEntry),
+    select: isEvent,
+    moments: (entry) => (isEvent(entry) ? eventEvents(entry) : []),
   },
   {
     slug: 'schools',
@@ -226,61 +198,13 @@ export const FEEDS: FeedDefinition[] = [
       'Summer and winter schools, doctoral schools, and mentoring workshops, with their application deadlines.',
     select: (entry) => entry.collection === 'schools',
   },
-  {
-    slug: 'jobs',
-    title: 'PLFM: job deadlines',
-    description: 'Closing dates for PhD, postdoc, faculty, research, and internship positions.',
-    select: (entry) => entry.collection === 'jobs',
-  },
-  {
-    slug: 'pl',
-    title: 'PLFM: programming languages deadlines',
-    description: 'Submission deadlines for venues tagged programming languages.',
-    select: (entry) => isEventLike(entry) && inArea('programming-languages')(entry),
-    moments: deadlinesOnly,
-  },
-  {
-    slug: 'formal-methods',
-    title: 'PLFM: formal methods deadlines',
-    description: 'Submission deadlines for venues tagged formal methods.',
-    select: (entry) => isEventLike(entry) && inArea('formal-methods')(entry),
-    moments: deadlinesOnly,
-  },
-  {
-    slug: 'verification',
-    title: 'PLFM: verification deadlines',
-    description: 'Submission deadlines for venues tagged verification.',
-    select: (entry) => isEventLike(entry) && inArea('verification')(entry),
-    moments: deadlinesOnly,
-  },
-  {
-    slug: 'compilers',
-    title: 'PLFM: compilers deadlines',
-    description: 'Submission deadlines for venues tagged compilers.',
-    select: (entry) => isEventLike(entry) && inArea('compilers')(entry),
-    moments: deadlinesOnly,
-  },
-  {
-    slug: 'types',
-    title: 'PLFM: types deadlines',
-    description: 'Submission deadlines for venues tagged types.',
-    select: (entry) => isEventLike(entry) && inArea('types')(entry),
-    moments: deadlinesOnly,
-  },
-  {
-    slug: 'logic',
-    title: 'PLFM: logic deadlines',
-    description: 'Submission deadlines for venues tagged logic.',
-    select: (entry) => isEventLike(entry) && inArea('logic')(entry),
-    moments: deadlinesOnly,
-  },
-  {
-    slug: 'synthesis',
-    title: 'PLFM: synthesis deadlines',
-    description: 'Submission deadlines for venues tagged synthesis.',
-    select: (entry) => isEventLike(entry) && inArea('synthesis')(entry),
-    moments: deadlinesOnly,
-  },
+  areaFeed('pl', 'programming-languages', 'programming languages'),
+  areaFeed('formal-methods', 'formal-methods', 'formal methods'),
+  areaFeed('verification', 'verification', 'verification'),
+  areaFeed('compilers', 'compilers', 'compilers'),
+  areaFeed('types', 'types', 'types'),
+  areaFeed('logic', 'logic', 'logic'),
+  areaFeed('synthesis', 'synthesis', 'synthesis'),
 ];
 
 export function feedBySlug(slug: string): FeedDefinition | undefined {

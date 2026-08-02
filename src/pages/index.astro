@@ -5,7 +5,6 @@
  */
 import Base from '../layouts/Base.astro';
 import CalendarSection from '../components/CalendarSection.astro';
-import SampleNotice from '../components/SampleNotice.astro';
 import { SITE } from '../../site.config.mjs';
 import { loadEntries } from '../lib/data.ts';
 import { todayKey } from '../lib/dates.ts';
@@ -14,21 +13,17 @@ import { jsonPayload } from '../lib/render.ts';
 import { SHOW_OPTIONS } from '../lib/taxonomy.ts';
 import { homeView } from '../lib/views.ts';
 
-const now = Date.now();
 const today = todayKey();
 const [year, month] = today.split('-').map(Number);
-
-// Jobs keep to their own data folder; everything else is on the calendar.
-const entries = loadEntries().filter((entry) => entry.collection !== 'jobs');
+const entries = loadEntries();
 
 // The static page is the unfiltered view. A reader arriving at `#events` gets
 // the tab switched on load, by the page's own script.
 const show = 'all';
-const state = { ...EMPTY_FILTER, show };
 const view = homeView({
   entries,
-  state,
-  now,
+  state: { ...EMPTY_FILTER, show },
+  now: Date.now(),
   today,
   year: year!,
   month: month!,
@@ -36,21 +31,9 @@ const view = homeView({
 ---
 
 <Base>
-  <div
-    data-page="home"
-    data-year={year}
-    data-month={month}
-    data-built-day={today}
-  >
-    <SampleNotice />
-
+  <div data-page="home" data-year={year} data-month={month} data-built-day={today}>
     {/* Buttons rather than links: they filter the page in place. */}
-    <div
-      class="viewtabs"
-      role="group"
-      aria-label="Show"
-      data-filter-group="show"
-    >
+    <div class="viewtabs" role="group" aria-label="Show" data-filter-group="show">
       {
         SHOW_OPTIONS.map((option) => (
           <button
@@ -65,7 +48,7 @@ const view = homeView({
       }
     </div>
 
-    <CalendarSection calendar={view} mode={show} searchId="plfm-search" />
+    <CalendarSection calendar={view} />
 
     <section class="section" aria-labelledby="month-heading">
       <h2 class="section-title" id="month-heading">{view.monthHeading}</h2>

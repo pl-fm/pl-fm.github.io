@@ -39,7 +39,6 @@
   --cat-conference: #2a5cb8;
   --cat-workshop: #8a5220;
   --cat-school: #2f6b45;
-  --cat-job: #6b4a99;
 
   /* Backing for a deadline chip in a calendar cell. */
   --cat-deadline-tint: rgba(179, 38, 30, 0.08);
@@ -81,7 +80,6 @@
     --cat-conference: #8fb3ff;
     --cat-workshop: #e0a06a;
     --cat-school: #77c493;
-    --cat-job: #b39ae4;
 
     --cat-deadline-tint: rgba(255, 138, 128, 0.1);
     --cat-deadline-tint-strong: rgba(255, 138, 128, 0.18);
@@ -108,7 +106,6 @@
   --cat-conference: #8fb3ff;
   --cat-workshop: #e0a06a;
   --cat-school: #77c493;
-  --cat-job: #b39ae4;
 
   --cat-deadline-tint: rgba(255, 138, 128, 0.1);
   --cat-deadline-tint-strong: rgba(255, 138, 128, 0.18);
@@ -384,8 +381,6 @@ main {
 
 /* --- Filters ------------------------------------------------------------ */
 
-/* One row per filter group, labels aligned in their own column. Two groups on
-   a single line read as one long run of words. */
 .controls {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
@@ -394,11 +389,7 @@ main {
   margin-top: var(--sp-8);
 }
 
-.control-row {
-  display: contents;
-}
-
-.control-label {
+.filters-label {
   font-size: var(--fs-meta);
   color: var(--text-faint);
   white-space: nowrap;
@@ -429,11 +420,6 @@ main {
   border-bottom-color: var(--border-strong);
 }
 
-.search {
-  max-width: 320px;
-}
-
-.search input,
 .cal-search input {
   width: 100%;
   font: inherit;
@@ -446,17 +432,14 @@ main {
   transition: border-color var(--t);
 }
 
-.search input::placeholder,
 .cal-search input::placeholder {
   color: var(--text-faint);
 }
 
-.search input:hover,
 .cal-search input:hover {
   border-color: var(--border-strong);
 }
 
-.search input:focus-visible,
 .cal-search input:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: -1px;
@@ -642,10 +625,6 @@ main {
   color: var(--cat-school);
 }
 
-.cal-entry[data-cat='job'] {
-  color: var(--cat-job);
-}
-
 /* A deadline is the one date on the grid that a reader can miss, so it is the
    one that carries a fill as well as a colour: it should still separate from
    the dates around it in a monochrome print, and for anyone who cannot tell
@@ -789,11 +768,6 @@ main {
   color: var(--cat-school);
 }
 
-.mark[data-cat='job'] {
-  background: var(--cat-job);
-  color: var(--cat-job);
-}
-
 /* Agenda, used instead of the grid on narrow screens. */
 
 .agenda {
@@ -887,8 +861,7 @@ main {
   text-align: right;
 }
 
-.row-date.is-tba,
-.row-date.is-open {
+.row-date.is-tba {
   color: var(--text-muted);
 }
 
@@ -948,51 +921,10 @@ main {
   border-bottom-color: var(--border-strong);
 }
 
-.row.is-highlight {
-  background: var(--accent-tint);
-  box-shadow: 0 0 0 var(--sp-2) var(--accent-tint);
-}
-
-.tag {
-  display: inline-block;
-  margin-left: var(--sp-2);
-  padding: 0 5px;
-  font-size: var(--fs-micro);
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--text-faint);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  vertical-align: 1px;
-}
-
 .empty {
   padding: var(--sp-5) 0;
   font-size: var(--fs-small);
   color: var(--text-faint);
-}
-
-/* --- Notice ------------------------------------------------------------- */
-
-.notice {
-  margin-top: var(--sp-6);
-  padding: var(--sp-3) var(--sp-4);
-  border: 1px solid var(--border);
-  border-left: 2px solid var(--text-faint);
-  border-radius: var(--radius);
-  font-size: var(--fs-small);
-  color: var(--text-muted);
-}
-
-.notice strong {
-  color: var(--text);
-  font-weight: 500;
-}
-
-.subscribe-links {
-  display: flex;
-  gap: var(--sp-3);
-  white-space: nowrap;
 }
 
 /* --- Detail panel ------------------------------------------------------- */
@@ -1151,64 +1083,6 @@ main {
   color: var(--text-muted);
 }
 
-/* --- Prose (About, feeds) ----------------------------------------------- */
-
-.prose {
-  max-width: 68ch;
-  margin-top: var(--sp-6);
-}
-
-.prose h2 {
-  font-size: var(--fs-heading);
-  margin: var(--sp-8) 0 var(--sp-2);
-}
-
-.prose h3 {
-  font-size: var(--fs-body);
-  margin: var(--sp-6) 0 var(--sp-1);
-}
-
-.prose p,
-.prose li {
-  font-size: var(--fs-small);
-  color: var(--text-muted);
-  margin-top: var(--sp-3);
-}
-
-.prose ul {
-  list-style: disc;
-  padding-left: var(--sp-5);
-}
-
-.prose li {
-  margin-top: var(--sp-1);
-}
-
-.prose code {
-  font-family: var(--font-mono);
-  font-size: 0.92em;
-  background: var(--bg-sunken);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 0 4px;
-}
-
-.prose pre {
-  margin-top: var(--sp-3);
-  padding: var(--sp-3);
-  overflow-x: auto;
-  background: var(--bg-sunken);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-size: var(--fs-meta);
-}
-
-.prose pre code {
-  background: none;
-  border: 0;
-  padding: 0;
-}
-
 [hidden] {
   display: none !important;
 }
@@ -1247,21 +1121,9 @@ main {
     gap: var(--sp-1);
   }
 
-  .control-row {
-    display: block;
-  }
-
-  .control-row + .control-row {
-    margin-top: var(--sp-3);
-  }
-
-  .control-label {
+  .filters-label {
     display: block;
     margin-bottom: var(--sp-1);
-  }
-
-  .search {
-    max-width: none;
   }
 
   .cal-search {

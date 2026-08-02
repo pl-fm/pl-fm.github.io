@@ -16,6 +16,7 @@ import {
   mondayFirstWeekday,
   monthName,
   toDayKey,
+  WEEKDAYS_LONG,
   WEEKDAYS_SHORT,
 } from './dates.ts';
 import {
@@ -33,13 +34,12 @@ export interface MonthView {
   items: CalendarItem[];
   /** `YYYY-MM-DD` for the reader's today, so it can be highlighted. */
   today: string;
-  /** Entries shown before a cell collapses into a `+n` control. */
-  maxPerCell?: number;
 }
 
-const DEFAULT_MAX_PER_CELL = 3;
+/** Entries shown before a cell collapses into a `+n` control. */
+const MAX_PER_CELL = 3;
 
-function entryButton(item: CalendarItem, index: number): string {
+function entryButton(item: CalendarItem): string {
   // Colour is the only thing separating a deadline from the event it belongs
   // to in a cell this small, so the category is also spelled out for anyone
   // not reading the colour: a screen reader, or a printout.
@@ -47,7 +47,7 @@ function entryButton(item: CalendarItem, index: number): string {
   return [
     '<li class="cal-item">',
     `<button type="button" class="cal-entry" data-cat="${item.category}"`,
-    ` data-detail="${escapeHtml(item.id)}" data-index="${index}"`,
+    ` data-detail="${escapeHtml(item.id)}"`,
     ` title="${escapeHtml(`${item.title}: ${item.what}`)}">`,
     `<span class="cal-entry-label">${escapeHtml(item.short)}</span>`,
     `<span class="sr-only"> ${escapeHtml(item.label)} (${escapeHtml(description)})</span>`,
@@ -61,16 +61,14 @@ function cell(
   day: number,
   items: CalendarItem[],
   today: string,
-  maxPerCell: number,
 ): string {
   const isToday = key === today;
-  const isPast = key < today;
   const classes = ['cal-cell'];
   if (isToday) classes.push('is-today');
-  if (isPast) classes.push('is-past');
+  if (key < today) classes.push('is-past');
   if (items.length > 0) classes.push('has-items');
 
-  const shown = items.slice(0, maxPerCell);
+  const shown = items.slice(0, MAX_PER_CELL);
   const hidden = items.length - shown.length;
 
   const overflow =
@@ -93,7 +91,6 @@ function cell(
 /** The `<table>` for one month. */
 export function monthGrid(view: MonthView): string {
   const { year, month, today } = view;
-  const maxPerCell = view.maxPerCell ?? DEFAULT_MAX_PER_CELL;
   const byDay = itemsByDay(view.items);
 
   const total = daysInMonth(year, month);
@@ -105,7 +102,7 @@ export function monthGrid(view: MonthView): string {
   }
   for (let day = 1; day <= total; day += 1) {
     const key = toDayKey(year, month, day);
-    cells.push(cell(key, day, byDay.get(key) ?? [], today, maxPerCell));
+    cells.push(cell(key, day, byDay.get(key) ?? [], today));
   }
   while (cells.length % 7 !== 0) {
     cells.push('<td class="cal-cell is-blank"></td>');
@@ -117,8 +114,8 @@ export function monthGrid(view: MonthView): string {
   }
 
   const head = WEEKDAYS_SHORT.map(
-    (day) =>
-      `<th scope="col"><abbr title="${escapeHtml(weekdayLong(day))}">${escapeHtml(
+    (day, i) =>
+      `<th scope="col"><abbr title="${escapeHtml(WEEKDAYS_LONG[i] ?? day)}">${escapeHtml(
         day,
       )}</abbr></th>`,
   ).join('');
@@ -169,8 +166,17 @@ export function agenda(view: MonthView): string {
   return `<div class="agenda">${blocks.join('')}</div>`;
 }
 
+/* ------------------------------------------------------------------------ */
+/*  Legend                                                                   */
+/* ------------------------------------------------------------------------ */
+
+
 export interface LegendView {
-  /** Every category the current filters can produce, in reading order. */
+  /**
+   * Every category the current filters can produce, across all time. Drawn
+   * from more than the month on screen so the row of buttons does not reshuffle
+   * under the pointer as you page through the calendar.
+   */
   present: CalendarItem[];
   /** Just the month on screen, which is what the counts are drawn from. */
   month: CalendarItem[];
@@ -181,17 +187,8 @@ export interface LegendView {
 /**
  * The colour key below the calendar, which doubles as the category filter.
  *
- * It is a set of toggles rather than a row of tabs: the tabs above already ask
- * which single kind of date you want, and answering that question twice in two
- * places would be no use. What this adds is the combinations the tabs cannot
- * express — deadlines and schools but not conferences, say — so each button
- * turns its own colour on and off independently.
- *
- * `present` decides which buttons exist and should be everything the current
- * filters allow rather than only the month on screen, so the row does not
- * reshuffle under the pointer as you page through the calendar. `month` only
- * decides the counts, which are allowed to change with the month because a
- * count is what you came to the legend to read.
+ * Each button toggles its own colour independently, which is what the tabs
+ * above cannot express: deadlines and schools but not conferences, say.
  */
 export function legend(view: LegendView): string {
   const { selected } = view;
@@ -230,8 +227,8 @@ export function legend(view: LegendView): string {
     ].join('');
   };
 
-  // Only offered once it would do something. Its job is to undo a narrowing,
-  // and a button that is already the state you are in is noise.
+  // Only offered once it would do something: a button that is already the
+  // state you are in is noise.
   const reset = all
     ? ''
     : '<button class="legend-reset" type="button" data-value="all">Show all</button>';
@@ -242,17 +239,4 @@ export function legend(view: LegendView): string {
     reset,
     '</div>',
   ].join('');
-}
-
-function weekdayLong(short: string): string {
-  const table: Record<string, string> = {
-    Mon: 'Monday',
-    Tue: 'Tuesday',
-    Wed: 'Wednesday',
-    Thu: 'Thursday',
-    Fri: 'Friday',
-    Sat: 'Saturday',
-    Sun: 'Sunday',
-  };
-  return table[short] ?? short;
 }

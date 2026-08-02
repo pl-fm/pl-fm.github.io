@@ -11,60 +11,39 @@
 import { agenda, legend, monthGrid } from './calendar.ts';
 import { dayKey, formatMonthYear, parseDate } from './dates.ts';
 import {
-  byJobDeadline,
   byStartDateDescending,
   combinedCalendarItems,
   deadlineIsTba,
   deadlineOccurrences,
   hasAnnouncedDeadline,
   inCategories,
-  isExpiredJob,
   isPastEvent,
   itemsInCategories,
   itemsInMonth,
   itemsShowing,
-  jobDeadlineInstant,
-  matchesFilter,
+  matchesQuery,
   nextDeadline,
   schoolDeadlineInstant,
   startInstant,
   type FilterState,
 } from './filter.ts';
 import { categoryOf } from './taxonomy.ts';
-import {
-  anyRow,
-  deadlineRow,
-  eventRow,
-  jobRow,
-  list,
-  schoolRow,
-} from './render.ts';
-import type {
-  CalendarItem,
-  Category,
-  Entry,
-  EventEntry,
-  JobEntry,
-  SchoolEntry,
-} from './types.ts';
+import { anyRow, deadlineRow, eventRow, list, schoolRow } from './render.ts';
+import type { CalendarItem, Category, Entry } from './types.ts';
 
-export interface ViewContext {
+export interface MonthContext {
   entries: Entry[];
   state: FilterState;
   /** Reference moment for expiry, in epoch milliseconds. */
   now: number;
   /** `YYYY-MM-DD` used to highlight today in a calendar. */
   today: string;
-}
-
-export interface MonthContext extends ViewContext {
   year: number;
   month: number;
 }
 
-function jobs(entries: Entry[]): JobEntry[] {
-  return entries.filter((e): e is JobEntry => e.collection === 'jobs');
-}
+/** Which slice of the calendar the page is showing. */
+export type ShowMode = 'all' | 'deadlines' | 'events' | 'schools';
 
 function plural(count: number, one: string, many = `${one}s`): string {
   return `${count} ${count === 1 ? one : many}`;
@@ -88,18 +67,13 @@ export interface CalendarRegions {
  * they contribute are narrowed by the selected tab, so a search for `types`
  * with `Schools` selected leaves only school dates for matching schools.
  */
-export function calendarRegions(context: MonthContext): CalendarRegions {
+function calendarRegions(context: MonthContext, matching: Entry[]): CalendarRegions {
   const { year, month, today, state } = context;
 
-  const matching = context.entries
-    .filter((entry) => entry.collection !== 'jobs')
-    .filter((entry) => matchesFilter(entry, state));
-
-  // Every date the entry-level filters and the tab allow, across all time. The
-  // legend is a control as much as a key, and a row of buttons that comes and
-  // goes as you page through the calendar reads as broken — quite apart from
-  // stranding you with no way to switch category in a month that happens to
-  // hold one of them.
+  // Every date the search and the tab allow, across all time. The legend is a
+  // control as much as a key, and a row of buttons that comes and goes as you
+  // page through the calendar reads as broken — quite apart from stranding you
+  // with no way to switch category in a month that happens to hold one of them.
   const available = itemsShowing(combinedCalendarItems(matching), state.show);
   const items = itemsInMonth(
     itemsInCategories(available, state.categories),
@@ -127,12 +101,6 @@ export function calendarRegions(context: MonthContext): CalendarRegions {
 /*  Home                                                                       */
 /* -------------------------------------------------------------------------- */
 
-/**
- * Which slice of the calendar the page is showing. The tabs above the calendar
- * set this, and it narrows the grid and the lists below it together.
- */
-export type ShowMode = 'all' | 'deadlines' | 'events' | 'schools';
-
 export interface HomeView extends CalendarRegions {
   monthHeading: string;
   monthList: string;
@@ -144,17 +112,17 @@ export interface HomeView extends CalendarRegions {
 /** A deadline a reader could still meet: a call for papers or an application. */
 function openDeadline(entry: Entry, now: number): number | null {
   if (entry.collection === 'schools') {
-    const instant = schoolDeadlineInstant(entry as SchoolEntry);
+    const instant = schoolDeadlineInstant(entry);
     return instant !== null && instant >= now ? instant : null;
   }
-  return nextDeadline(entry as EventEntry, now)?.instant ?? null;
+  return nextDeadline(entry, now)?.instant ?? null;
 }
 
 /** An announced-but-undated deadline, which still belongs in a list. */
 function awaitingDeadline(entry: Entry): boolean {
   return entry.collection === 'schools'
-    ? (entry as SchoolEntry).application_deadline_tba === true
-    : deadlineIsTba(entry as EventEntry);
+    ? entry.application_deadline_tba === true
+    : deadlineIsTba(entry);
 }
 
 /**
@@ -166,17 +134,16 @@ function nextMoment(
   entry: Entry,
   now: number,
 ): { instant: number; moment: 'deadline' | 'event' | 'school' } | null {
-  const dated = entry as EventEntry | SchoolEntry;
   const deadline = openDeadline(entry, now);
-  const start = startInstant(dated);
-  const running = start !== null && !isPastEvent(dated, now);
+  const start = startInstant(entry);
+  const running = start !== null && !isPastEvent(entry, now) ? start : null;
 
-  if (deadline !== null && (!running || deadline <= start!)) {
+  if (deadline !== null && (running === null || deadline <= running)) {
     return { instant: deadline, moment: 'deadline' };
   }
-  if (running) {
+  if (running !== null) {
     return {
-      instant: start!,
+      instant: running,
       moment: entry.collection === 'schools' ? 'school' : 'event',
     };
   }
@@ -185,20 +152,19 @@ function nextMoment(
 
 /** Whether an entry belongs in the list under the calendar, for one tab. */
 function isUpcoming(entry: Entry, show: ShowMode, now: number): boolean {
-  const dated = entry as EventEntry | SchoolEntry;
   if (show === 'deadlines') {
     return openDeadline(entry, now) !== null || awaitingDeadline(entry);
   }
   if (show === 'events') {
-    return entry.collection !== 'schools' && !isPastEvent(dated, now);
+    return entry.collection === 'events' && !isPastEvent(entry, now);
   }
   if (show === 'schools') {
-    return entry.collection === 'schools' && !isPastEvent(dated, now);
+    return entry.collection === 'schools' && !isPastEvent(entry, now);
   }
   return (
     nextMoment(entry, now) !== null ||
     awaitingDeadline(entry) ||
-    dated.dates_tba === true
+    entry.dates_tba === true
   );
 }
 
@@ -209,7 +175,7 @@ function upcomingKey(entry: Entry, show: ShowMode, now: number): number {
       ? openDeadline(entry, now)
       : show === 'all'
         ? (nextMoment(entry, now)?.instant ?? null)
-        : startInstant(entry as EventEntry | SchoolEntry);
+        : startInstant(entry);
   return instant ?? Number.POSITIVE_INFINITY;
 }
 
@@ -225,11 +191,8 @@ function leadsWithDeadline(entry: Entry, show: ShowMode, now: number): boolean {
 
   const moment = nextMoment(entry, now)?.moment;
   if (moment !== undefined) return moment === 'deadline';
-  // Nothing dated is left, so the row falls back to whatever it is still
-  // waiting on.
-  return entry.collection === 'schools'
-    ? (entry as SchoolEntry).application_deadline_tba === true
-    : deadlineIsTba(entry as EventEntry);
+  // Nothing dated is left, so the row falls back to whatever it is waiting on.
+  return awaitingDeadline(entry);
 }
 
 /**
@@ -247,12 +210,10 @@ function rowCategory(entry: Entry, show: ShowMode, now: number): Category {
 
 function upcomingRow(entry: Entry, show: ShowMode, now: number): string {
   const deadline = leadsWithDeadline(entry, show, now);
-
   if (entry.collection === 'schools') {
-    return schoolRow(entry as SchoolEntry, now, deadline ? 'application' : 'dates');
+    return schoolRow(entry, now, deadline ? 'application' : 'dates');
   }
-  const event = entry as EventEntry;
-  return deadline ? deadlineRow(event, now) : eventRow(event, now);
+  return deadline ? deadlineRow(entry, now) : eventRow(entry, now);
 }
 
 const UPCOMING: Record<
@@ -294,33 +255,31 @@ function monthMirror(matching: Entry[], items: CalendarItem[], now: number): str
 
   for (const entry of matching) {
     if (entry.collection === 'schools') {
-      const school = entry as SchoolEntry;
       if (
-        school.application_deadline &&
-        take(school.id, 'deadline', school.application_deadline)
+        entry.application_deadline &&
+        take(entry.id, 'deadline', entry.application_deadline)
       ) {
         rows.push({
-          key: school.application_deadline,
-          html: schoolRow(school, now, 'application'),
+          key: entry.application_deadline,
+          html: schoolRow(entry, now, 'application'),
         });
       }
-      if (school.start_date && take(school.id, 'school', school.start_date)) {
-        rows.push({ key: school.start_date, html: schoolRow(school, now, 'dates') });
+      if (entry.start_date && take(entry.id, 'school', entry.start_date)) {
+        rows.push({ key: entry.start_date, html: schoolRow(entry, now, 'dates') });
       }
       continue;
     }
 
-    const event = entry as EventEntry;
-    for (const occurrence of deadlineOccurrences(event)) {
-      if (take(event.id, 'deadline', occurrence.date)) {
+    for (const occurrence of deadlineOccurrences(entry)) {
+      if (take(entry.id, 'deadline', occurrence.date)) {
         rows.push({
           key: occurrence.date,
-          html: deadlineRow(event, now, occurrence),
+          html: deadlineRow(entry, now, occurrence),
         });
       }
     }
-    if (event.start_date && take(event.id, 'event', event.start_date)) {
-      rows.push({ key: event.start_date, html: eventRow(event, now) });
+    if (entry.start_date && take(entry.id, 'event', entry.start_date)) {
+      rows.push({ key: entry.start_date, html: eventRow(entry, now) });
     }
   }
 
@@ -331,17 +290,14 @@ function monthMirror(matching: Entry[], items: CalendarItem[], now: number): str
 /**
  * The single page: one calendar carrying everything dated — submission
  * deadlines, the events themselves, schools, and school application deadlines —
- * with the tab narrowing the grid and both lists below it in step. Jobs keep to
- * their own data folder.
+ * with the tab narrowing the grid and both lists below it in step.
  */
 export function homeView(context: MonthContext): HomeView {
-  const { year, month, now, state } = context;
+  const { year, month, now, state, entries } = context;
   const show = (state.show || 'all') as ShowMode;
 
-  const all = context.entries.filter((entry) => entry.collection !== 'jobs');
-  const matching = all.filter((entry) => matchesFilter(entry, state));
-
-  const calendar = calendarRegions(context);
+  const matching = entries.filter((entry) => matchesQuery(entry, state.query));
+  const calendar = calendarRegions(context, matching);
   const words = UPCOMING[show] ?? UPCOMING.all;
 
   const upcoming = matching
@@ -357,7 +313,7 @@ export function homeView(context: MonthContext): HomeView {
     )
     .map((entry) => upcomingRow(entry, show, now));
 
-  const total = all.filter((entry) => isUpcoming(entry, show, now)).length;
+  const total = entries.filter((entry) => isUpcoming(entry, show, now)).length;
   const monthTitle = formatMonthYear(year, month);
 
   return {
@@ -377,41 +333,6 @@ export function homeView(context: MonthContext): HomeView {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Jobs                                                                       */
-/* -------------------------------------------------------------------------- */
-
-export interface JobsView {
-  openList: string;
-  untilFilledList: string;
-  count: string;
-}
-
-export function jobsView(context: ViewContext): JobsView {
-  const { now, state } = context;
-  const all = jobs(context.entries).filter((entry) => !isExpiredJob(entry, now));
-  const matching = all.filter((entry) => matchesFilter(entry, state));
-
-  const dated = matching
-    .filter((entry) => jobDeadlineInstant(entry) !== null)
-    .sort(byJobDeadline)
-    .map((entry) => jobRow(entry, now));
-
-  const rolling = matching
-    .filter((entry) => jobDeadlineInstant(entry) === null)
-    .sort((a, b) => a.institution.localeCompare(b.institution))
-    .map((entry) => jobRow(entry, now));
-
-  return {
-    openList: list(dated, 'No positions with a closing date match these filters.'),
-    untilFilledList: list(rolling, 'No open-ended positions match these filters.'),
-    count:
-      matching.length === all.length
-        ? plural(all.length, 'position')
-        : `${matching.length} of ${plural(all.length, 'position')}`,
-  };
-}
-
-/* -------------------------------------------------------------------------- */
 /*  Archive                                                                    */
 /* -------------------------------------------------------------------------- */
 
@@ -427,35 +348,28 @@ export interface ArchiveView {
 }
 
 /** Year an archived entry is filed under: when it happened, not when it was added. */
-export function archivedYear(entry: Entry): number | null {
-  if (entry.collection === 'jobs') {
-    const job = entry as JobEntry;
-    return parseDate(job.deadline ?? job.posted ?? job.last_verified)?.year ?? null;
+function archivedYear(entry: Entry): number | null {
+  if (entry.end_date ?? entry.start_date) {
+    return parseDate(entry.end_date ?? entry.start_date)?.year ?? null;
   }
-  const dated = entry as EventEntry | SchoolEntry;
-  if (dated.end_date ?? dated.start_date) {
-    return parseDate(dated.end_date ?? dated.start_date)?.year ?? null;
-  }
-  if (dated.collection !== 'schools') {
-    const last = deadlineOccurrences(dated as EventEntry).at(-1);
+  if (entry.collection === 'events') {
+    const last = deadlineOccurrences(entry).at(-1);
     if (last) return parseDate(last.date)?.year ?? null;
   }
   return parseDate(entry.last_verified)?.year ?? null;
 }
 
 /** Everything that has passed, newest first. */
-export function archivedEntries(entries: Entry[], now: number): Entry[] {
+function archivedEntries(entries: Entry[], now: number): Entry[] {
   return entries.filter((entry) => {
-    if (entry.collection === 'jobs') return isExpiredJob(entry as JobEntry, now);
-    const dated = entry as EventEntry | SchoolEntry;
-    if (isPastEvent(dated, now)) return true;
+    if (isPastEvent(entry, now)) return true;
     // A call whose every round has closed, with no event dates to fall back on.
     if (
-      (entry.collection === 'deadlines' || entry.collection === 'events') &&
-      !dated.start_date &&
-      hasAnnouncedDeadline(dated as EventEntry)
+      entry.collection === 'events' &&
+      !entry.start_date &&
+      hasAnnouncedDeadline(entry)
     ) {
-      return nextDeadline(dated as EventEntry, now) === null;
+      return nextDeadline(entry, now) === null;
     }
     return false;
   });
@@ -467,52 +381,29 @@ export function archiveView(
   year: number | 'all',
 ): ArchiveView {
   const archived = archivedEntries(entries, now);
-  const years = [...new Set(archived.map(archivedYear).filter((y): y is number => y !== null))]
-    .sort((a, b) => b - a);
+  const years = [
+    ...new Set(archived.map(archivedYear).filter((y): y is number => y !== null)),
+  ].sort((a, b) => b - a);
 
   const selected =
     year === 'all' ? archived : archived.filter((entry) => archivedYear(entry) === year);
 
-  const events = selected
-    .filter((e) => e.collection === 'events' || e.collection === 'deadlines')
-    .sort((a, b) => byStartDateDescending(a as EventEntry, b as EventEntry));
-  const pastSchools = selected
-    .filter((e) => e.collection === 'schools')
-    .sort((a, b) => byStartDateDescending(a as SchoolEntry, b as SchoolEntry));
-  const pastJobs = selected
-    .filter((e) => e.collection === 'jobs')
-    .sort((a, b) => (jobDeadlineInstant(b as JobEntry) ?? 0) - (jobDeadlineInstant(a as JobEntry) ?? 0));
-
-  const sections: ArchiveSection[] = [
-    {
-      title: 'Events and calls',
-      html: list(
-        events.map((entry) => anyRow(entry, now)),
-        'Nothing archived here yet.',
-      ),
-    },
-    {
-      title: 'Schools',
-      html: list(
-        pastSchools.map((entry) => anyRow(entry, now)),
-        'Nothing archived here yet.',
-      ),
-    },
-  ];
-
-  // Only shown while the site is tracking jobs at all.
-  if (entries.some((entry) => entry.collection === 'jobs')) {
-    sections.push({
-      title: 'Jobs',
-      html: list(
-        pastJobs.map((entry) => anyRow(entry, now)),
-        'Nothing archived here yet.',
-      ),
-    });
-  }
+  const section = (title: string, of: (entry: Entry) => boolean): ArchiveSection => ({
+    title,
+    html: list(
+      selected
+        .filter(of)
+        .sort(byStartDateDescending)
+        .map((entry) => anyRow(entry, now)),
+      'Nothing archived here yet.',
+    ),
+  });
 
   return {
-    sections,
+    sections: [
+      section('Events and calls', (entry) => entry.collection === 'events'),
+      section('Schools', (entry) => entry.collection === 'schools'),
+    ],
     years,
     count:
       selected.length === archived.length

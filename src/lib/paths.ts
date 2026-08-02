@@ -14,8 +14,3 @@ export function url(path = '/'): string {
   const joined = `${base}${suffix}`;
   return joined === '' ? '/' : joined;
 }
-
-/** Absolute URL, for metadata and calendar subscriptions. */
-export function absolute(origin: string, path = '/'): string {
-  return `${origin.replace(/\/$/, '')}${url(path)}`;
-}
