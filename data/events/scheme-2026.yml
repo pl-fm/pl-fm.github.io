@@ -1,0 +1,19 @@
+id: scheme-2026
+name: Scheme and Functional Programming Workshop
+acronym: Scheme 2026
+type: workshop
+areas:
+  - functional-programming
+  - programming-languages
+  - compilers
+start_date: 2026-08-29
+end_date: 2026-08-29
+location: Indianapolis, Indiana
+country: United States
+colocated_with: ICFP 2026
+url: https://icfp26.sigplan.org/home/scheme-2026
+source: https://icfp26.sigplan.org/program/program-icfp-2026/
+last_verified: 2026-08-02
+notes: >-
+  The venue for work on Scheme, Racket, and Lisp dialects. The call closed on
+  5 June 2026.

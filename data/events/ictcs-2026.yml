@@ -1,0 +1,20 @@
+id: ictcs-2026
+name: Italian Conference on Theoretical Computer Science
+acronym: ICTCS 2026
+type: conference
+areas:
+  - logic
+  - formal-methods
+  - verification
+  - quantum
+start_date: 2026-09-07
+end_date: 2026-09-09
+location: Udine
+country: Italy
+url: https://ictcs2026.uniud.it/
+source: https://ictcs2026.uniud.it/
+last_verified: 2026-08-02
+notes: >-
+  27th edition, the annual meeting of the Italian Chapter of the EATCS. Special
+  tracks cover verification and synthesis for cyber-physical systems,
+  foundations of quantum computation, and computational biology.

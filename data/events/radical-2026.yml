@@ -1,0 +1,19 @@
+id: radical-2026
+name: Workshop on Recent Advances in Concurrency and Logic
+acronym: RADICAL 2026
+type: workshop
+areas:
+  - concurrency
+  - logic
+  - verification
+start_date: 2026-09-05
+end_date: 2026-09-05
+location: Liverpool
+country: United Kingdom
+colocated_with: CONFEST 2026
+url: https://sites.google.com/site/radicalconcur/
+source: https://confest-2026.github.io/workshops/
+last_verified: 2026-08-02
+notes: >-
+  One-day workshop at the intersection of concurrency and logic, mixing invited
+  talks with short contributed talks. The call closed on 5 June 2026.

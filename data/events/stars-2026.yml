@@ -1,0 +1,20 @@
+id: stars-2026
+name: International Workshop on Static and Runtime Verification Synergies
+acronym: STARS 2026
+type: workshop
+areas:
+  - verification
+  - formal-methods
+  - program-analysis
+deadline_tba: true
+start_date: 2026-11-23
+end_date: 2026-11-23
+location: Valletta
+country: Malta
+colocated_with: SEFM 2026
+url: https://sefm-conference.github.io/2026/workshops/
+source: https://sefm-conference.github.io/2026/workshops/
+last_verified: 2026-08-02
+notes: >-
+  First edition, a SEFM 2026 satellite event on combining static analysis with
+  runtime verification. No submission deadline is published yet.

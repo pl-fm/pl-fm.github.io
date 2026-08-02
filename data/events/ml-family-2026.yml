@@ -1,0 +1,19 @@
+id: ml-family-2026
+name: ML Family Workshop
+acronym: ML 2026
+type: workshop
+areas:
+  - functional-programming
+  - types
+  - programming-languages
+start_date: 2026-08-28
+end_date: 2026-08-28
+location: Indianapolis, Indiana
+country: United States
+colocated_with: ICFP 2026
+url: https://icfp26.sigplan.org/home/mlfamilyworkshop-2026
+source: https://icfp26.sigplan.org/program/program-icfp-2026/
+last_verified: 2026-08-02
+notes: >-
+  Higher-order, typed, inferred, strict: the workshop for the ML family of
+  languages. The call closed on 1 July 2026.

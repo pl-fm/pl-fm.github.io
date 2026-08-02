@@ -1,0 +1,18 @@
+id: lpnmr-2026
+name: International Conference on Logic Programming and Non-monotonic Reasoning
+acronym: LPNMR 2026
+type: conference
+areas:
+  - logic
+  - programming-languages
+  - theorem-proving
+start_date: 2026-09-07
+end_date: 2026-09-11
+location: Klagenfurt
+country: Austria
+url: https://lpnmr2026.aics.aau.at/
+source: https://lpnmr2026.aics.aau.at/
+last_verified: 2026-08-02
+notes: >-
+  18th edition, on the University of Klagenfurt campus. Covers declarative
+  logic programming, answer set programming, and knowledge representation.

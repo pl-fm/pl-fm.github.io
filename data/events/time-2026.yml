@@ -1,0 +1,18 @@
+id: time-2026
+name: International Symposium on Temporal Representation and Reasoning
+acronym: TIME 2026
+type: symposium
+areas:
+  - logic
+  - verification
+  - model-checking
+start_date: 2026-09-01
+end_date: 2026-09-03
+location: Cork
+country: Ireland
+url: https://time26.cnr.it/
+source: https://time26.cnr.it/
+last_verified: 2026-08-02
+notes: >-
+  33rd edition, at University College Cork and colocated with DX 2026. Topics
+  include temporal logics and the specification and verification of systems.

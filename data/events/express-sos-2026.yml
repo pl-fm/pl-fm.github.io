@@ -1,0 +1,22 @@
+id: express-sos-2026
+name: >-
+  Combined Workshop on Expressiveness in Concurrency and Structural Operational
+  Semantics
+acronym: EXPRESS/SOS 2026
+type: workshop
+areas:
+  - concurrency
+  - semantics
+  - programming-languages
+start_date: 2026-09-05
+end_date: 2026-09-05
+location: Liverpool
+country: United Kingdom
+colocated_with: CONFEST 2026
+url: https://expresssos.github.io/conf/2026
+source: https://confest-2026.github.io/workshops/
+last_verified: 2026-08-02
+notes: >-
+  Compares programming concepts and models of computation by their relative
+  expressive power. The call closed on 22 June 2026; proceedings appear in
+  EPTCS.

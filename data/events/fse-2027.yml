@@ -1,0 +1,26 @@
+id: fse-2027
+name: ACM International Conference on the Foundations of Software Engineering
+acronym: FSE 2027
+type: conference
+areas:
+  - program-analysis
+  - verification
+deadlines:
+  - label: Research papers
+    date: 2026-10-02
+    timezone: AoE
+  - label: Industry papers
+    date: 2027-01-23
+    timezone: AoE
+start_date: 2027-07-12
+end_date: 2027-07-16
+location: Shenzhen
+country: China
+url: https://conf.researchr.org/home/fse-2027
+source: https://conf.researchr.org/track/fse-2027/fse-2027-papers
+last_verified: 2026-08-02
+notes: >-
+  Research papers use a two-round model: author response in December 2026,
+  first notification in January 2027, and a major-revision round closing 5
+  March 2027. Separate tracks run for industry papers and software engineering
+  education.

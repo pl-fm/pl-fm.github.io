@@ -1,0 +1,19 @@
+id: ocaml-2026
+name: OCaml Users and Developers Workshop
+acronym: OCaml 2026
+type: workshop
+areas:
+  - functional-programming
+  - programming-languages
+  - compilers
+start_date: 2026-08-24
+end_date: 2026-08-24
+location: Indianapolis, Indiana
+country: United States
+colocated_with: ICFP 2026
+url: https://icfp26.sigplan.org/home/ocaml-2026
+source: https://icfp26.sigplan.org/program/program-icfp-2026/
+last_verified: 2026-08-02
+notes: >-
+  Run at ICFP 2026 as a watch party alongside the main workshop. The call has
+  closed.

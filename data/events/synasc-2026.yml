@@ -1,0 +1,21 @@
+id: synasc-2026
+name: >-
+  International Symposium on Symbolic and Numeric Algorithms for Scientific
+  Computing
+acronym: SYNASC 2026
+type: symposium
+areas:
+  - formal-methods
+  - theorem-proving
+  - logic
+start_date: 2026-09-14
+end_date: 2026-09-17
+location: Timisoara
+country: Romania
+url: https://synasc.ro/2026/
+source: https://synasc.ro/2026/
+last_verified: 2026-08-02
+notes: >-
+  28th edition, at ICAM Timisoara and organised in conjunction with FROM 2026.
+  It runs tracks on logic and programming, and on formal methods and
+  verification, alongside the symbolic and numeric computation tracks.

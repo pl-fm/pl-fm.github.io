@@ -1,0 +1,18 @@
+id: funarch-2026
+name: Workshop on Functional Software Architecture
+acronym: FUNARCH 2026
+type: workshop
+areas:
+  - functional-programming
+  - programming-languages
+start_date: 2026-08-29
+end_date: 2026-08-29
+location: Indianapolis, Indiana
+country: United States
+colocated_with: ICFP 2026
+url: https://icfp26.sigplan.org/home/funarch-2026
+source: https://icfp26.sigplan.org/program/program-icfp-2026/
+last_verified: 2026-08-02
+notes: >-
+  On architecture and design in the large for functional programs. The call has
+  closed.

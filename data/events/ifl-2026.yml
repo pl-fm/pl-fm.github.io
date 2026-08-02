@@ -1,0 +1,28 @@
+id: ifl-2026
+name: Symposium on Implementation and Application of Functional Languages
+acronym: IFL 2026
+type: symposium
+areas:
+  - functional-programming
+  - programming-languages
+  - compilers
+deadlines:
+  - label: Draft paper
+    date: 2026-09-04
+    timezone: AoE
+  - label: Post-symposium paper
+    date: 2026-11-25
+    timezone: AoE
+    note: Full papers for the formal proceedings, written up after the meeting
+start_date: 2026-10-28
+end_date: 2026-10-30
+location: Gothenburg
+country: Sweden
+url: https://ifl26.cse.chalmers.se/
+source: https://ifl26.cse.chalmers.se/cfp/
+last_verified: 2026-08-02
+notes: >-
+  38th edition, hosted by Chalmers at Aspenas Herrgard. IFL reviews draft papers
+  before the meeting and full papers after it, so the September deadline is a
+  draft rather than a finished submission. Early registration closes 18
+  September and late registration 25 September 2026.

@@ -1,0 +1,17 @@
+id: farm-2026
+name: Workshop on Functional Art, Music, Modelling and Design
+acronym: FARM 2026
+type: workshop
+areas:
+  - functional-programming
+  - programming-languages
+start_date: 2026-08-24
+end_date: 2026-08-24
+location: Indianapolis, Indiana
+country: United States
+colocated_with: ICFP 2026
+url: https://icfp26.sigplan.org/home/farm-2026
+source: https://icfp26.sigplan.org/program/program-icfp-2026/
+last_verified: 2026-08-02
+notes: >-
+  One day of talks followed by an evening performance. The call has closed.

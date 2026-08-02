@@ -1,0 +1,19 @@
+id: minikanren-2026
+name: Workshop on miniKanren and Relational Programming
+acronym: miniKanren 2026
+type: workshop
+areas:
+  - programming-languages
+  - functional-programming
+  - logic
+start_date: 2026-08-24
+end_date: 2026-08-24
+location: Indianapolis, Indiana
+country: United States
+colocated_with: ICFP 2026
+url: https://icfp26.sigplan.org/home/minikanren-2026
+source: https://icfp26.sigplan.org/program/program-icfp-2026/
+last_verified: 2026-08-02
+notes: >-
+  One-day workshop on relational programming languages and their
+  implementations. The call has closed.

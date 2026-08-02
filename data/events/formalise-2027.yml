@@ -1,0 +1,29 @@
+id: formalise-2027
+name: International Conference on Formal Methods in Software Engineering
+acronym: FormaliSE 2027
+type: conference
+areas:
+  - formal-methods
+  - verification
+  - program-analysis
+deadlines:
+  - label: Abstract
+    date: 2026-10-30
+    timezone: AoE
+  - label: Paper
+    date: 2026-11-06
+    timezone: AoE
+  - label: Artifact
+    date: 2026-11-10
+    timezone: AoE
+start_date: 2027-04-26
+end_date: 2027-04-27
+location: Dublin
+country: Ireland
+colocated_with: ICSE 2027
+url: https://conf.researchr.org/home/Formalise-2027
+source: https://conf.researchr.org/home/Formalise-2027
+last_verified: 2026-08-02
+notes: >-
+  Held at the Convention Centre Dublin alongside ICSE 2027. Papers follow IEEE
+  formatting and at least one author must present in person.

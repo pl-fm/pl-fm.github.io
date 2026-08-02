@@ -1,0 +1,18 @@
+id: wollic-2026
+name: Workshop on Logic, Language, Information and Computation
+acronym: WoLLIC 2026
+type: workshop
+areas:
+  - logic
+  - semantics
+  - types
+start_date: 2026-08-03
+end_date: 2026-08-06
+location: Lima
+country: Peru
+url: https://wollic.org/wollic2026/
+source: https://wollic.org/wollic2026/
+last_verified: 2026-08-02
+notes: >-
+  32nd edition, at Universidad Nacional de Ingenieria. Proceedings appear in
+  Springer LNCS. Online presentations are accepted.

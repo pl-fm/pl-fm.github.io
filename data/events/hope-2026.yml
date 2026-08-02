@@ -1,0 +1,19 @@
+id: hope-2026
+name: Workshop on Higher-Order Programming with Effects
+acronym: HOPE 2026
+type: workshop
+areas:
+  - functional-programming
+  - semantics
+  - types
+start_date: 2026-08-24
+end_date: 2026-08-24
+location: Indianapolis, Indiana
+country: United States
+colocated_with: ICFP 2026
+url: https://icfp26.sigplan.org/home/hope-2026
+source: https://icfp26.sigplan.org/program/program-icfp-2026/
+last_verified: 2026-08-02
+notes: >-
+  Informal one-day workshop on computational effects and their semantics. The
+  call closed on 12 June 2026.

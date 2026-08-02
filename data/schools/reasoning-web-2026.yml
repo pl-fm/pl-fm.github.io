@@ -1,0 +1,28 @@
+id: reasoning-web-2026
+name: Reasoning Web Summer School
+acronym: RW 2026
+type: summer-school
+areas:
+  - logic
+  - semantics
+  - theorem-proving
+eligibility:
+  - students
+  - phd
+  - postdocs
+recurring: annual
+start_date: 2026-08-27
+end_date: 2026-08-30
+location: Vilnius
+country: Lithuania
+description: >-
+  22nd edition, held as part of Declarative AI 2026 alongside RuleML+RR and
+  DecisionCAMP. Lectures cover recent advances in reasoning techniques across
+  ontologies, rules, logic, linked data, and knowledge graphs.
+url: https://2026.declarativeai.net/reasoning-web/
+source: https://2026.declarativeai.net/reasoning-web/registration
+last_verified: 2026-08-02
+funding: Grants are awarded as registration fee waivers of 240 EUR.
+notes: >-
+  Aimed primarily at postgraduate students, though established researchers are
+  welcome. Registration goes through the Declarative AI 2026 page.
