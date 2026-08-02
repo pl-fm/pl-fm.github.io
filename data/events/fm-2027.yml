@@ -1,0 +1,19 @@
+id: fm-2027
+name: International Symposium on Formal Methods
+acronym: FM 2027
+type: symposium
+areas:
+  - formal-methods
+  - verification
+deadline_tba: true
+start_date: 2027-10-18
+end_date: 2027-10-22
+location: Athens
+country: Greece
+description: >-
+  28th edition, and the first of the yearly autumn schedule the FME symposium
+  moves to from 2027.
+url: https://www.fmeurope.org/symposia/
+source: https://www.fmeurope.org/feature/upcoming_conferences/
+last_verified: 2026-08-02
+notes: No call for papers has been published yet.

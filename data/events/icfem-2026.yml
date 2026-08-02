@@ -1,0 +1,16 @@
+id: icfem-2026
+name: International Conference on Formal Engineering Methods
+acronym: ICFEM 2026
+type: conference
+areas:
+  - formal-methods
+  - verification
+start_date: 2026-11-17
+end_date: 2026-11-20
+location: Southampton
+country: United Kingdom
+url: https://icfem2026.github.io/
+source: https://icfem2026.github.io/
+last_verified: 2026-08-02
+notes: >-
+  27th edition. Submissions closed on 22 June 2026. FMAS 2026 is colocated.

@@ -7,13 +7,14 @@ import { detail } from '../lib/render.ts';
 import { escapeHtml } from '../lib/render.ts';
 import {
   combinedCalendarItems,
+  itemsInCategories,
   itemsShowing,
   matchesFilter,
   EMPTY_FILTER,
 } from '../lib/filter.ts';
 import { formatDate } from '../lib/dates.ts';
-import { KIND_LABELS } from '../lib/taxonomy.ts';
-import type { CalendarItem } from '../lib/types.ts';
+import { CATEGORY_LABELS } from '../lib/taxonomy.ts';
+import type { CalendarItem, Category } from '../lib/types.ts';
 import { entries, entryById, now } from './store.ts';
 
 const THEME_KEY = 'plfm-theme';
@@ -71,20 +72,27 @@ export function openEntry(id: string, trigger: HTMLElement | null = null): void 
 
 /**
  * Everything happening on one date, for a `+n` control in a calendar cell. The
- * calendar carries the tab and the search it was drawn with, so the panel lists
- * what the cell counted rather than everything on that date.
+ * calendar carries the tab, the legend, and the search it was drawn with, so
+ * the panel lists what the cell counted rather than everything on that date.
  */
 function openDay(day: string, trigger: HTMLElement | null): void {
   const container = trigger?.closest<HTMLElement>('[data-calendar]');
+  const categories = (container?.dataset.categories ?? '')
+    .split(',')
+    .filter(Boolean) as Category[];
   const state = {
     ...EMPTY_FILTER,
     show: container?.dataset.calendar ?? 'all',
     query: container?.dataset.query ?? '',
+    categories,
   };
 
-  const items: CalendarItem[] = itemsShowing(
-    combinedCalendarItems(entries().filter((entry) => matchesFilter(entry, state))),
-    state.show,
+  const items: CalendarItem[] = itemsInCategories(
+    itemsShowing(
+      combinedCalendarItems(entries().filter((entry) => matchesFilter(entry, state))),
+      state.show,
+    ),
+    categories,
   ).filter((item) => item.date === day);
 
   if (items.length === 0) return;
@@ -92,12 +100,12 @@ function openDay(day: string, trigger: HTMLElement | null): void {
   const list = items
     .map(
       (item) =>
-        `<li><button type="button" class="agenda-entry" data-detail="${escapeHtml(
+        `<li><button type="button" class="agenda-entry" data-cat="${item.category}" data-detail="${escapeHtml(
           item.id,
-        )}"><span class="mark" data-kind="${item.kind}" aria-hidden="true"></span><span class="agenda-label">${escapeHtml(
+        )}"><span class="mark" data-cat="${item.category}" aria-hidden="true"></span><span class="agenda-label">${escapeHtml(
           item.label,
         )}</span><span class="agenda-what">${escapeHtml(
-          `${KIND_LABELS[item.kind]}, ${item.what}`,
+          `${CATEGORY_LABELS[item.category]}, ${item.what}`,
         )}</span></button></li>`,
     )
     .join('');

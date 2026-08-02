@@ -1,0 +1,17 @@
+id: sefm-2026
+name: International Conference on Software Engineering and Formal Methods
+acronym: SEFM 2026
+type: conference
+areas:
+  - formal-methods
+  - verification
+start_date: 2026-11-25
+end_date: 2026-11-27
+location: Valletta
+country: Malta
+url: https://sefm-conference.github.io/2026/
+source: https://sefm-conference.github.io/2026/
+last_verified: 2026-08-02
+notes: >-
+  24th edition. Submissions closed on 23 June 2026, with notification on 7
+  September 2026. Workshops run on 23 and 24 November 2026.

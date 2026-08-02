@@ -1,0 +1,20 @@
+id: cade-31
+name: International Conference on Automated Deduction
+acronym: CADE-31
+type: conference
+areas:
+  - theorem-proving
+  - logic
+  - formal-methods
+deadline_tba: true
+start_date: 2027-08-24
+end_date: 2027-08-27
+location: Nijmegen
+country: Netherlands
+colocated_with: FSCD 2027
+url: https://cadeinc.org/conferences
+source: https://www.fmeurope.org/feature/upcoming_conferences/
+last_verified: 2026-08-02
+notes: >-
+  No call for papers has been published yet. CADE Inc confirms the location and
+  the month, and Formal Methods Europe lists the exact days.

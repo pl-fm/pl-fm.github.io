@@ -1,0 +1,23 @@
+id: marktoberdorf-2026
+name: Marktoberdorf Summer School on Engineering Secure and Dependable Software Systems
+acronym: Marktoberdorf 2026
+type: summer-school
+areas:
+  - formal-methods
+  - verification
+  - security
+start_date: 2026-08-11
+end_date: 2026-08-22
+location: Herrsching am Ammersee
+country: Germany
+eligibility:
+  - phd
+  - postdocs
+recurring: annual
+description: >-
+  Organised by fortiss and the Department of Informatics at the Technical
+  University of Munich.
+url: https://sites.google.com/view/marktoberdorf2026
+source: https://sites.google.com/view/marktoberdorf2026
+last_verified: 2026-08-02
+notes: Applications closed on 15 May 2026.

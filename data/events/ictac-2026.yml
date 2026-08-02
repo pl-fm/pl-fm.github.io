@@ -1,0 +1,19 @@
+id: ictac-2026
+name: International Colloquium on Theoretical Aspects of Computing
+acronym: ICTAC 2026
+type: conference
+areas:
+  - formal-methods
+  - semantics
+  - verification
+start_date: 2026-11-11
+end_date: 2026-11-13
+location: Bariloche
+country: Argentina
+url: https://ictac2026.github.io/
+source: https://ictac2026.github.io/
+last_verified: 2026-08-02
+notes: >-
+  23rd edition. Submissions closed on 22 June 2026. A postgraduate school runs
+  on 9 and 10 November, an industry day on 14 November, and workshops on 15
+  November 2026.

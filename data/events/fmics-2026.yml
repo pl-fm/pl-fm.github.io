@@ -1,0 +1,20 @@
+id: fmics-2026
+name: International Conference on Formal Methods for Industrial Critical Systems
+acronym: FMICS 2026
+type: conference
+areas:
+  - formal-methods
+  - verification
+  - model-checking
+start_date: 2026-09-03
+end_date: 2026-09-04
+location: Liverpool
+country: United Kingdom
+colocated_with: CONFEST 2026
+description: >-
+  31st edition, part of CONFEST 2026 alongside CONCUR and the joint QEST and
+  FORMATS conference.
+url: https://confest-2026.github.io/fmics/
+source: https://confest-2026.github.io/fmics/
+last_verified: 2026-08-02
+notes: Submissions have closed. Workshops follow on 5 September 2026.

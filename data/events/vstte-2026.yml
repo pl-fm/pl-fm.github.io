@@ -1,0 +1,19 @@
+id: vstte-2026
+name: International Conference on Verified Software, Theories, Tools, and Experiments
+acronym: VSTTE 2026
+type: conference
+areas:
+  - verification
+  - formal-methods
+  - theorem-proving
+start_date: 2026-09-14
+end_date: 2026-09-14
+location: Graz
+country: Austria
+colocated_with: FMCAD 2026
+url: https://fmcad.org/FMCAD26/vstte/
+source: https://fmcad.org/FMCAD26/vstte/
+last_verified: 2026-08-02
+notes: >-
+  18th edition. Submissions closed on 17 July 2026, with notification on 22
+  August 2026.

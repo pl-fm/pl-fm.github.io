@@ -1,0 +1,17 @@
+id: sas-2026
+name: Static Analysis Symposium
+acronym: SAS 2026
+type: symposium
+areas:
+  - program-analysis
+  - verification
+  - semantics
+start_date: 2026-10-06
+end_date: 2026-10-08
+location: Oakland, California
+country: United States
+colocated_with: SPLASH 2026
+url: https://conf.researchr.org/home/splash-issta-2026/sas-2026
+source: https://conf.researchr.org/home/splash-issta-2026/sas-2026
+last_verified: 2026-08-02
+notes: 33rd edition. Submissions have closed.

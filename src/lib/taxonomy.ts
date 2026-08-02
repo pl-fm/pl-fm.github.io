@@ -9,8 +9,10 @@
 import type {
   Area,
   Audience,
+  Category,
   EventType,
   Kind,
+  Moment,
   PositionType,
   SchoolType,
 } from './types.ts';
@@ -123,6 +125,38 @@ export const KIND_LABELS: Record<Kind, string> = {
 };
 
 /**
+ * The legend below the calendar, in the order it reads.
+ *
+ * Deadlines lead because they are the only dates a reader can miss. `job` is
+ * last and only ever appears on a calendar that carries jobs, which the home
+ * page does not.
+ */
+export const CATEGORIES: readonly Category[] = [
+  'deadline',
+  'conference',
+  'workshop',
+  'school',
+  'job',
+];
+
+export const CATEGORY_LABELS: Record<Category, string> = {
+  deadline: 'Deadline',
+  conference: 'Conference',
+  workshop: 'Workshop',
+  school: 'School',
+  job: 'Job',
+};
+
+/** What each legend entry means, for the button's tooltip. */
+export const CATEGORY_HINTS: Record<Category, string> = {
+  deadline: 'Submission and application deadlines',
+  conference: 'Conferences and symposia, on the days they run',
+  workshop: 'Workshops and colocated events, on the days they run',
+  school: 'Summer, winter, and doctoral schools, on the days they run',
+  job: 'Position closing dates',
+};
+
+/**
  * The tabs above the calendar. They select on dates rather than on entries, so
  * `Deadlines` keeps a conference on the page at its deadline but not at its
  * start date.
@@ -158,4 +192,16 @@ export function kindOf(entry: {
   if (entry.collection === 'jobs') return 'job';
   if (entry.type === 'workshop' || entry.type === 'colocated') return 'workshop';
   return 'conference';
+}
+
+/**
+ * The legend bucket for one dated moment. A deadline is a deadline whatever it
+ * belongs to, so the conference that owns it only decides the colour of the
+ * date the conference itself begins.
+ */
+export function categoryOf(
+  entry: { collection: string; type?: string },
+  moment: Moment,
+): Category {
+  return moment === 'deadline' ? 'deadline' : kindOf(entry);
 }

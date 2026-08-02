@@ -1,0 +1,20 @@
+id: proof-assistants-strasbourg-2026
+name: Summer School on Proof Assistants and Applications
+type: summer-school
+areas:
+  - theorem-proving
+  - types
+  - logic
+start_date: 2026-08-31
+end_date: 2026-09-04
+location: Strasbourg
+country: France
+description: >-
+  Introduction to proof assistants for mathematics and program certification,
+  covering type theory, categorical logic, homotopy theory, and Lean.
+url: https://indico.math.cnrs.fr/event/16687/
+source: https://indico.math.cnrs.fr/event/16687/
+last_verified: 2026-08-02
+notes: >-
+  Held at the IRMA conference room, University of Strasbourg. Registration
+  closed on 17 July 2026.

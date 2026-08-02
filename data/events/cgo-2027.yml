@@ -1,0 +1,22 @@
+id: cgo-2027
+name: IEEE/ACM International Symposium on Code Generation and Optimization
+acronym: CGO 2027
+type: symposium
+areas:
+  - compilers
+  - programming-languages
+  - program-analysis
+deadline: 2026-09-10T23:59:00
+deadline_timezone: AoE
+start_date: 2027-03-20
+end_date: 2027-03-24
+location: Salt Lake City, Utah
+country: United States
+colocated_with: HPCA, PPoPP and CC 2027
+url: https://2027.cgo.org/
+source: https://conf.researchr.org/track/cgo-2027/cgo-2027-papers
+last_verified: 2026-08-02
+notes: >-
+  Second of two submission rounds. Round one closed on 11 June 2026. Round two
+  rebuttal runs from 20 to 22 October 2026, with notification on 2 November
+  2026. Papers rejected in round one may not be resubmitted to round two.

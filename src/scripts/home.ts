@@ -6,7 +6,7 @@
 import type { FilterState } from '../lib/filter.ts';
 import { homeView, type ShowMode } from '../lib/views.ts';
 import { bindMonthControls, goToToday, monthState, paintCalendar } from './calendar.ts';
-import { bindFilters } from './filters.ts';
+import { bindFilters, selectShow } from './filters.ts';
 import { entries, isStale, now, today } from './store.ts';
 
 const MODES: readonly string[] = ['all', 'deadlines', 'events', 'schools'];
@@ -57,6 +57,7 @@ export function initHome(): void {
     if (calendar) {
       calendar.dataset.calendar = state.show;
       calendar.dataset.query = state.query;
+      calendar.dataset.categories = state.categories.join(',');
     }
     if (monthHeading) monthHeading.textContent = view.monthHeading;
     if (monthList) monthList.innerHTML = view.monthList;
@@ -84,7 +85,7 @@ export function initHome(): void {
     const wanted = modeFromHash() ?? 'all';
     if (wanted === ui.state.show || !tabs) return;
     press(tabs, wanted);
-    ui.state.show = wanted;
+    selectShow(ui.state, wanted);
     ui.refresh();
   });
 

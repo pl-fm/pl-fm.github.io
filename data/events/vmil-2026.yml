@@ -1,0 +1,20 @@
+id: vmil-2026
+name: Workshop on Virtual Machines and Language Implementations
+acronym: VMIL 2026
+type: workshop
+areas:
+  - programming-languages
+  - compilers
+deadline: 2026-08-06T23:59:00
+deadline_timezone: AoE
+dates_tba: true
+location: Oakland, California
+country: United States
+colocated_with: SPLASH 2026
+url: https://conf.researchr.org/home/splash-issta-2026/vmil-2026
+source: https://conf.researchr.org/home/splash-issta-2026/vmil-2026
+last_verified: 2026-08-02
+notes: >-
+  Held during SPLASH and ISSTA 2026, which runs from 3 to 9 October 2026. The
+  workshop day within that week has not been announced. Notification and the
+  work in progress deadline are both 24 August 2026.

@@ -31,7 +31,13 @@ import {
   SCHOOL_TYPE_LABELS,
   kindOf,
 } from './taxonomy.ts';
-import type { Entry, EventEntry, JobEntry, SchoolEntry } from './types.ts';
+import type {
+  Category,
+  Entry,
+  EventEntry,
+  JobEntry,
+  SchoolEntry,
+} from './types.ts';
 
 const HTML_ESCAPES: Record<string, string> = {
   '&': '&amp;',
@@ -84,13 +90,20 @@ function sampleTag(entry: Entry): string {
     : '';
 }
 
-function kindMark(entry: Entry): string {
-  const kind = kindOf(entry);
-  return `<span class="mark" data-kind="${kind}" aria-hidden="true"></span>`;
+/**
+ * The colour chip on a row. It carries the row's legend category rather than
+ * its entry kind, so that the key under the calendar reads the same way in the
+ * lists: a conference's call for papers is marked as a deadline, and the
+ * conference itself is marked as a conference.
+ */
+function categoryMark(category: Category): string {
+  return `<span class="mark" data-cat="${category}" aria-hidden="true"></span>`;
 }
 
 interface RowParts {
   entry: Entry;
+  /** Which legend colour this row carries. */
+  category: Category;
   /** Headline text, usually the acronym. */
   title: string;
   /** Second line, usually the full name. */
@@ -122,7 +135,7 @@ function row(parts: RowParts): string {
     '</div>',
     subtitle ? `<p class="row-sub">${escapeHtml(subtitle)}</p>` : '',
     '<div class="row-foot">',
-    `<p class="row-meta">${kindMark(entry)}${escapeHtml(meta)}</p>`,
+    `<p class="row-meta">${categoryMark(parts.category)}${escapeHtml(meta)}</p>`,
     '<span class="row-actions">',
     `<button class="row-more" type="button" data-detail="${escapeHtml(entry.id)}">Details</button>`,
     websiteLink(entry),
@@ -154,6 +167,7 @@ export function deadlineRow(
 
   return row({
     entry,
+    category: 'deadline',
     title: entry.acronym ?? entry.name,
     subtitle: entry.acronym ? entry.name : null,
     date: next
@@ -190,6 +204,7 @@ export function eventRow(entry: EventEntry, now: number): string {
 
   return row({
     entry,
+    category: kindOf(entry),
     title: entry.acronym ?? entry.name,
     subtitle: entry.acronym ? entry.name : null,
     date: dates || null,
@@ -229,6 +244,7 @@ export function schoolRow(
 
   return row({
     entry,
+    category: showApplication ? 'deadline' : 'school',
     title: entry.acronym ?? entry.name,
     subtitle: entry.acronym ? entry.name : null,
     date,
@@ -258,6 +274,7 @@ export function jobRow(entry: JobEntry, now: number): string {
 
   return row({
     entry,
+    category: 'job',
     title: entry.name,
     subtitle: entry.institution,
     date,
@@ -307,11 +324,13 @@ function linkField(label: string, href: string | null | undefined): string {
 
 /** Body of the small panel shown when a calendar entry or row is opened. */
 export function detail(entry: Entry, now: number): string {
+  // The panel is about the entry rather than about one of its dates, so this
+  // mark reads the entry's own kind and never `deadline`.
   const kind = kindOf(entry);
   const parts: string[] = [];
 
   parts.push(
-    `<p class="detail-kind"><span class="mark" data-kind="${kind}" aria-hidden="true"></span>${escapeHtml(
+    `<p class="detail-kind"><span class="mark" data-cat="${kind}" aria-hidden="true"></span>${escapeHtml(
       typeLabel(entry),
     )}${entry.sample ? sampleTag(entry) : ''}</p>`,
   );

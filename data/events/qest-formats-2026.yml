@@ -1,0 +1,21 @@
+id: qest-formats-2026
+name: International Conference on Quantitative Evaluation of Systems and Formal Modeling and Analysis of Timed Systems
+acronym: QEST+FORMATS 2026
+type: conference
+areas:
+  - formal-methods
+  - verification
+  - model-checking
+  - probabilistic-programming
+start_date: 2026-09-02
+end_date: 2026-09-04
+location: Liverpool
+country: United Kingdom
+colocated_with: CONFEST 2026
+description: >-
+  Joint conference of QEST and FORMATS, part of CONFEST 2026 alongside CONCUR
+  and FMICS.
+url: https://www.qest-formats.org/
+source: https://www.qest-formats.org/
+last_verified: 2026-08-02
+notes: Submissions have closed.

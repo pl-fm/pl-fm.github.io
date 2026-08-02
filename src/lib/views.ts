@@ -17,21 +17,20 @@ import {
   deadlineIsTba,
   deadlineOccurrences,
   hasAnnouncedDeadline,
+  inCategories,
   isExpiredJob,
   isPastEvent,
+  itemsInCategories,
   itemsInMonth,
   itemsShowing,
   jobDeadlineInstant,
-  matchesArea,
   matchesFilter,
-  matchesKind,
-  matchesQuery,
-  matchesType,
   nextDeadline,
   schoolDeadlineInstant,
   startInstant,
   type FilterState,
 } from './filter.ts';
+import { categoryOf } from './taxonomy.ts';
 import {
   anyRow,
   deadlineRow,
@@ -42,6 +41,7 @@ import {
 } from './render.ts';
 import type {
   CalendarItem,
+  Category,
   Entry,
   EventEntry,
   JobEntry,
@@ -91,36 +91,34 @@ export interface CalendarRegions {
 export function calendarRegions(context: MonthContext): CalendarRegions {
   const { year, month, today, state } = context;
 
-  // The legend is built before the category filter is applied, so choosing
-  // `Schools` does not remove the button that leads back to `Workshops`.
-  const beforeKind = context.entries
+  const matching = context.entries
     .filter((entry) => entry.collection !== 'jobs')
-    .filter(
-      (entry) =>
-        matchesArea(entry, state.area) &&
-        matchesType(entry, state.type) &&
-        matchesQuery(entry, state.query),
-    );
-  const matching = beforeKind.filter((entry) => matchesKind(entry, state.kind));
+    .filter((entry) => matchesFilter(entry, state));
 
-  const monthItems = (list: Entry[]): CalendarItem[] =>
-    itemsInMonth(itemsShowing(combinedCalendarItems(list), state.show), year, month);
-
-  const items = monthItems(matching);
+  // Every date the entry-level filters and the tab allow, across all time. The
+  // legend is a control as much as a key, and a row of buttons that comes and
+  // goes as you page through the calendar reads as broken — quite apart from
+  // stranding you with no way to switch category in a month that happens to
+  // hold one of them.
+  const available = itemsShowing(combinedCalendarItems(matching), state.show);
+  const items = itemsInMonth(
+    itemsInCategories(available, state.categories),
+    year,
+    month,
+  );
   const view = { year, month, items, today };
 
   return {
     monthTitle: formatMonthYear(year, month),
     grid: monthGrid(view),
     agenda: agenda(view),
-    // Deliberately not limited to the month on screen. The legend is a
-    // control, and a row of buttons that comes and goes as you page through
-    // the calendar reads as broken, quite apart from stranding you with no
-    // way to change category in a month that happens to hold one kind.
-    legend: legend(
-      itemsShowing(combinedCalendarItems(beforeKind), state.show),
-      state.kind,
-    ),
+    legend: legend({
+      present: available,
+      // Counted before the legend's own filter, so a category that is switched
+      // off still says how much it is hiding.
+      month: itemsInMonth(available, year, month),
+      selected: state.categories,
+    }),
     items,
   };
 }
@@ -216,33 +214,45 @@ function upcomingKey(entry: Entry, show: ShowMode, now: number): number {
 }
 
 /**
- * A row reads as whatever the tab is about: the `Deadlines` tab leads with the
- * closing date, `Events` and `Schools` with the dates they run. `All` picks per
- * entry, so a call closing next week reads as a deadline and a conference whose
- * call has closed reads as an event.
+ * Whether a row leads with a closing date or with the dates something runs.
+ * The tab decides where it can, and on `All` the entry decides for itself, so
+ * a call closing next week reads as a deadline and a conference whose call has
+ * closed reads as an event.
  */
-function upcomingRow(entry: Entry, show: ShowMode, now: number): string {
-  if (show === 'deadlines') {
-    return entry.collection === 'schools'
-      ? schoolRow(entry as SchoolEntry, now, 'application')
-      : deadlineRow(entry as EventEntry, now);
-  }
-  if (show === 'events') return eventRow(entry as EventEntry, now);
-  if (show === 'schools') return schoolRow(entry as SchoolEntry, now, 'dates');
+function leadsWithDeadline(entry: Entry, show: ShowMode, now: number): boolean {
+  if (show === 'deadlines') return true;
+  if (show === 'events' || show === 'schools') return false;
 
   const moment = nextMoment(entry, now)?.moment;
-  if (entry.collection === 'schools') {
-    const school = entry as SchoolEntry;
-    const application =
-      moment === 'deadline' ||
-      (moment === undefined && school.application_deadline_tba === true);
-    return schoolRow(school, now, application ? 'application' : 'dates');
-  }
+  if (moment !== undefined) return moment === 'deadline';
+  // Nothing dated is left, so the row falls back to whatever it is still
+  // waiting on.
+  return entry.collection === 'schools'
+    ? (entry as SchoolEntry).application_deadline_tba === true
+    : deadlineIsTba(entry as EventEntry);
+}
 
+/**
+ * The legend bucket a row falls in, which is the same question the row already
+ * answers when it chooses which date to lead with. Deriving it here rather
+ * than from the entry alone is what keeps the list and the calendar agreeing:
+ * a conference is coloured as a deadline for exactly as long as its row is
+ * showing a deadline.
+ */
+function rowCategory(entry: Entry, show: ShowMode, now: number): Category {
+  return leadsWithDeadline(entry, show, now)
+    ? 'deadline'
+    : categoryOf(entry, entry.collection === 'schools' ? 'school' : 'event');
+}
+
+function upcomingRow(entry: Entry, show: ShowMode, now: number): string {
+  const deadline = leadsWithDeadline(entry, show, now);
+
+  if (entry.collection === 'schools') {
+    return schoolRow(entry as SchoolEntry, now, deadline ? 'application' : 'dates');
+  }
   const event = entry as EventEntry;
-  const submission =
-    moment === 'deadline' || (moment === undefined && deadlineIsTba(event));
-  return submission ? deadlineRow(event, now) : eventRow(event, now);
+  return deadline ? deadlineRow(event, now) : eventRow(event, now);
 }
 
 const UPCOMING: Record<
@@ -336,6 +346,10 @@ export function homeView(context: MonthContext): HomeView {
 
   const upcoming = matching
     .filter((entry) => isUpcoming(entry, show, now))
+    // The legend narrows this list too. It reads as one page, so switching a
+    // colour off on the calendar and leaving the same entries listed under it
+    // would look like the control had failed.
+    .filter((entry) => inCategories(rowCategory(entry, show, now), state.categories))
     .sort(
       (a, b) =>
         upcomingKey(a, show, now) - upcomingKey(b, show, now) ||

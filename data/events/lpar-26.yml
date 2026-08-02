@@ -1,0 +1,25 @@
+id: lpar-26
+name: International Conference on Logic for Programming, Artificial Intelligence and Reasoning
+acronym: LPAR-26
+type: conference
+areas:
+  - logic
+  - theorem-proving
+  - programming-languages
+deadline: 2026-08-17
+deadlines:
+  - label: Short presentation papers
+    date: 2026-08-17
+start_date: 2026-10-25
+end_date: 2026-10-30
+location: Spetses
+country: Greece
+description: >-
+  Held at the Anargyrios and Korgialenios School of Spetses. Covers automated
+  reasoning, computational logic, and programming languages.
+url: https://easychair.org/smart-program/LPAR-26/
+source: https://easychair.org/cfp/lpar26
+last_verified: 2026-08-02
+notes: >-
+  Regular paper submissions closed on 21 June 2026. The short presentation
+  paper track is still open.

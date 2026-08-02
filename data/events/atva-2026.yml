@@ -1,0 +1,20 @@
+id: atva-2026
+name: International Symposium on Automated Technology for Verification and Analysis
+acronym: ATVA 2026
+type: symposium
+areas:
+  - verification
+  - formal-methods
+  - model-checking
+start_date: 2026-12-01
+end_date: 2026-12-05
+location: Hong Kong
+country: China
+colocated_with: APLAS 2026
+url: https://conf.researchr.org/track/aplas-atva-2026/atva-2026
+source: https://conf.researchr.org/home/aplas-atva-2026
+last_verified: 2026-08-02
+notes: >-
+  Held jointly with APLAS 2026 at the Hong Kong University of Science and
+  Technology. Paper submissions have closed. Tool papers carry mandatory
+  artifact evaluation.

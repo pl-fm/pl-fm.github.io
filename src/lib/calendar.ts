@@ -18,10 +18,14 @@ import {
   toDayKey,
   WEEKDAYS_SHORT,
 } from './dates.ts';
-import { KIND_LABELS } from './taxonomy.ts';
-import { itemsByDay } from './filter.ts';
+import {
+  CATEGORIES,
+  CATEGORY_HINTS,
+  CATEGORY_LABELS,
+} from './taxonomy.ts';
+import { countByCategory, itemsByDay } from './filter.ts';
 import { escapeHtml } from './render.ts';
-import type { CalendarItem, Kind } from './types.ts';
+import type { CalendarItem, Category } from './types.ts';
 
 export interface MonthView {
   year: number;
@@ -36,10 +40,13 @@ export interface MonthView {
 const DEFAULT_MAX_PER_CELL = 3;
 
 function entryButton(item: CalendarItem, index: number): string {
-  const description = `${KIND_LABELS[item.kind]}, ${item.what}`;
+  // Colour is the only thing separating a deadline from the event it belongs
+  // to in a cell this small, so the category is also spelled out for anyone
+  // not reading the colour: a screen reader, or a printout.
+  const description = `${CATEGORY_LABELS[item.category]}, ${item.what}`;
   return [
     '<li class="cal-item">',
-    `<button type="button" class="cal-entry" data-kind="${item.kind}"`,
+    `<button type="button" class="cal-entry" data-cat="${item.category}"`,
     ` data-detail="${escapeHtml(item.id)}" data-index="${index}"`,
     ` title="${escapeHtml(`${item.title}: ${item.what}`)}">`,
     `<span class="cal-entry-label">${escapeHtml(item.short)}</span>`,
@@ -141,9 +148,9 @@ export function agenda(view: MonthView): string {
     const parts = items
       .map(
         (item) =>
-          `<li><button type="button" class="agenda-entry" data-kind="${item.kind}" data-detail="${escapeHtml(
+          `<li><button type="button" class="agenda-entry" data-cat="${item.category}" data-detail="${escapeHtml(
             item.id,
-          )}"><span class="mark" data-kind="${item.kind}" aria-hidden="true"></span><span class="agenda-label">${escapeHtml(
+          )}"><span class="mark" data-cat="${item.category}" aria-hidden="true"></span><span class="agenda-label">${escapeHtml(
             item.label,
           )}</span><span class="agenda-what">${escapeHtml(item.what)}</span></button></li>`,
       )
@@ -162,41 +169,79 @@ export function agenda(view: MonthView): string {
   return `<div class="agenda">${blocks.join('')}</div>`;
 }
 
+export interface LegendView {
+  /** Every category the current filters can produce, in reading order. */
+  present: CalendarItem[];
+  /** Just the month on screen, which is what the counts are drawn from. */
+  month: CalendarItem[];
+  /** The categories switched on. Empty means all of them. */
+  selected: readonly Category[];
+}
+
 /**
- * The colour key, which doubles as a category filter.
+ * The colour key below the calendar, which doubles as the category filter.
  *
- * `items` should be everything the current filters allow rather than only the
- * month on screen, so that the buttons stay put while you page through the
- * calendar. `active` is the selected category, and it is always offered even
- * when nothing matches it, so a filter can always be cleared.
+ * It is a set of toggles rather than a row of tabs: the tabs above already ask
+ * which single kind of date you want, and answering that question twice in two
+ * places would be no use. What this adds is the combinations the tabs cannot
+ * express — deadlines and schools but not conferences, say — so each button
+ * turns its own colour on and off independently.
  *
- * The row is dropped entirely when there is only one category in the whole
- * view and nothing selected: a single button is not a choice.
+ * `present` decides which buttons exist and should be everything the current
+ * filters allow rather than only the month on screen, so the row does not
+ * reshuffle under the pointer as you page through the calendar. `month` only
+ * decides the counts, which are allowed to change with the month because a
+ * count is what you came to the legend to read.
  */
-export function legend(items: CalendarItem[], active: string = 'all'): string {
-  const present = new Set<Kind>(items.map((item) => item.kind));
-  const order: Kind[] = ['conference', 'workshop', 'school', 'job'];
-  const kinds = order.filter((kind) => present.has(kind) || kind === active);
+export function legend(view: LegendView): string {
+  const { selected } = view;
+  const present = new Set<Category>(view.present.map((item) => item.category));
+  // A selected category always keeps its button even once nothing matches it,
+  // so a filter can never strand you with no way to undo it.
+  const categories = CATEGORIES.filter(
+    (category) => present.has(category) || selected.includes(category),
+  );
 
-  // One category is a key, not a choice. It only earns a row once there is
-  // something to switch between, or something to switch off.
-  if (kinds.length < 2 && active === 'all') return '';
+  // One category is a key, not a choice. It only earns a row of controls once
+  // there is something to switch between, or something to switch off.
+  if (categories.length < 2 && selected.length === 0) return '';
 
-  const button = (value: string, label: string, mark: boolean): string =>
-    [
-      `<button class="legend-item" type="button" data-value="${value}"`,
-      ` aria-pressed="${value === active}">`,
-      mark ? `<span class="mark" data-kind="${value}" aria-hidden="true"></span>` : '',
-      escapeHtml(label),
+  const counts = countByCategory(view.month);
+  const all = selected.length === 0;
+
+  const button = (category: Category): string => {
+    const on = all || selected.includes(category);
+    const count = counts[category] ?? 0;
+    const label = CATEGORY_LABELS[category];
+    const classes = ['legend-item'];
+    if (!on) classes.push('is-off');
+    if (count === 0) classes.push('is-empty');
+
+    return [
+      `<button class="${classes.join(' ')}" type="button" data-value="${category}"`,
+      ` aria-pressed="${on}" title="${escapeHtml(CATEGORY_HINTS[category])}">`,
+      `<span class="mark" data-cat="${category}" aria-hidden="true"></span>`,
+      `<span class="legend-label">${escapeHtml(label)}</span>`,
+      `<span class="legend-count" aria-hidden="true">${count}</span>`,
+      `<span class="sr-only">, ${escapeHtml(
+        `${count} this month`,
+      )}. ${escapeHtml(on ? 'Showing' : 'Hidden')}.</span>`,
       '</button>',
     ].join('');
+  };
 
-  const parts = [
-    button('all', 'All', false),
-    ...kinds.map((kind) => button(kind, KIND_LABELS[kind], true)),
-  ];
+  // Only offered once it would do something. Its job is to undo a narrowing,
+  // and a button that is already the state you are in is noise.
+  const reset = all
+    ? ''
+    : '<button class="legend-reset" type="button" data-value="all">Show all</button>';
 
-  return `<div class="legend">${parts.join('')}</div>`;
+  return [
+    '<div class="legend">',
+    `<div class="legend-items">${categories.map(button).join('')}</div>`,
+    reset,
+    '</div>',
+  ].join('');
 }
 
 function weekdayLong(short: string): string {

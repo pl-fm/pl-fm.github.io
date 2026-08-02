@@ -1,0 +1,17 @@
+id: rv-2026
+name: International Conference on Runtime Verification
+acronym: RV 2026
+type: conference
+areas:
+  - verification
+  - formal-methods
+  - program-analysis
+start_date: 2026-10-06
+end_date: 2026-10-09
+location: Kingston, Ontario
+country: Canada
+description: 26th edition, held at Queen's University.
+url: https://rv2026.smithengineering.queensu.ca/
+source: https://rv2026.smithengineering.queensu.ca/cfp/
+last_verified: 2026-08-02
+notes: Submissions have closed.

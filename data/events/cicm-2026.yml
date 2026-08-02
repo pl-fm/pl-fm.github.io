@@ -1,0 +1,20 @@
+id: cicm-2026
+name: Conference on Intelligent Computer Mathematics
+acronym: CICM 2026
+type: conference
+areas:
+  - theorem-proving
+  - logic
+  - formal-methods
+  - types
+start_date: 2026-09-21
+end_date: 2026-09-25
+location: Ljubljana
+country: Slovenia
+description: >-
+  19th edition, covering formal mathematics, interactive and automated theorem
+  proving, proof systems, and type theory.
+url: https://cicm-conference.org/2026/
+source: https://cicm-conference.org/2026/cicm.php?event=&menu=cfp
+last_verified: 2026-08-02
+notes: Submissions have closed.

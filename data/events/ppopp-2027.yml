@@ -1,0 +1,21 @@
+id: ppopp-2027
+name: ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming
+acronym: PPoPP 2027
+type: symposium
+areas:
+  - programming-languages
+  - concurrency
+  - compilers
+deadline: 2026-08-03T23:59:00
+deadline_timezone: AoE
+start_date: 2027-03-20
+end_date: 2027-03-24
+location: Salt Lake City, Utah
+country: United States
+colocated_with: HPCA, CGO and CC 2027
+url: https://ppopp27.sigplan.org/
+source: https://ppopp27.sigplan.org/track/PPoPP-2027-papers
+last_verified: 2026-08-02
+notes: >-
+  Author response runs from 6 to 8 October 2026, with notification on 26
+  October 2026.

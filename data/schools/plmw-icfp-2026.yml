@@ -1,0 +1,25 @@
+id: plmw-icfp-2026
+name: Programming Languages Mentoring Workshop at ICFP 2026
+acronym: PLMW at ICFP 2026
+type: mentoring
+areas:
+  - programming-languages
+  - functional-programming
+start_date: 2026-08-24
+end_date: 2026-08-24
+location: Indianapolis, Indiana
+country: United States
+eligibility:
+  - students
+  - phd
+funding: Travel, housing, and registration support by application
+recurring: annual
+description: >-
+  Technical, mentoring, and social sessions for students considering research
+  in programming languages, held at Indiana University Indianapolis.
+url: https://icfp26.sigplan.org/home/PLMW-ICFP-2026
+source: https://icfp26.sigplan.org/home/PLMW-ICFP-2026
+last_verified: 2026-08-02
+notes: >-
+  Attendance is open up to room capacity. The funding application closed on 30
+  June 2026.

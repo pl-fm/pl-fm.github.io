@@ -1,0 +1,17 @@
+id: haskell-2026
+name: ACM SIGPLAN International Haskell Symposium
+acronym: Haskell 2026
+type: symposium
+areas:
+  - functional-programming
+  - programming-languages
+  - types
+start_date: 2026-08-28
+end_date: 2026-08-29
+location: Indianapolis, Indiana
+country: United States
+colocated_with: ICFP 2026
+url: https://icfp26.sigplan.org/home/haskellsymp-2026
+source: https://conf.researchr.org/dates/icfp-2026
+last_verified: 2026-08-02
+notes: Submissions have closed.

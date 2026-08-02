@@ -32,10 +32,18 @@
   --accent-hover: #1e4694;
   --accent-tint: rgba(42, 92, 184, 0.05);
 
-  --kind-conference: #2a5cb8;
-  --kind-workshop: #8a5220;
-  --kind-school: #2f6b45;
-  --kind-job: #6b4a99;
+  /* The legend, and everything it colours. Deadlines are the one category a
+     reader can miss, so they take the warm end on their own and the three
+     kinds of thing that run share the cool half between them. */
+  --cat-deadline: #b3261e;
+  --cat-conference: #2a5cb8;
+  --cat-workshop: #8a5220;
+  --cat-school: #2f6b45;
+  --cat-job: #6b4a99;
+
+  /* Backing for a deadline chip in a calendar cell. */
+  --cat-deadline-tint: rgba(179, 38, 30, 0.08);
+  --cat-deadline-tint-strong: rgba(179, 38, 30, 0.15);
 
   --sp-1: 4px;
   --sp-2: 8px;
@@ -69,10 +77,14 @@
     --accent-hover: #b6cdff;
     --accent-tint: rgba(143, 179, 255, 0.07);
 
-    --kind-conference: #8fb3ff;
-    --kind-workshop: #e0a06a;
-    --kind-school: #77c493;
-    --kind-job: #b39ae4;
+    --cat-deadline: #ff8a80;
+    --cat-conference: #8fb3ff;
+    --cat-workshop: #e0a06a;
+    --cat-school: #77c493;
+    --cat-job: #b39ae4;
+
+    --cat-deadline-tint: rgba(255, 138, 128, 0.1);
+    --cat-deadline-tint-strong: rgba(255, 138, 128, 0.18);
   }
 }
 
@@ -92,10 +104,14 @@
   --accent-hover: #b6cdff;
   --accent-tint: rgba(143, 179, 255, 0.07);
 
-  --kind-conference: #8fb3ff;
-  --kind-workshop: #e0a06a;
-  --kind-school: #77c493;
-  --kind-job: #b39ae4;
+  --cat-deadline: #ff8a80;
+  --cat-conference: #8fb3ff;
+  --cat-workshop: #e0a06a;
+  --cat-school: #77c493;
+  --cat-job: #b39ae4;
+
+  --cat-deadline-tint: rgba(255, 138, 128, 0.1);
+  --cat-deadline-tint-strong: rgba(255, 138, 128, 0.18);
 }
 
 /* --- Base --------------------------------------------------------------- */
@@ -610,20 +626,39 @@ main {
   background: var(--bg-sunken);
 }
 
-.cal-entry[data-kind='conference'] {
-  color: var(--kind-conference);
+.cal-entry[data-cat='deadline'] {
+  color: var(--cat-deadline);
 }
 
-.cal-entry[data-kind='workshop'] {
-  color: var(--kind-workshop);
+.cal-entry[data-cat='conference'] {
+  color: var(--cat-conference);
 }
 
-.cal-entry[data-kind='school'] {
-  color: var(--kind-school);
+.cal-entry[data-cat='workshop'] {
+  color: var(--cat-workshop);
 }
 
-.cal-entry[data-kind='job'] {
-  color: var(--kind-job);
+.cal-entry[data-cat='school'] {
+  color: var(--cat-school);
+}
+
+.cal-entry[data-cat='job'] {
+  color: var(--cat-job);
+}
+
+/* A deadline is the one date on the grid that a reader can miss, so it is the
+   one that carries a fill as well as a colour: it should still separate from
+   the dates around it in a monochrome print, and for anyone who cannot tell
+   the red from the blue. */
+.cal-entry[data-cat='deadline'] {
+  background: var(--cat-deadline-tint);
+  font-weight: 500;
+}
+
+/* Overrides the shared hover, which would otherwise replace the tint with the
+   plain sunken grey and make a deadline look like everything else. */
+.cal-entry[data-cat='deadline']:hover {
+  background: var(--cat-deadline-tint-strong);
 }
 
 .cal-more {
@@ -632,23 +667,37 @@ main {
   padding-left: 3px;
 }
 
-/* Also the category filter, so the items are buttons rather than labels. */
+/* The colour key, which is also the category filter, so its items are toggle
+   buttons rather than labels. A switched-off category is drawn as struck
+   through and faded rather than simply removed: the row has to keep saying
+   what is missing, or there is nothing to switch back on. */
 .legend {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-2) var(--sp-3);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2) var(--sp-4);
   margin-top: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--border);
   font-size: var(--fs-meta);
   color: var(--text-muted);
+}
+
+.legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1) var(--sp-2);
 }
 
 .legend-item {
   display: inline-flex;
   align-items: center;
+  gap: 1px;
   padding: 2px var(--sp-2);
   border-radius: var(--radius);
   color: var(--text-muted);
-  transition: color var(--t), background-color var(--t);
+  transition: color var(--t), background-color var(--t), opacity var(--t);
 }
 
 .legend-item:hover {
@@ -658,7 +707,48 @@ main {
 
 .legend-item[aria-pressed='true'] {
   color: var(--text);
-  font-weight: 500;
+}
+
+/* Switched off. */
+.legend-item.is-off {
+  opacity: 0.5;
+}
+
+.legend-item.is-off .legend-label {
+  text-decoration: line-through;
+}
+
+.legend-item.is-off .mark {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+
+/* Nothing in this category this month. Still a control, just nothing to show
+   for it here, so it dims without becoming unclickable. */
+.legend-item.is-empty:not(.is-off) {
+  color: var(--text-faint);
+}
+
+.legend-count {
+  margin-left: 6px;
+  font-size: var(--fs-micro);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-faint);
+}
+
+.legend-item[aria-pressed='true'] .legend-count {
+  color: var(--text-muted);
+}
+
+.legend-reset {
+  padding: 2px var(--sp-2);
+  border-radius: var(--radius);
+  font-size: var(--fs-meta);
+  color: var(--accent);
+  transition: background-color var(--t);
+}
+
+.legend-reset:hover {
   background: var(--accent-tint);
 }
 
@@ -673,20 +763,35 @@ main {
   background: var(--text-faint);
 }
 
-.mark[data-kind='conference'] {
-  background: var(--kind-conference);
+.legend-item .mark {
+  width: 4px;
+  height: 11px;
+  border-radius: 2px;
 }
 
-.mark[data-kind='workshop'] {
-  background: var(--kind-workshop);
+.mark[data-cat='deadline'] {
+  background: var(--cat-deadline);
+  color: var(--cat-deadline);
 }
 
-.mark[data-kind='school'] {
-  background: var(--kind-school);
+.mark[data-cat='conference'] {
+  background: var(--cat-conference);
+  color: var(--cat-conference);
 }
 
-.mark[data-kind='job'] {
-  background: var(--kind-job);
+.mark[data-cat='workshop'] {
+  background: var(--cat-workshop);
+  color: var(--cat-workshop);
+}
+
+.mark[data-cat='school'] {
+  background: var(--cat-school);
+  color: var(--cat-school);
+}
+
+.mark[data-cat='job'] {
+  background: var(--cat-job);
+  color: var(--cat-job);
 }
 
 /* Agenda, used instead of the grid on narrow screens. */

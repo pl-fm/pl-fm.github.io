@@ -1,0 +1,25 @@
+id: ssnl-2026
+name: Workshop on Software Systems Across the National Laboratories
+acronym: SSNL 2026
+type: workshop
+areas:
+  - formal-methods
+  - verification
+  - programming-languages
+  - theorem-proving
+deadline: 2026-08-17T23:59:00
+deadline_timezone: AoE
+dates_tba: true
+location: Oakland, California
+country: United States
+colocated_with: SPLASH 2026
+description: >-
+  First edition, connecting programming languages and formal methods research
+  with systems work at the US national laboratories.
+url: https://conf.researchr.org/home/splash-issta-2026/ssnl-2026
+source: https://conf.researchr.org/home/splash-issta-2026/ssnl-2026
+last_verified: 2026-08-02
+notes: >-
+  Held during SPLASH and ISSTA 2026, which runs from 3 to 9 October 2026. The
+  workshop day within that week has not been announced. Notification is 28
+  August 2026.

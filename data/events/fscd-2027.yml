@@ -1,0 +1,22 @@
+id: fscd-2027
+name: International Conference on Formal Structures for Computation and Deduction
+acronym: FSCD 2027
+type: conference
+areas:
+  - logic
+  - types
+  - theorem-proving
+  - semantics
+deadline_tba: true
+start_date: 2027-08-23
+end_date: 2027-08-26
+location: Nijmegen
+country: Netherlands
+description: >-
+  12th edition, held at Radboud University and colocated with CADE-31.
+url: https://fscd-conference.org/editions/upcoming/
+source: https://www.fmeurope.org/feature/upcoming_conferences/
+last_verified: 2026-08-02
+notes: >-
+  No call for papers has been published yet. The FSCD site confirms the
+  location and the month, and Formal Methods Europe lists the exact days.

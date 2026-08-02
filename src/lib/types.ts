@@ -140,14 +140,25 @@ export interface JobEntry extends BaseEntry {
 
 export type Entry = EventEntry | SchoolEntry | JobEntry;
 
-/** Coarse grouping used for calendar colours and legends. */
+/** Coarse grouping of an entry, used for the type labels on rows. */
 export type Kind = 'conference' | 'workshop' | 'school' | 'job';
 
 /**
  * What a date on the calendar represents. Every dated moment falls into
- * exactly one of these, which is what the calendar filter selects on.
+ * exactly one of these, which is what the tabs above the calendar select on.
  */
 export type Moment = 'deadline' | 'event' | 'school';
+
+/**
+ * What a dated thing *is*, which is what the calendar colours by and what the
+ * legend below it filters on.
+ *
+ * A date is read first as a deadline or not: `PLDI` in a cell means something
+ * quite different on the day its call closes than on the day it opens, and
+ * colouring both conference-blue hid that. So `deadline` wins over the kind of
+ * entry it belongs to, and the remaining categories say what is running.
+ */
+export type Category = 'deadline' | 'conference' | 'workshop' | 'school' | 'job';
 
 /** One dated thing to place on a calendar grid. */
 export interface CalendarItem {
@@ -162,8 +173,10 @@ export interface CalendarItem {
   /** Full name, used for the tooltip and the accessible name. */
   title: string;
   kind: Kind;
-  /** Which calendar-filter bucket this date belongs to. */
+  /** Which tab bucket this date belongs to. */
   moment: Moment;
+  /** Which legend bucket this date belongs to: its colour and its filter. */
+  category: Category;
   /** Human-readable reason this date is on the calendar. */
   what: string;
   areas: Area[];

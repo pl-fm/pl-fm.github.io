@@ -1,0 +1,18 @@
+id: aitp-2026
+name: Conference on Artificial Intelligence and Theorem Proving
+acronym: AITP 2026
+type: conference
+areas:
+  - theorem-proving
+  - logic
+  - formal-methods
+start_date: 2026-08-30
+end_date: 2026-09-04
+location: Aussois
+country: France
+description: >-
+  11th edition, held at the CNRS Paul-Langevin Conference Center in Savoy.
+url: http://aitp-conference.org/2026/
+source: http://aitp-conference.org/2026/
+last_verified: 2026-08-02
+notes: Submissions closed on 12 May 2026.

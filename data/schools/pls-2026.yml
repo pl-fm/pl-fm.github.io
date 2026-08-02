@@ -1,0 +1,20 @@
+id: pls-2026
+name: Summer School on Programming Languages, Logic and Software Security
+acronym: PLS 2026
+type: summer-school
+areas:
+  - programming-languages
+  - logic
+  - types
+  - verification
+  - security
+start_date: 2026-08-10
+end_date: 2026-08-14
+location: Aarhus
+country: Denmark
+description: >-
+  Courses on the Rocq proof assistant, higher-order concurrent separation
+  logic, type theory, and language-based security, held at INCUBA Katrinebjerg.
+url: https://conferences.au.dk/pls
+source: https://conferences.au.dk/pls
+last_verified: 2026-08-02

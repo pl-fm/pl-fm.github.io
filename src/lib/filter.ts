@@ -17,6 +17,7 @@ import {
 } from './dates.ts';
 import {
   areaLabels,
+  categoryOf,
   kindOf,
   EVENT_TYPE_LABELS,
   POSITION_TYPE_LABELS,
@@ -24,6 +25,7 @@ import {
 } from './taxonomy.ts';
 import type {
   CalendarItem,
+  Category,
   Entry,
   EventEntry,
   JobEntry,
@@ -189,6 +191,7 @@ export function deadlineCalendarItems(entries: EventEntry[]): CalendarItem[] {
         title: entry.name,
         kind: kindOf(entry),
         moment: 'deadline',
+        category: 'deadline',
         what: occurrence.label
           ? `${occurrence.label} deadline`
           : 'Submission deadline',
@@ -216,6 +219,7 @@ export function eventCalendarItems(entries: EventEntry[]): CalendarItem[] {
       title: entry.name,
       kind: kindOf(entry),
       moment: 'event',
+      category: categoryOf(entry, 'event'),
       what: EVENT_TYPE_LABELS[entry.type] ?? 'Event',
       areas: entry.areas,
       collection: entry.collection,
@@ -247,6 +251,7 @@ export function schoolCalendarItems(entries: SchoolEntry[]): CalendarItem[] {
         ...base,
         date: application,
         moment: 'deadline',
+        category: 'deadline',
         what: 'Application deadline',
       });
     }
@@ -257,6 +262,7 @@ export function schoolCalendarItems(entries: SchoolEntry[]): CalendarItem[] {
         ...base,
         date: start,
         moment: 'school',
+        category: 'school',
         what: SCHOOL_TYPE_LABELS[entry.type] ?? 'School',
       });
     }
@@ -333,11 +339,19 @@ export interface FilterState {
   area: string;
   /** Collection-specific type slug, or `all`. */
   type: string;
-  /** Coarse category shared across collections, or `all`. */
-  kind: string;
+  /**
+   * The legend below the calendar. Selecting none means no restriction rather
+   * than an empty calendar, so the cleared state and the everything state are
+   * the same thing and there is no way to end up looking at nothing.
+   *
+   * Unlike the others this selects on calendar items, not on entries: a
+   * conference is on the calendar twice, and `deadline` should keep the date
+   * its call closes while dropping the date it opens.
+   */
+  categories: Category[];
   /**
    * Which dates the calendar carries: `all`, or one of the moment types.
-   * Unlike the others this selects on calendar items, not on entries.
+   * Also selects on calendar items rather than on entries.
    */
   show: string;
   /** Free-text query. */
@@ -347,7 +361,7 @@ export interface FilterState {
 export const EMPTY_FILTER: FilterState = {
   area: 'all',
   type: 'all',
-  kind: 'all',
+  categories: [],
   show: 'all',
   query: '',
 };
@@ -368,13 +382,36 @@ export function matchesType(entry: Entry, type: string): boolean {
   return (entry as EventEntry).type === type;
 }
 
-/**
- * The four buckets the calendar colours by. Lets one filter bar cover a page
- * that mixes deadlines, events, and schools.
- */
-export function matchesKind(entry: Entry, kind: string): boolean {
-  if (kind === 'all') return true;
-  return kindOf(entry) === kind;
+/** Whether a legend selection admits a category. Selecting none admits all. */
+export function inCategories(
+  category: Category,
+  selected: readonly Category[],
+): boolean {
+  return selected.length === 0 || selected.includes(category);
+}
+
+/** The same test against a whole calendar item. */
+export function itemsInCategories(
+  items: CalendarItem[],
+  selected: readonly Category[],
+): CalendarItem[] {
+  if (selected.length === 0) return items;
+  return items.filter((item) => selected.includes(item.category));
+}
+
+/** How many items each legend button stands for, so it can show a count. */
+export function countByCategory(
+  items: CalendarItem[],
+): Record<Category, number> {
+  const counts = {
+    deadline: 0,
+    conference: 0,
+    workshop: 0,
+    school: 0,
+    job: 0,
+  } as Record<Category, number>;
+  for (const item of items) counts[item.category] += 1;
+  return counts;
 }
 
 /** Words a query is matched against. Cheap to build, so it is not cached. */
@@ -406,11 +443,14 @@ export function matchesQuery(entry: Entry, query: string): boolean {
   return q.split(/\s+/).every((token) => text.includes(token));
 }
 
+/**
+ * The entry-level filters. The legend is deliberately not among them: it
+ * selects dates, not entries, and is applied to calendar items instead.
+ */
 export function matchesFilter(entry: Entry, state: FilterState): boolean {
   return (
     matchesArea(entry, state.area) &&
     matchesType(entry, state.type) &&
-    matchesKind(entry, state.kind) &&
     matchesQuery(entry, state.query)
   );
 }

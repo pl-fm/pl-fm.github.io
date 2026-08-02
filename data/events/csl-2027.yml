@@ -1,0 +1,18 @@
+id: csl-2027
+name: EACSL Annual Conference on Computer Science Logic
+acronym: CSL 2027
+type: conference
+areas:
+  - logic
+  - semantics
+  - types
+start_date: 2027-01-25
+end_date: 2027-01-29
+location: Brighton
+country: United Kingdom
+description: 35th edition, held at the University of Sussex Falmer campus.
+url: https://csl2027.github.io/
+source: https://csl2027.github.io/
+last_verified: 2026-08-02
+notes: >-
+  Submissions closed on 15 July 2026, with notification on 15 October 2026.

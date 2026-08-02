@@ -1,0 +1,25 @@
+id: aplas-2026
+name: Asian Symposium on Programming Languages and Systems
+acronym: APLAS 2026
+type: symposium
+areas:
+  - programming-languages
+  - types
+  - semantics
+deadline: 2026-08-22
+deadlines:
+  - label: SRC and posters
+    date: 2026-08-22
+    note: Extended abstracts, shared with ATVA 2026
+start_date: 2026-12-01
+end_date: 2026-12-05
+location: Hong Kong
+country: China
+colocated_with: ATVA 2026
+url: https://conf.researchr.org/track/aplas-atva-2026/aplas-2026
+source: https://conf.researchr.org/home/aplas-atva-2026
+last_verified: 2026-08-02
+notes: >-
+  Held jointly with ATVA 2026 at the Hong Kong University of Science and
+  Technology. Main paper submissions have closed. The student research
+  competition and poster track is still open.

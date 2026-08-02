@@ -1,0 +1,20 @@
+id: sbmf-2026
+name: Brazilian Symposium on Formal Methods
+acronym: SBMF 2026
+type: symposium
+areas:
+  - formal-methods
+  - verification
+deadline: 2026-08-14T23:59:00
+deadline_timezone: AoE
+start_date: 2026-12-01
+end_date: 2026-12-04
+location: Rio de Janeiro
+country: Brazil
+url: https://sbmf2026.github.io/
+source: https://sbmf2026.github.io/
+last_verified: 2026-08-02
+notes: >-
+  29th edition. This is the extended deadline: paper registration and paper
+  submission now both close on 14 August 2026, with notification on 25
+  September 2026.
