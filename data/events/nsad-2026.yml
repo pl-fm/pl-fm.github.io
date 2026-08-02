@@ -1,0 +1,25 @@
+id: nsad-2026
+name: >-
+  ACM SIGPLAN International Workshop on Numerical and Symbolic Abstract Domains
+acronym: NSAD 2026
+type: workshop
+areas:
+  - program-analysis
+  - verification
+  - formal-methods
+  - programming-languages
+dates_tba: true
+location: Oakland, California
+country: United States
+colocated_with: SPLASH 2026
+description: >-
+  11th edition, on the theory, implementation, and application of abstract
+  domains, including their use for neural networks, quantum software,
+  blockchain, and distributed systems.
+url: https://conf.researchr.org/home/splash-issta-2026/nsad-2026
+source: https://conf.researchr.org/home/splash-issta-2026/nsad-2026
+last_verified: 2026-08-02
+notes: >-
+  Held during SPLASH and ISSTA 2026, which runs from 3 to 9 October 2026. The
+  workshop day within that week has not been announced. Both submission phases
+  closed, on 21 June and 17 July 2026, with notification on 17 August 2026.

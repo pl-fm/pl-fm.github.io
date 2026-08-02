@@ -1,0 +1,26 @@
+id: nlss-2026
+name: Nordic Logic Summer School
+acronym: NLSS 2026
+type: summer-school
+areas:
+  - logic
+  - semantics
+  - theorem-proving
+eligibility:
+  - students
+  - phd
+  - postdocs
+start_date: 2026-08-17
+end_date: 2026-08-20
+location: Copenhagen
+country: Denmark
+description: >-
+  Introductory and advanced courses in logic and its applications, organised by
+  the Scandinavian Logic Society and held at DTU. Attendance carries 2.5 ECTS.
+url: https://slss2026.compute.dtu.dk/
+source: https://slss2026.compute.dtu.dk/
+last_verified: 2026-08-02
+notes: >-
+  Aimed at advanced MSc students, PhD students, and early-career researchers.
+  Runs immediately before the Scandinavian Logic Symposium, from 21 to 23
+  August 2026.

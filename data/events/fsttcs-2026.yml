@@ -1,0 +1,26 @@
+id: fsttcs-2026
+name: >-
+  IARCS Annual Conference on Foundations of Software Technology and Theoretical
+  Computer Science
+acronym: FSTTCS 2026
+type: conference
+areas:
+  - programming-languages
+  - verification
+  - formal-methods
+  - logic
+start_date: 2026-12-16
+end_date: 2026-12-18
+location: New Delhi
+country: India
+description: >-
+  46th edition, organised by IARCS in partnership with ACM India. Track B
+  solicits work on programming languages and practical verification alongside
+  theoretical results.
+url: https://www.fsttcs.org.in/2026/
+source: https://www.fsttcs.org.in/2026/
+last_verified: 2026-08-02
+notes: >-
+  Held at IIT Delhi. Abstracts closed on 4 July and papers on 11 July 2026.
+  Rebuttals run from 26 to 28 August, with notification on 15 September 2026.
+  The conference and its workshops occupy 14 to 20 December 2026.

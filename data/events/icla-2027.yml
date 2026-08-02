@@ -1,0 +1,31 @@
+id: icla-2027
+name: Indian Conference on Logic and its Applications
+acronym: ICLA 2027
+type: conference
+areas:
+  - logic
+  - formal-methods
+  - verification
+  - theorem-proving
+deadline: 2026-08-28
+deadline_timezone: AoE
+deadlines:
+  - label: Paper
+    date: 2026-08-28
+    timezone: AoE
+start_date: 2027-01-06
+end_date: 2027-01-08
+location: Bangalore
+country: India
+description: >-
+  12th edition, organised by the Association for Logic in India. Covers
+  mathematical logic, modal and non-classical logics, logic in computer
+  science, formal methods and automated reasoning, finite model theory, and
+  logic in AI, alongside systems of logic in the Indian tradition.
+url: https://conf.researchr.org/home/icla-2027
+source: https://conf.researchr.org/track/icla-2027/icla-2027-papers
+last_verified: 2026-08-02
+notes: >-
+  Held at the Indian Institute of Science, with pre-conference workshops on 5
+  January 2027. Notification is 31 October and camera-ready copy is due 11
+  November 2026.

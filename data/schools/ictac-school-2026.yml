@@ -1,0 +1,25 @@
+id: ictac-school-2026
+name: ICTAC Postgraduate School on Formal Methods for Mission-Critical Software
+acronym: ICTAC School 2026
+type: doctoral-school
+areas:
+  - formal-methods
+  - verification
+  - model-checking
+eligibility:
+  - phd
+  - postdocs
+start_date: 2026-11-09
+end_date: 2026-11-10
+location: Bariloche
+country: Argentina
+description: >-
+  Three intensive courses on formal methods for building mission-critical
+  software in the satellite, aerospace, and nuclear sectors, taught by
+  international researchers in formal methods and software engineering.
+url: https://ictac2026.github.io/
+source: https://ictac2026.github.io/
+last_verified: 2026-08-02
+notes: >-
+  Runs immediately before ICTAC 2026, which is held from 11 to 13 November
+  2026. Registration details have not been announced.

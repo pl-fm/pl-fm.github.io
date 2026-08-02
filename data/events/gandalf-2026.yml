@@ -1,0 +1,24 @@
+id: gandalf-2026
+name: >-
+  International Symposium on Games, Automata, Logics, and Formal Verification
+acronym: GandALF 2026
+type: symposium
+areas:
+  - logic
+  - verification
+  - model-checking
+  - semantics
+start_date: 2026-09-15
+end_date: 2026-09-17
+location: Aalborg
+country: Denmark
+description: >-
+  17th edition, hosted by the FICS research group at Aalborg University.
+  Proceedings appear in EPTCS, with selected papers invited to a special issue
+  of Logical Methods in Computer Science.
+url: https://gandalfsymposium.github.io/2026/
+source: https://gandalfsymposium.github.io/2026/
+last_verified: 2026-08-02
+notes: >-
+  Submissions closed on 22 June 2026. Notification is 3 August and camera-ready
+  copy is due 7 September 2026.

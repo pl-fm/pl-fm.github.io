@@ -1,0 +1,25 @@
+id: plas-2026
+name: Workshop on Programming Languages and Analysis for Security
+acronym: PLAS 2026
+type: workshop
+areas:
+  - security
+  - programming-languages
+  - program-analysis
+  - verification
+start_date: 2026-11-19
+end_date: 2026-11-19
+location: The Hague
+country: Netherlands
+colocated_with: CCS 2026
+description: >-
+  21st edition, on programming language and program analysis techniques for
+  software security, covering side channels, isolation, information flow,
+  fuzzing, smart contracts, and protocol verification.
+url: https://plas26.github.io/
+source: https://plas26.github.io/
+last_verified: 2026-08-02
+notes: >-
+  Colocated with CCS 2026. Submissions closed on 26 June 2026 after an
+  extension, with notification on 7 August 2026. There are no published
+  proceedings.

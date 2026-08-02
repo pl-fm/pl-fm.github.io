@@ -1,0 +1,28 @@
+id: proof-computation-2026
+name: Autumn School on Proof and Computation
+type: doctoral-school
+areas:
+  - theorem-proving
+  - types
+  - logic
+  - semantics
+eligibility:
+  - phd
+  - postdocs
+funding: Accommodation and meals for applicants with funding difficulties
+recurring: annual
+start_date: 2026-09-13
+end_date: 2026-09-19
+location: Fischbachau
+country: Germany
+description: >-
+  10th edition, held at Aurachhof near Munich. Lecture series on predicative
+  foundations, constructive mathematics and type theory, homotopy type theory,
+  computation in higher types, coinduction, and program extraction from proofs.
+url: https://www.mathematik.uni-muenchen.de/~schwicht/pc26.php
+source: https://www.mathematik.uni-muenchen.de/~schwicht/pc26.php
+last_verified: 2026-08-02
+notes: >-
+  Open to graduate students, PhD students, and young postdocs. Applications
+  closed on 1 June 2026, with notification on 29 June 2026. Sponsored by the
+  Udo Keller Stiftung.

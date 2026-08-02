@@ -1,0 +1,28 @@
+id: esslli-2026
+name: European Summer School in Logic, Language and Information
+acronym: ESSLLI 2026
+type: summer-school
+areas:
+  - logic
+  - semantics
+  - types
+eligibility:
+  - students
+  - phd
+  - postdocs
+recurring: annual
+start_date: 2026-08-03
+end_date: 2026-08-14
+location: Prague
+country: Czechia
+description: >-
+  37th edition, held at Charles University under the auspices of FoLLI. Around
+  fifty foundational, introductory, and advanced courses and workshops across
+  logic and computation, logic and language, and language and computation.
+url: https://2026.esslli.eu/
+source: >-
+  https://www.illc.uva.nl/NewsandEvents/Events/Conferences/newsitem/16160/3---14-August-2026-37th-European-Summer-School-in-Logic-Language-and-Information-ESSLLI-2026-Prague-CZ-
+last_verified: 2026-08-02
+notes: >-
+  Runs over two weeks and draws around four hundred participants. Registration
+  has closed. It includes a student session and evening lectures.

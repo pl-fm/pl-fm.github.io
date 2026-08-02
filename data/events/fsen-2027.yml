@@ -1,0 +1,30 @@
+id: fsen-2027
+name: International Conference on Fundamentals of Software Engineering
+acronym: FSEN 2027
+type: conference
+areas:
+  - formal-methods
+  - verification
+  - programming-languages
+deadline: 2026-10-19
+deadlines:
+  - label: Abstract
+    date: 2026-10-19
+  - label: Paper
+    date: 2026-10-28
+  - label: Poster
+    date: 2027-02-24
+start_date: 2027-05-24
+end_date: 2027-05-25
+location: Enschede
+country: Netherlands
+description: >-
+  Formal methods for software engineering, with an emphasis on applying them in
+  industry and integrating them with practical engineering techniques. Held at
+  the University of Twente.
+url: https://conf.researchr.org/home/fsen-2027
+source: https://conf.researchr.org/home/fsen-2027
+last_verified: 2026-08-02
+notes: >-
+  Notification is 18 December 2026 and camera-ready copy is due 22 February
+  2027. Full papers, short papers, and posters are all accepted.

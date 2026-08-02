@@ -1,0 +1,21 @@
+id: slss-2026
+name: Scandinavian Logic Symposium
+acronym: SLS 2026
+type: symposium
+areas:
+  - logic
+  - semantics
+  - theorem-proving
+start_date: 2026-08-21
+end_date: 2026-08-23
+location: Copenhagen
+country: Denmark
+description: >-
+  International symposium of the Scandinavian Logic Society for work in
+  philosophical logic, mathematical logic, and logic in computer science.
+url: https://slss2026.compute.dtu.dk/
+source: https://slss2026.compute.dtu.dk/
+last_verified: 2026-08-02
+notes: >-
+  Held at DTU and preceded by the Nordic Logic Summer School, which runs from
+  17 to 20 August 2026.

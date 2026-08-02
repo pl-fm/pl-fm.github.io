@@ -1,0 +1,24 @@
+id: from-2026
+name: Working Formal Methods Symposium
+acronym: FROM 2026
+type: symposium
+areas:
+  - formal-methods
+  - verification
+  - logic
+  - theorem-proving
+start_date: 2026-09-15
+end_date: 2026-09-17
+location: Timisoara
+country: Romania
+colocated_with: SYNASC 2026
+description: >-
+  10th edition, organised by the West University of Timisoara and ILDS for
+  researchers contributing theoretical results, methods, and tools in formal
+  methods. Proceedings appear in EPTCS.
+url: https://from2026.uvt.ro/
+source: https://from2026.uvt.ro/
+last_verified: 2026-08-02
+notes: >-
+  Held in conjunction with SYNASC 2026, which runs from 14 to 17 September
+  2026. Submissions have closed.
