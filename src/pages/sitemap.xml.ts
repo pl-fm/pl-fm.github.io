@@ -3,10 +3,6 @@ import { SITE } from '../../site.config.mjs';
 import { todayKey } from '../lib/dates.ts';
 import { url } from '../lib/paths.ts';
 
-/**
- * Hand-written rather than pulled in as a dependency: deadlines, events, and
- * schools are tabs on the home page, so the site is two pages and two feeds.
- */
 const PAGES = [
   { path: '/', priority: '1.0', changefreq: 'daily' },
   { path: '/archive', priority: '0.3', changefreq: 'monthly' },

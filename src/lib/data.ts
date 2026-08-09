@@ -1,12 +1,3 @@
-/**
- * Reads and validates the YAML files under `data/`.
- *
- * The site is generated entirely from these files. Nothing here reaches the
- * browser: pages serialise the validated result into the page instead.
- *
- * Build-time only. Do not import from browser code.
- */
-
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { parse as parseYaml } from 'yaml';
@@ -46,10 +37,6 @@ function listYaml(dir: string): string[] {
     .sort();
 }
 
-/**
- * Loads every collection. Errors are collected rather than thrown so the
- * validator can report all of them at once.
- */
 export function loadAll(): LoadResult {
   const root = dataRoot();
   const entries: Entry[] = [];
@@ -132,7 +119,6 @@ export function loadAll(): LoadResult {
   return { entries, issues: issues.sort((a, b) => a.file.localeCompare(b.file)) };
 }
 
-/** Checks that need more than one field to make sense. */
 function checkSemantics(entry: Entry, file: string): DataIssue[] {
   const found: DataIssue[] = [];
   const error = (message: string, field?: string) =>
@@ -140,8 +126,6 @@ function checkSemantics(entry: Entry, file: string): DataIssue[] {
   const warn = (message: string, field?: string) =>
     found.push({ file, field, message, level: 'warning' });
 
-  // A day of slack, so a machine running ahead of UTC does not flag an entry
-  // verified earlier the same day.
   const verified = instantOf(entry.last_verified, 'UTC');
   if (verified !== null && verified > Date.now() + 86_400_000) {
     error('last_verified is in the future', 'last_verified');
@@ -196,10 +180,6 @@ function checkSemantics(entry: Entry, file: string): DataIssue[] {
 
 let cached: Entry[] | null = null;
 
-/**
- * Validated entries for the site build. Throws on the first error so a broken
- * data file can never ship.
- */
 export function loadEntries(): Entry[] {
   if (cached) return cached;
 
@@ -218,12 +198,6 @@ export function loadEntries(): Entry[] {
   return entries;
 }
 
-/**
- * The most recent day anyone checked a source, across every entry.
- *
- * This is what the site reports as its last update. Build time would be
- * misleading: rebuilding does not mean a single deadline was rechecked.
- */
 export function lastVerified(): string | null {
   const dates = loadEntries()
     .map((entry) => entry.last_verified)

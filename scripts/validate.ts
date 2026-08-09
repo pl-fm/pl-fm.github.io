@@ -1,13 +1,3 @@
-/**
- * Checks every file under `data/` and reports what is wrong with it.
- *
- * Run with `npm run validate`. Continuous integration runs the same command,
- * so a malformed entry fails the pull request rather than the site build.
- *
- * Node 22.18 or newer runs this file directly: TypeScript annotations are
- * stripped without a build step.
- */
-
 import { loadAll, type DataIssue } from '../src/lib/data.ts';
 
 const STRICT = process.argv.includes('--strict');

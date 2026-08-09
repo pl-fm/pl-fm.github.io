@@ -1,15 +1,3 @@
-/**
- * The month grid.
- *
- * A calendar is tabular data, so it is built as a real `<table>`: screen
- * readers announce the weekday and the row without any ARIA bookkeeping.
- * Narrow screens get the agenda list instead, because seven columns of
- * conference acronyms are unreadable on a phone.
- *
- * Client-safe. Both views are produced here and the stylesheet picks one, so
- * only one of them is ever in the accessibility tree.
- */
-
 import {
   daysInMonth,
   formatDate,
@@ -32,17 +20,12 @@ export interface MonthView {
   year: number;
   month: number;
   items: CalendarItem[];
-  /** `YYYY-MM-DD` for the reader's today, so it can be highlighted. */
   today: string;
 }
 
-/** Entries shown before a cell collapses into a `+n` control. */
 const MAX_PER_CELL = 3;
 
 function entryButton(item: CalendarItem): string {
-  // Colour is the only thing separating a deadline from the event it belongs
-  // to in a cell this small, so the category is also spelled out for anyone
-  // not reading the colour: a screen reader, or a printout.
   const description = `${CATEGORY_LABELS[item.category]}, ${item.what}`;
   return [
     '<li class="cal-item">',
@@ -88,7 +71,6 @@ function cell(
   ].join('');
 }
 
-/** The `<table>` for one month. */
 export function monthGrid(view: MonthView): string {
   const { year, month, today } = view;
   const byDay = itemsByDay(view.items);
@@ -131,7 +113,6 @@ export function monthGrid(view: MonthView): string {
   ].join('');
 }
 
-/** Day-by-day list used instead of the grid on narrow screens. */
 export function agenda(view: MonthView): string {
   const byDay = itemsByDay(view.items);
   const days = [...byDay.keys()].sort();
@@ -166,41 +147,19 @@ export function agenda(view: MonthView): string {
   return `<div class="agenda">${blocks.join('')}</div>`;
 }
 
-/* ------------------------------------------------------------------------ */
-/*  Legend                                                                   */
-/* ------------------------------------------------------------------------ */
-
-
 export interface LegendView {
-  /**
-   * Every category the current filters can produce, across all time. Drawn
-   * from more than the month on screen so the row of buttons does not reshuffle
-   * under the pointer as you page through the calendar.
-   */
   present: CalendarItem[];
-  /** Just the month on screen, which is what the counts are drawn from. */
   month: CalendarItem[];
-  /** The categories switched on. Empty means all of them. */
   selected: readonly Category[];
 }
 
-/**
- * The colour key below the calendar, which doubles as the category filter.
- *
- * Each button toggles its own colour independently, which is what the tabs
- * above cannot express: deadlines and schools but not conferences, say.
- */
 export function legend(view: LegendView): string {
   const { selected } = view;
   const present = new Set<Category>(view.present.map((item) => item.category));
-  // A selected category always keeps its button even once nothing matches it,
-  // so a filter can never strand you with no way to undo it.
   const categories = CATEGORIES.filter(
     (category) => present.has(category) || selected.includes(category),
   );
 
-  // One category is a key, not a choice. It only earns a row of controls once
-  // there is something to switch between, or something to switch off.
   if (categories.length < 2 && selected.length === 0) return '';
 
   const counts = countByCategory(view.month);
@@ -227,8 +186,6 @@ export function legend(view: LegendView): string {
     ].join('');
   };
 
-  // Only offered once it would do something: a button that is already the
-  // state you are in is noise.
   const reset = all
     ? ''
     : '<button class="legend-reset" type="button" data-value="all">Show all</button>';

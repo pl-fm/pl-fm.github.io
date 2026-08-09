@@ -1,11 +1,3 @@
-/* ==========================================================================
-   PLFM
-   One stylesheet. Typography carries the design; borders are hairlines and
-   nothing is decorated for its own sake.
-   ========================================================================== */
-
-/* --- Tokens ------------------------------------------------------------- */
-
 :root {
   color-scheme: light;
 
@@ -32,15 +24,11 @@
   --accent-hover: #1e4694;
   --accent-tint: rgba(42, 92, 184, 0.05);
 
-  /* The legend, and everything it colours. Deadlines are the one category a
-     reader can miss, so they take the warm end on their own and the three
-     kinds of thing that run share the cool half between them. */
   --cat-deadline: #b3261e;
   --cat-conference: #2a5cb8;
   --cat-workshop: #8a5220;
   --cat-school: #2f6b45;
 
-  /* Backing for a deadline chip in a calendar cell. */
   --cat-deadline-tint: rgba(179, 38, 30, 0.08);
   --cat-deadline-tint-strong: rgba(179, 38, 30, 0.15);
 
@@ -110,8 +98,6 @@
   --cat-deadline-tint: rgba(255, 138, 128, 0.1);
   --cat-deadline-tint-strong: rgba(255, 138, 128, 0.18);
 }
-
-/* --- Base --------------------------------------------------------------- */
 
 *,
 *::before,
@@ -211,8 +197,6 @@ button {
   top: var(--sp-4);
 }
 
-/* --- Layout ------------------------------------------------------------- */
-
 .wrap {
   max-width: var(--wrap);
   margin: 0 auto;
@@ -241,8 +225,6 @@ main {
   color: var(--text-faint);
   margin-top: var(--sp-2);
 }
-
-/* --- Masthead ----------------------------------------------------------- */
 
 .masthead {
   position: relative;
@@ -296,9 +278,6 @@ main {
   color: var(--text);
 }
 
-/* The icon names the theme the button switches to: a moon while the page is
-   light, a sun while it is dark. Both are in the DOM and CSS picks one, so the
-   control is correct before any script runs. */
 .theme-icon-light,
 .theme-word-light {
   display: none;
@@ -342,10 +321,6 @@ main {
   clip-path: inset(50%);
 }
 
-/* --- View tabs ----------------------------------------------------------- */
-
-/* Reads as navigation but filters in place: the calendar and both lists below
-   it narrow to the selected tab. */
 .viewtabs {
   display: flex;
   justify-content: center;
@@ -378,8 +353,6 @@ main {
   font-weight: 500;
   border-bottom-color: var(--accent);
 }
-
-/* --- Filters ------------------------------------------------------------ */
 
 .controls {
   display: grid;
@@ -452,8 +425,6 @@ main {
   margin-top: var(--sp-3);
 }
 
-/* --- Calendar ----------------------------------------------------------- */
-
 .cal-section {
   margin-top: var(--sp-6);
 }
@@ -466,8 +437,6 @@ main {
   margin-bottom: var(--sp-3);
 }
 
-/* A fixed width keeps the next-month control from shifting between a short
-   month name and a long one. */
 .cal-title {
   font-size: var(--fs-heading);
   font-weight: 500;
@@ -509,7 +478,6 @@ main {
   border-color: var(--border-strong);
 }
 
-/* Search sits with the month controls rather than in the filter block. */
 .cal-search {
   margin-left: auto;
   width: 260px;
@@ -625,17 +593,11 @@ main {
   color: var(--cat-school);
 }
 
-/* A deadline is the one date on the grid that a reader can miss, so it is the
-   one that carries a fill as well as a colour: it should still separate from
-   the dates around it in a monochrome print, and for anyone who cannot tell
-   the red from the blue. */
 .cal-entry[data-cat='deadline'] {
   background: var(--cat-deadline-tint);
   font-weight: 500;
 }
 
-/* Overrides the shared hover, which would otherwise replace the tint with the
-   plain sunken grey and make a deadline look like everything else. */
 .cal-entry[data-cat='deadline']:hover {
   background: var(--cat-deadline-tint-strong);
 }
@@ -646,10 +608,6 @@ main {
   padding-left: 3px;
 }
 
-/* The colour key, which is also the category filter, so its items are toggle
-   buttons rather than labels. A switched-off category is drawn as struck
-   through and faded rather than simply removed: the row has to keep saying
-   what is missing, or there is nothing to switch back on. */
 .legend {
   display: flex;
   flex-wrap: wrap;
@@ -688,7 +646,6 @@ main {
   color: var(--text);
 }
 
-/* Switched off. */
 .legend-item.is-off {
   opacity: 0.5;
 }
@@ -702,8 +659,6 @@ main {
   box-shadow: inset 0 0 0 1px currentColor;
 }
 
-/* Nothing in this category this month. Still a control, just nothing to show
-   for it here, so it dims without becoming unclickable. */
 .legend-item.is-empty:not(.is-off) {
   color: var(--text-faint);
 }
@@ -768,8 +723,6 @@ main {
   color: var(--cat-school);
 }
 
-/* Agenda, used instead of the grid on narrow screens. */
-
 .agenda {
   border-top: 1px solid var(--border);
 }
@@ -823,8 +776,6 @@ main {
   font-size: var(--fs-meta);
   color: var(--text-faint);
 }
-
-/* --- Rows --------------------------------------------------------------- */
 
 .rows {
   display: flex;
@@ -927,8 +878,6 @@ main {
   color: var(--text-faint);
 }
 
-/* --- Detail panel ------------------------------------------------------- */
-
 .detail {
   width: min(460px, calc(100vw - 2 * var(--sp-4)));
   padding: 0;
@@ -946,8 +895,6 @@ main {
   padding: var(--sp-5);
 }
 
-/* The panel takes focus when it opens; the visible ring belongs on whatever
-   the reader tabs to next, not on the container. */
 .detail-inner:focus {
   outline: none;
 }
@@ -1033,8 +980,6 @@ main {
   font-size: var(--fs-meta);
 }
 
-/* --- Contribute and footer ---------------------------------------------- */
-
 .contribute {
   margin-top: var(--sp-12);
   padding-top: var(--sp-6);
@@ -1087,8 +1032,6 @@ main {
   display: none !important;
 }
 
-/* --- Responsive --------------------------------------------------------- */
-
 .cal-agenda {
   display: none;
 }
@@ -1115,7 +1058,6 @@ main {
     margin-top: var(--sp-8);
   }
 
-  /* Labels above their options, so the options column keeps its full width. */
   .controls {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--sp-1);

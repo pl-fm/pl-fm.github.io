@@ -1,0 +1,23 @@
+id: lmpl-2026
+name: International Workshop on Language Models and Programming Languages
+acronym: LMPL 2026
+type: workshop
+areas:
+  - programming-languages
+  - program-analysis
+  - synthesis
+dates_tba: true
+location: Oakland, California
+country: United States
+colocated_with: SPLASH 2026
+description: >-
+  2nd edition, on the meeting point of the two: language models applied to
+  programming languages problems, programming languages techniques applied to
+  language model applications, and benchmarks for both.
+url: https://conf.researchr.org/home/splash-issta-2026/lmpl-2026
+source: https://conf.researchr.org/home/splash-issta-2026/lmpl-2026
+last_verified: 2026-08-09
+notes: >-
+  Held during SPLASH and ISSTA 2026, which runs from 3 to 9 October 2026. The
+  workshop day within that week has not been announced. The call closed on 10
+  July 2026, with notification on 15 August 2026.

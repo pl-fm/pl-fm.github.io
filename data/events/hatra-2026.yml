@@ -1,0 +1,24 @@
+id: hatra-2026
+name: Workshop on Human Aspects of Types and Reasoning Assistants
+acronym: HATRA 2026
+type: workshop
+areas:
+  - types
+  - programming-languages
+  - theorem-proving
+  - verification
+dates_tba: true
+location: Oakland, California
+country: United States
+colocated_with: SPLASH 2026
+description: >-
+  Programming languages, software engineering, security, and human-computer
+  interaction together on what makes stronger safety properties usable by the
+  programmers who have to live with them.
+url: https://conf.researchr.org/home/splash-issta-2026/hatra-2026
+source: https://conf.researchr.org/home/splash-issta-2026/hatra-2026
+last_verified: 2026-08-09
+notes: >-
+  Held during SPLASH and ISSTA 2026, which runs from 3 to 9 October 2026. The
+  workshop day within that week has not been announced. The call closed on 21
+  June 2026. Papers do not appear in the ACM Digital Library.

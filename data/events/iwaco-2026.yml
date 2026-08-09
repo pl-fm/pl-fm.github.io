@@ -1,0 +1,23 @@
+id: iwaco-2026
+name: International Workshop on Aliasing, Capabilities and Ownership
+acronym: IWACO 2026
+type: workshop
+areas:
+  - types
+  - programming-languages
+  - semantics
+  - verification
+dates_tba: true
+location: Oakland, California
+country: United States
+colocated_with: SPLASH 2026
+description: >-
+  Taming aliasing through ownership and capabilities: ownership types,
+  capabilities, separation logic, and linear logic.
+url: https://conf.researchr.org/home/splash-issta-2026/iwaco-2026
+source: https://conf.researchr.org/home/splash-issta-2026/iwaco-2026
+last_verified: 2026-08-09
+notes: >-
+  Held during SPLASH and ISSTA 2026, which runs from 3 to 9 October 2026. The
+  workshop day within that week has not been announced. The call closed on 21
+  July 2026, with notification on 21 August 2026.

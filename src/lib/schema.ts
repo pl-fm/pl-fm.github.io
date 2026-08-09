@@ -1,13 +1,3 @@
-/**
- * Runtime validation for everything in `data/`.
- *
- * Schemas are strict: an unrecognised key is an error rather than a silently
- * ignored field, so a misspelled `deadline_timzone` fails CI instead of
- * quietly dropping a deadline off the calendar.
- *
- * Build-time only. Do not import from browser code.
- */
-
 import { z } from 'zod';
 import {
   AREAS,
@@ -61,7 +51,6 @@ const deadlineSlot = z
     message: 'a deadline needs either a date or `tba: true`',
   });
 
-/** Fields every collection shares. */
 const base = {
   id,
   name: z.string().min(2).max(200),

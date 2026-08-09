@@ -1,9 +1,4 @@
 ---
-/**
- * Deadlines, events, and schools are tabs on the one page rather than separate
- * pages, so the masthead carries no section navigation. The archive is linked
- * from the footer.
- */
 import { lastVerified } from '../lib/data.ts';
 import { formatDate } from '../lib/dates.ts';
 import { url } from '../lib/paths.ts';
@@ -26,7 +21,6 @@ const updated = lastVerified();
       )
     }
 
-    {/* Shows the theme it switches to: a moon while light, a sun while dark. */}
     <button class="theme-toggle" type="button" data-theme-toggle>
       <span class="sr-only">Switch to </span>
       <svg

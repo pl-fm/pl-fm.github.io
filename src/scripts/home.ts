@@ -1,8 +1,3 @@
-/**
- * The single page: the tabs, the calendar, and the two lists under it, all
- * driven by one filter state.
- */
-
 import type { FilterState } from '../lib/filter.ts';
 import { homeView, type ShowMode } from '../lib/views.ts';
 import { bindMonthControls, goToToday, monthState, paintCalendar } from './calendar.ts';
@@ -11,7 +6,6 @@ import { entries, isStale, now, today } from './store.ts';
 
 const MODES: readonly string[] = ['all', 'deadlines', 'events', 'schools'];
 
-/** `#events` and friends open the page with that tab already selected. */
 function modeFromHash(): ShowMode | null {
   const hash = decodeURIComponent(window.location.hash).replace(/^#/, '');
   return MODES.includes(hash) ? (hash as ShowMode) : null;
@@ -37,8 +31,6 @@ export function initHome(): void {
 
   const month = monthState(root);
 
-  // Applied before the filters read the markup, so a linked tab is the state
-  // the page starts in rather than a correction made after the first render.
   const linked = modeFromHash();
   if (linked && tabs) press(tabs, linked);
 
@@ -53,7 +45,6 @@ export function initHome(): void {
     });
 
     paintCalendar(root!, view);
-    // What a `+n` cell should open with.
     if (calendar) {
       calendar.dataset.calendar = state.show;
       calendar.dataset.query = state.query;
@@ -69,8 +60,6 @@ export function initHome(): void {
   const ui = bindFilters(render, root);
   bindMonthControls(root, month, () => render(ui.state));
 
-  // Keeps the address bar on the selected tab, so a view can be linked to and
-  // survives a reload. `All` is the bare page.
   tabs?.addEventListener('click', (event) => {
     const button = (event.target as HTMLElement | null)?.closest<HTMLElement>(
       'button[data-value]',
@@ -89,8 +78,6 @@ export function initHome(): void {
     ui.refresh();
   });
 
-  // The page may have been generated days ago and served from a cache. Move to
-  // the reader's own month and drop anything that has closed since the build.
   const stale = isStale(root);
   if (stale) goToToday(month);
   if (stale || linked) ui.refresh();

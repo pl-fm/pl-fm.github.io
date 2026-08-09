@@ -1,0 +1,21 @@
+id: splash-2027
+name: ACM SIGPLAN Conference on Systems, Programming, Languages, and Applications
+acronym: SPLASH 2027
+type: conference
+areas:
+  - programming-languages
+  - program-analysis
+  - compilers
+deadline_tba: true
+start_date: 2027-08-11
+end_date: 2027-08-13
+location: Denver, Colorado
+country: United States
+description: Hosts OOPSLA and Onward!, published in PACMPL.
+url: https://www.sigplan.org/Conferences/SPLASH/
+source: https://pl-conferences.com/event/2027/oopsla/
+last_verified: 2026-08-09
+notes: >-
+  The conference moves from October to August for this edition. The OOPSLA 2027
+  submission rounds have not been announced and there is no conference site yet,
+  so confirm the dates before relying on them.

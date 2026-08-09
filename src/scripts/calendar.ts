@@ -1,7 +1,3 @@
-/**
- * Month navigation and repainting, shared by every tab that shows a calendar.
- */
-
 import { shiftMonth } from '../lib/dates.ts';
 import type { CalendarRegions } from '../lib/views.ts';
 import { today } from './store.ts';
@@ -11,7 +7,6 @@ export interface MonthState {
   month: number;
 }
 
-/** Reads the month the page was generated with, and keeps it in the DOM. */
 export function monthState(root: HTMLElement): MonthState {
   return { year: Number(root.dataset.year), month: Number(root.dataset.month) };
 }
@@ -22,7 +17,6 @@ export function goToToday(state: MonthState): void {
   state.month = Number(month);
 }
 
-/** Writes the four regions the calendar owns. */
 export function paintCalendar(root: HTMLElement, regions: CalendarRegions): void {
   const title = root.querySelector<HTMLElement>('#cal-title');
   const grid = root.querySelector<HTMLElement>('#cal-grid');

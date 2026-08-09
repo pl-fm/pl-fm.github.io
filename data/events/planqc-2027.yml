@@ -1,0 +1,24 @@
+id: planqc-2027
+name: International Workshop on Programming Languages for Quantum Computing
+acronym: PLanQC 2027
+type: workshop
+areas:
+  - quantum
+  - programming-languages
+  - verification
+  - types
+deadline: 2026-10-30T23:59:00
+deadline_timezone: AoE
+start_date: 2027-01-12
+end_date: 2027-01-12
+location: Mexico City
+country: Mexico
+colocated_with: POPL 2027
+description: >-
+  7th edition, bringing programming languages research to quantum information
+  science: high-level quantum languages, verification tools, circuit
+  optimisation, and error handling.
+url: https://popl27.sigplan.org/home/planqc-2027
+source: https://popl27.sigplan.org/home/planqc-2027
+last_verified: 2026-08-09
+notes: Author notification is 27 November 2026.

@@ -3,7 +3,6 @@ import { loadEntries } from '../../lib/data.ts';
 import { FEEDS, collectFeedEvents, feedBySlug } from '../../lib/feeds.ts';
 import { buildCalendar } from '../../lib/ics.ts';
 
-/** One static `.ics` file per entry in the feed registry. */
 export const getStaticPaths = (() =>
   FEEDS.map((feed) => ({ params: { feed: feed.slug } }))) satisfies GetStaticPaths;
 

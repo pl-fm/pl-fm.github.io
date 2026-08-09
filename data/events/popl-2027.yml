@@ -7,13 +7,19 @@ areas:
   - semantics
   - types
   - verification
+deadlines:
+  - label: Student research competition
+    date: 2026-10-12T23:59:00
+    timezone: AoE
+    note: Extended abstracts of up to three pages, by a single student author
 start_date: 2027-01-10
 end_date: 2027-01-16
 location: Mexico City
 country: Mexico
 url: https://popl27.sigplan.org/
 source: https://popl27.sigplan.org/dates
-last_verified: 2026-08-02
+last_verified: 2026-08-09
 notes: >-
-  The paper submission deadline of 9 July 2026 has passed. CPP 2027 and VMCAI
-  2027 are colocated and are still open for submissions.
+  The paper submission deadline of 9 July 2026 has passed; notification is 5
+  October 2026. Colocated and still open: CPP 2027, VMCAI 2027, and the FPBT,
+  PLanQC, and TPSA workshops.

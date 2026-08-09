@@ -1,13 +1,3 @@
-/**
- * HTML for list rows and the detail panel.
- *
- * These builders return strings so that the same code renders the static page
- * at build time and re-renders it in the browser when a filter changes. That
- * keeps one description of a row rather than two that drift apart.
- *
- * Client-safe. Every interpolated value goes through `escapeHtml`.
- */
-
 import {
   formatDate,
   formatDateRange,
@@ -43,13 +33,11 @@ export function escapeHtml(value: unknown): string {
   return String(value ?? '').replace(/[&<>"']/g, (c) => HTML_ESCAPES[c] ?? c);
 }
 
-/** Blocks `javascript:` and similar, in case a data file ever carries one. */
 export function safeUrl(value: string | undefined | null): string | null {
   if (!value) return null;
   return /^https?:\/\//i.test(value.trim()) ? value.trim() : null;
 }
 
-/** Serialises data for a `<script type="application/json">` block. */
 export function jsonPayload(value: unknown): string {
   return JSON.stringify(value).replace(/</g, '\\u003c');
 }
@@ -78,25 +66,13 @@ function websiteLink(entry: Entry): string {
 
 interface RowParts {
   entry: Entry;
-  /**
-   * Which legend colour this row carries. It is the row's category rather than
-   * its entry kind, so the key under the calendar reads the same way in the
-   * lists: a conference's call for papers is marked as a deadline, and the
-   * conference itself is marked as a conference.
-   */
   category: Category;
-  /** Headline text, usually the acronym. */
   title: string;
-  /** Second line, usually the full name. */
   subtitle?: string | null;
-  /** Right-hand column. */
   date?: string | null;
   dateClass?: string;
-  /** Short hint under the date, for example `in 12 days`. */
   hint?: string | null;
-  /** Type, areas, and location. */
   meta: string;
-  /** Optional extra line for funding, colocation, and similar. */
   note?: string | null;
 }
 
@@ -129,14 +105,6 @@ function row(parts: RowParts): string {
     .join('');
 }
 
-/* ------------------------------------------------------------------------ */
-/*  Rows                                                                     */
-/* ------------------------------------------------------------------------ */
-
-/**
- * `occurrence` pins the row to a particular round, which the month list uses
- * so that August shows August's deadline rather than the next one overall.
- */
 export function deadlineRow(
   entry: EventEntry,
   now: number,
@@ -243,7 +211,6 @@ export function schoolRow(
   });
 }
 
-/** Dispatches to the right row builder. Used by the archive. */
 export function anyRow(entry: Entry, now: number): string {
   return entry.collection === 'schools'
     ? schoolRow(entry, now)
@@ -256,10 +223,6 @@ export function list(rows: string[], emptyMessage: string): string {
   }
   return `<div class="rows">${rows.join('')}</div>`;
 }
-
-/* ------------------------------------------------------------------------ */
-/*  Detail panel                                                             */
-/* ------------------------------------------------------------------------ */
 
 function field(label: string, value: string | null | undefined): string {
   if (!value) return '';
@@ -283,10 +246,7 @@ export function typeLabel(entry: Entry): string {
     : (EVENT_TYPE_LABELS[entry.type] ?? KIND_LABELS.conference);
 }
 
-/** Body of the small panel shown when a calendar entry or row is opened. */
 export function detail(entry: Entry, now: number): string {
-  // The panel is about the entry rather than about one of its dates, so this
-  // mark reads the entry's own kind and never `deadline`.
   const parts: string[] = [
     `<p class="detail-kind"><span class="mark" data-cat="${kindOf(entry)}" aria-hidden="true"></span>${escapeHtml(typeLabel(entry))}</p>`,
     `<h2 class="detail-title">${escapeHtml(entry.name)}</h2>`,

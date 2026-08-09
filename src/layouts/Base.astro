@@ -8,7 +8,6 @@ import { SITE } from '../../site.config.mjs';
 import { url } from '../lib/paths.ts';
 
 export interface Props {
-  /** Appears after `PLFM | `. Omit on the home page. */
   title?: string;
   description?: string;
 }
@@ -17,8 +16,6 @@ const { title, description = SITE.description } = Astro.props;
 
 const pageTitle = title ? `${SITE.title} | ${title}` : `${SITE.title} | Calendar`;
 const canonicalUrl = new URL(Astro.url.pathname, SITE.url).href;
-// PNG rather than the SVG it is drawn from: no major social platform renders
-// an SVG preview. Regenerate with `npm run og` after editing public/og.svg.
 const ogImage = new URL(url('/og.png'), SITE.url).href;
 ---
 
@@ -49,7 +46,6 @@ const ogImage = new URL(url('/og.png'), SITE.url).href;
     <meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#101012" media="(prefers-color-scheme: dark)" />
 
-    {/* Applies the stored choice before first paint so the theme never flashes. */}
     <script is:inline>
       try {
         var stored = localStorage.getItem('plfm-theme');
@@ -57,7 +53,6 @@ const ogImage = new URL(url('/og.png'), SITE.url).href;
           document.documentElement.dataset.theme = stored;
         }
       } catch (e) {
-        /* private browsing, or storage disabled */
       }
     </script>
   </head>

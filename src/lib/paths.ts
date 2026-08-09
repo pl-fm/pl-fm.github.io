@@ -1,11 +1,3 @@
-/**
- * Internal link helper.
- *
- * The site can be served from a sub-path (a GitHub Pages project page), so
- * every internal href is built here rather than written as a bare `/events`.
- * Client-safe: Vite inlines `BASE_URL` at build time.
- */
-
 const BASE = import.meta.env.BASE_URL ?? '/';
 
 export function url(path = '/'): string {

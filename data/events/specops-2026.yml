@@ -1,0 +1,23 @@
+id: specops-2026
+name: International Workshop on Specification-Driven Development Life Cycle
+acronym: SpecOps 2026
+type: workshop
+areas:
+  - formal-methods
+  - verification
+  - synthesis
+  - programming-languages
+start_date: 2026-10-06
+end_date: 2026-10-08
+location: Oakland, California
+country: United States
+colocated_with: SPLASH 2026
+description: >-
+  First edition, on closing the specification gap when AI tools and autonomous
+  agents turn specifications into the driver of the development life cycle.
+url: https://conf.researchr.org/home/splash-issta-2026/specops-2026
+source: https://conf.researchr.org/home/splash-issta-2026/specops-2026
+last_verified: 2026-08-09
+notes: >-
+  The 6 to 8 October window is marked tentative and the exact day is not yet
+  fixed. The call closed on 30 June 2026, with notification on 15 July 2026.

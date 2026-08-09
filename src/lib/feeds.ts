@@ -1,13 +1,3 @@
-/**
- * The calendar feed registry.
- *
- * Adding a filtered feed means adding one entry to `FEEDS`. The endpoint at
- * `src/pages/feeds/[feed].ics.ts` reads from this list, so nothing else needs
- * touching.
- *
- * Build-time only.
- */
-
 import { formatDeadline, formatDateRange } from './dates.ts';
 import { deadlineOccurrences } from './filter.ts';
 import {
@@ -18,7 +8,6 @@ import {
 import type { IcsEvent } from './ics.ts';
 import type { Area, Entry, EventEntry, SchoolEntry } from './types.ts';
 
-/** Host part of every UID. Kept constant so subscriptions stay stable. */
 const UID_DOMAIN = 'plfm';
 
 function uid(id: string, suffix: string): string {
@@ -37,7 +26,6 @@ function place(entry: Entry): string | undefined {
   return location ?? country;
 }
 
-/** One all-day event per announced submission round. */
 function deadlineEvents(entry: EventEntry): IcsEvent[] {
   return deadlineOccurrences(entry).map((occurrence, index) => {
     const label = occurrence.label ? `${occurrence.label} deadline` : 'Deadline';
@@ -64,7 +52,6 @@ function deadlineEvents(entry: EventEntry): IcsEvent[] {
   });
 }
 
-/** The event itself, spanning its dates. */
 function eventEvents(entry: EventEntry): IcsEvent[] {
   if (!entry.start_date) return [];
   return [
@@ -135,7 +122,6 @@ function schoolEvents(entry: SchoolEntry): IcsEvent[] {
   return out;
 }
 
-/** Every dated moment an entry contributes to a calendar. */
 function icsEventsFor(entry: Entry): IcsEvent[] {
   return entry.collection === 'schools'
     ? schoolEvents(entry)
@@ -146,20 +132,16 @@ export interface FeedDefinition {
   slug: string;
   title: string;
   description: string;
-  /** Which entries belong in the feed. */
   select: (entry: Entry) => boolean;
-  /** Which of an entry's moments belong in the feed. */
   moments?: (entry: Entry) => IcsEvent[];
 }
 
 const isEvent = (entry: Entry): entry is EventEntry => entry.collection === 'events';
 
-/** Only the deadline moments, dropping the event itself. */
 function deadlinesOnly(entry: Entry): IcsEvent[] {
   return isEvent(entry) ? deadlineEvents(entry) : icsEventsFor(entry);
 }
 
-/** A per-area deadline feed, which is most of the registry below. */
 function areaFeed(slug: string, area: Area, label: string): FeedDefinition {
   return {
     slug,
@@ -211,7 +193,6 @@ export function feedBySlug(slug: string): FeedDefinition | undefined {
   return FEEDS.find((feed) => feed.slug === slug);
 }
 
-/** Collects the moments for a feed, sorted so diffs between builds stay small. */
 export function collectFeedEvents(
   feed: FeedDefinition,
   entries: Entry[],

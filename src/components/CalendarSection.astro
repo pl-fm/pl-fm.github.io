@@ -1,10 +1,4 @@
 ---
-/**
- * The month calendar: the grid, its controls, and the search box.
- *
- * `data-calendar` carries the selected tab so the day-detail popup can show
- * the same dates the cell does. The page's script keeps it up to date.
- */
 import type { CalendarRegions } from '../lib/views.ts';
 
 export interface Props {
@@ -40,11 +34,6 @@ const { calendar } = Astro.props;
 
   <div class="cal-grid-view" id="cal-grid" set:html={calendar.grid} />
   <div class="cal-agenda" id="cal-agenda" set:html={calendar.agenda} />
-  {/*
-    The colour key, which is also the category filter. This wrapper is what the
-    filter binding listens on and it survives every repaint; only its contents
-    are replaced.
-  */}
   <div
     id="cal-legend"
     data-filter-group="category"

@@ -1,11 +1,3 @@
-/**
- * The controlled vocabularies used across the site.
- *
- * Adding a value here is all it takes to make it usable in a data file: the
- * validator, the filters, and the labels all read from these lists.
- * Client-safe, so no imports beyond types.
- */
-
 import type {
   Area,
   Audience,
@@ -106,8 +98,6 @@ export const KIND_LABELS: Record<Kind, string> = {
   school: 'School',
 };
 
-/** The legend below the calendar. Deadlines lead: they are the only dates a
- * reader can miss. */
 export const CATEGORIES: readonly Category[] = [
   'deadline',
   'conference',
@@ -122,7 +112,6 @@ export const CATEGORY_LABELS: Record<Category, string> = {
   school: 'School',
 };
 
-/** What each legend entry means, for the button's tooltip. */
 export const CATEGORY_HINTS: Record<Category, string> = {
   deadline: 'Submission and application deadlines',
   conference: 'Conferences and symposia, on the days they run',
@@ -130,11 +119,6 @@ export const CATEGORY_HINTS: Record<Category, string> = {
   school: 'Summer, winter, and doctoral schools, on the days they run',
 };
 
-/**
- * The tabs above the calendar. They select on dates rather than on entries, so
- * `Deadlines` keeps a conference on the page at its deadline but not at its
- * start date.
- */
 export const SHOW_OPTIONS: { value: string; label: string }[] = [
   { value: 'all', label: 'All' },
   { value: 'deadlines', label: 'Deadlines' },
@@ -142,7 +126,6 @@ export const SHOW_OPTIONS: { value: string; label: string }[] = [
   { value: 'schools', label: 'Schools' },
 ];
 
-/** Timezone spellings a deadline may use. */
 export const TIMEZONE_PATTERN = /^(AoE|UTC|UTC[+-]\d{1,2}(:\d{2})?|local)$/;
 
 export function areaLabel(area: string): string {
@@ -153,22 +136,12 @@ export function areaLabels(areas: readonly string[]): string[] {
   return areas.map(areaLabel);
 }
 
-/**
- * Collapses an entry's specific type onto the buckets used for calendar
- * colours. Keeping this small is deliberate: the calendar should read as a
- * calendar, not as a legend.
- */
 export function kindOf(entry: { collection: string; type?: string }): Kind {
   if (entry.collection === 'schools') return 'school';
   if (entry.type === 'workshop' || entry.type === 'colocated') return 'workshop';
   return 'conference';
 }
 
-/**
- * The legend bucket for one dated moment. A deadline is a deadline whatever it
- * belongs to, so the entry that owns it only decides the colour of the date it
- * begins on.
- */
 export function categoryOf(
   entry: { collection: string; type?: string },
   moment: Moment,

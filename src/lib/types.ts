@@ -1,11 +1,3 @@
-/**
- * Shape of every record in `data/`.
- *
- * No imports on purpose: this is bundled into the browser alongside the
- * filtering and rendering helpers, so it must stay free of any Node or
- * validation dependencies. The runtime schema lives in `schema.ts`.
- */
-
 export type Collection = 'events' | 'schools';
 
 export type Area =
@@ -42,27 +34,16 @@ export type SchoolType =
 
 export type Audience = 'students' | 'phd' | 'postdocs' | 'everyone';
 
-/**
- * Timezone a deadline is expressed in. `AoE` (Anywhere on Earth, UTC-12) is
- * the convention across most PL and formal methods venues. Fixed offsets such
- * as `UTC+2` are accepted; named zones are not, because resolving them would
- * need a timezone database.
- */
 export type DeadlineTimezone = string;
 
-/** A deadline that has been announced, or one that explicitly has not. */
 export interface DeadlineSlot {
-  /** Short label, for example `Abstract`, `Paper`, `Artifact`. */
   label?: string;
-  /** Local wall-clock time as written on the call, e.g. `2026-07-09T23:59:00`. */
   date?: string;
   timezone?: DeadlineTimezone;
-  /** Set when the deadline is known to exist but has not been announced. */
   tba?: boolean;
   note?: string;
 }
 
-/** Fields shared by every collection. */
 interface BaseEntry {
   id: string;
   name: string;
@@ -70,9 +51,7 @@ interface BaseEntry {
   areas: Area[];
   url?: string;
   description?: string;
-  /** Official page the entry was taken from. Required. */
   source: string;
-  /** ISO date on which a human last checked `source`. Required. */
   last_verified: string;
   notes?: string;
 }
@@ -80,19 +59,15 @@ interface BaseEntry {
 export interface EventEntry extends BaseEntry {
   collection: 'events';
   type: EventType;
-  /** Primary submission deadline, when one has been announced. */
   deadline?: string;
   deadline_timezone?: DeadlineTimezone;
-  /** Additional rounds: abstract, paper, artifact, and so on. */
   deadlines?: DeadlineSlot[];
-  /** Set when a deadline exists but the date is not yet public. */
   deadline_tba?: boolean;
   start_date?: string;
   end_date?: string;
   dates_tba?: boolean;
   location?: string;
   country?: string;
-  /** Parent venue for workshops and colocated events, e.g. `POPL 2027`. */
   colocated_with?: string;
 }
 
@@ -109,49 +84,26 @@ export interface SchoolEntry extends BaseEntry {
   application_deadline_tba?: boolean;
   eligibility?: Audience[];
   funding?: string;
-  /** Set for schools that run on a regular cycle, for example `annual`. */
   recurring?: string;
 }
 
 export type Entry = EventEntry | SchoolEntry;
 
-/** Coarse grouping of an entry, used for the type labels on rows. */
 export type Kind = 'conference' | 'workshop' | 'school';
 
-/**
- * What a date on the calendar represents. Every dated moment falls into
- * exactly one of these, which is what the tabs above the calendar select on.
- */
 export type Moment = 'deadline' | 'event' | 'school';
 
-/**
- * What a dated thing *is*, which is what the calendar colours by and what the
- * legend below it filters on.
- *
- * A date is read first as a deadline or not: `PLDI` in a cell means something
- * quite different on the day its call closes than on the day it opens, so
- * `deadline` wins over the kind of entry it belongs to.
- */
 export type Category = 'deadline' | 'conference' | 'workshop' | 'school';
 
-/** One dated thing to place on a calendar grid. */
 export interface CalendarItem {
-  /** Entry id, so the detail panel can look the record back up. */
   id: string;
-  /** `YYYY-MM-DD` in the entry's own wall-clock terms. */
   date: string;
-  /** Acronym as written, for example `POPL 2027`. */
   label: string;
-  /** Acronym with the year dropped, for the narrow calendar cells. */
   short: string;
-  /** Full name, used for the tooltip and the accessible name. */
   title: string;
   kind: Kind;
-  /** Which tab bucket this date belongs to. */
   moment: Moment;
-  /** Which legend bucket this date belongs to: its colour and its filter. */
   category: Category;
-  /** Human-readable reason this date is on the calendar. */
   what: string;
   areas: Area[];
   collection: Collection;

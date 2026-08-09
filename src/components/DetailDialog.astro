@@ -1,14 +1,4 @@
----
-/**
- * One dialog per page, filled in by the client script when a calendar entry
- * or a row's Details control is activated. `<dialog>` handles focus and the
- * Escape key without any script of our own.
- */
----
-
 <dialog class="detail" id="detail-panel" aria-label="Entry details">
-  {/* Focus lands here rather than on the close button, so the panel is read
-      from the top. The close control follows in the tab order. */}
   <div class="detail-inner" id="detail-body" tabindex="-1"></div>
   <button class="detail-close" type="button" data-detail-close aria-label="Close">
     <span aria-hidden="true">&times;</span>

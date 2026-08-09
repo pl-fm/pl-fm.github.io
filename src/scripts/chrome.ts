@@ -1,8 +1,3 @@
-/**
- * Behaviour shared by every page: the theme toggle, the detail panel, and the
- * subscribe disclosure.
- */
-
 import { detail, escapeHtml } from '../lib/render.ts';
 import {
   combinedCalendarItems,
@@ -31,14 +26,9 @@ function initTheme(): void {
     try {
       localStorage.setItem(THEME_KEY, next);
     } catch {
-      /* storage unavailable */
     }
   });
 }
-
-/* -------------------------------------------------------------------------- */
-/*  Detail panel                                                               */
-/* -------------------------------------------------------------------------- */
 
 let lastTrigger: HTMLElement | null = null;
 
@@ -68,11 +58,6 @@ export function openEntry(id: string, trigger: HTMLElement | null = null): void 
   show(detail(entry, now()), trigger);
 }
 
-/**
- * Everything happening on one date, for a `+n` control in a calendar cell. The
- * calendar carries the tab, the legend, and the search it was drawn with, so
- * the panel lists what the cell counted rather than everything on that date.
- */
 function openDay(day: string, trigger: HTMLElement | null): void {
   const container = trigger?.closest<HTMLElement>('[data-calendar]');
   const categories = (container?.dataset.categories ?? '')
@@ -137,9 +122,6 @@ function initDetail(): void {
 
   if (!panel) return;
 
-  // Clicking the backdrop closes the panel. The dialog element itself fills
-  // the whole backdrop area, so the check is against the target rather than a
-  // separate overlay node.
   panel.addEventListener('click', (event) => {
     if (event.target === panel) panel.close();
   });

@@ -1,13 +1,3 @@
-/**
- * Selecting, sorting, and expiring entries.
- *
- * Every function here is pure and runs in both places: at build time to
- * produce the static HTML, and again in the browser so that a page cached
- * for weeks still hides deadlines that have since passed.
- *
- * Client-safe: no imports beyond types, dates, and taxonomy.
- */
-
 import { daysInMonth, instantOf, dayKey, toDayKey } from './dates.ts';
 import {
   areaLabels,
@@ -27,21 +17,12 @@ import type {
 export interface DeadlineOccurrence {
   entry: EventEntry;
   label?: string;
-  /** Wall-clock date as written in the data file. */
   date: string;
   timezone?: string;
-  /** Absolute moment the deadline closes. */
   instant: number;
   note?: string;
 }
 
-/**
- * Every announced deadline on an entry, in date order.
- *
- * `deadline` names the main round and `deadlines` lists all of them, so a call
- * that spells out `Paper` in both places must not appear twice. Rounds are
- * keyed by their moment, and the labelled version of a moment wins.
- */
 export function deadlineOccurrences(entry: EventEntry): DeadlineOccurrence[] {
   const found = new Map<string, DeadlineOccurrence>();
 
@@ -83,7 +64,6 @@ export function deadlineOccurrences(entry: EventEntry): DeadlineOccurrence[] {
   return [...found.values()].sort((a, b) => a.instant - b.instant);
 }
 
-/** The deadline a reader still has time to meet, if any. */
 export function nextDeadline(
   entry: EventEntry,
   now: number,
@@ -95,7 +75,6 @@ export function hasAnnouncedDeadline(entry: EventEntry): boolean {
   return deadlineOccurrences(entry).length > 0;
 }
 
-/** True when a deadline is expected but the date has not been published. */
 export function deadlineIsTba(entry: EventEntry): boolean {
   if (entry.deadline_tba) return true;
   return (entry.deadlines ?? []).some((slot) => slot.tba && !slot.date);
@@ -106,7 +85,6 @@ export function startInstant(entry: Entry): number | null {
 }
 
 export function isPastEvent(entry: Entry, now: number): boolean {
-  // Undated or TBA entries stay upcoming.
   const end = instantOf(entry.end_date ?? entry.start_date, 'UTC', true);
   return end !== null && end < now;
 }
@@ -119,19 +97,10 @@ export function schoolDeadlineInstant(school: SchoolEntry): number | null {
   );
 }
 
-/* ------------------------------------------------------------------------ */
-/*  Calendar                                                                 */
-/* ------------------------------------------------------------------------ */
-
-/**
- * The calendar cell already says which year it is, so a trailing year on the
- * acronym is dropped there. It stays in the agenda and the detail panel.
- */
 function shortLabel(label: string): string {
   return label.replace(/\s+(19|20)\d{2}$/, '');
 }
 
-/** One calendar item per announced submission round. */
 function deadlineItems(entries: EventEntry[]): CalendarItem[] {
   const items: CalendarItem[] = [];
   for (const entry of entries) {
@@ -159,7 +128,6 @@ function deadlineItems(entries: EventEntry[]): CalendarItem[] {
   return items;
 }
 
-/** One item per event, placed on its start date. */
 function eventItems(entries: EventEntry[]): CalendarItem[] {
   const items: CalendarItem[] = [];
   for (const entry of entries) {
@@ -183,7 +151,6 @@ function eventItems(entries: EventEntry[]): CalendarItem[] {
   return items;
 }
 
-/** School application deadlines, plus the schools themselves. */
 function schoolItems(entries: SchoolEntry[]): CalendarItem[] {
   const items: CalendarItem[] = [];
   for (const entry of entries) {
@@ -223,10 +190,6 @@ function schoolItems(entries: SchoolEntry[]): CalendarItem[] {
   return items;
 }
 
-/**
- * Everything dated: submission deadlines, the events they belong to, schools,
- * and school application deadlines.
- */
 export function combinedCalendarItems(entries: Entry[]): CalendarItem[] {
   const events = entries.filter(
     (entry): entry is EventEntry => entry.collection === 'events',
@@ -242,11 +205,6 @@ export function combinedCalendarItems(entries: Entry[]): CalendarItem[] {
   ];
 }
 
-/**
- * Narrows the calendar to one kind of date. `deadlines` covers both submission
- * deadlines and school application deadlines, so every moment lands in exactly
- * one bucket.
- */
 export function itemsShowing(items: CalendarItem[], show: string): CalendarItem[] {
   if (show === 'all') return items;
   const wanted =
@@ -279,27 +237,9 @@ export function itemsInMonth(
     .sort((a, b) => a.date.localeCompare(b.date) || a.label.localeCompare(b.label));
 }
 
-/* ------------------------------------------------------------------------ */
-/*  Filtering and search                                                     */
-/* ------------------------------------------------------------------------ */
-
 export interface FilterState {
-  /**
-   * The legend below the calendar. Selecting none means no restriction rather
-   * than an empty calendar, so the cleared state and the everything state are
-   * the same thing and there is no way to end up looking at nothing.
-   *
-   * This selects on calendar items, not on entries: a conference is on the
-   * calendar twice, and `deadline` should keep the date its call closes while
-   * dropping the date it opens.
-   */
   categories: Category[];
-  /**
-   * Which dates the calendar carries: `all`, or one of the moment types.
-   * Also selects on calendar items rather than on entries.
-   */
   show: string;
-  /** Free-text query. */
   query: string;
 }
 
@@ -309,7 +249,6 @@ export const EMPTY_FILTER: FilterState = {
   query: '',
 };
 
-/** Whether a legend selection admits a category. Selecting none admits all. */
 export function inCategories(
   category: Category,
   selected: readonly Category[],
@@ -317,7 +256,6 @@ export function inCategories(
   return selected.length === 0 || selected.includes(category);
 }
 
-/** The same test against a whole calendar item. */
 export function itemsInCategories(
   items: CalendarItem[],
   selected: readonly Category[],
@@ -326,7 +264,6 @@ export function itemsInCategories(
   return items.filter((item) => selected.includes(item.category));
 }
 
-/** How many items each legend button stands for, so it can show a count. */
 export function countByCategory(items: CalendarItem[]): Record<Category, number> {
   const counts: Record<Category, number> = {
     deadline: 0,
@@ -338,7 +275,6 @@ export function countByCategory(items: CalendarItem[]): Record<Category, number>
   return counts;
 }
 
-/** Words a query is matched against. Cheap to build, so it is not cached. */
 function haystack(entry: Entry): string {
   const parts: string[] = [
     entry.name,
@@ -366,7 +302,6 @@ export function matchesQuery(entry: Entry, query: string): boolean {
   return q.split(/\s+/).every((token) => text.includes(token));
 }
 
-/** Undated entries sort last rather than first. */
 export function byStartDateDescending(a: Entry, b: Entry): number {
   const left = startInstant(a) ?? Number.NEGATIVE_INFINITY;
   const right = startInstant(b) ?? Number.NEGATIVE_INFINITY;
