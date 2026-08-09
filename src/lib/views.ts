@@ -90,6 +90,17 @@ function awaitingDeadline(entry: Entry): boolean {
     : deadlineIsTba(entry);
 }
 
+export function isArchived(entry: Entry, now: number): boolean {
+  if (isPastEvent(entry, now)) return true;
+  if (entry.start_date) return false;
+  if (awaitingDeadline(entry)) return false;
+  if (entry.collection === 'schools') {
+    const instant = schoolDeadlineInstant(entry);
+    return instant !== null && instant < now;
+  }
+  return hasAnnouncedDeadline(entry) && nextDeadline(entry, now) === null;
+}
+
 function nextMoment(
   entry: Entry,
   now: number,
@@ -111,6 +122,7 @@ function nextMoment(
 }
 
 function isUpcoming(entry: Entry, show: ShowMode, now: number): boolean {
+  if (isArchived(entry, now)) return false;
   if (show === 'deadlines') {
     return openDeadline(entry, now) !== null || awaitingDeadline(entry);
   }
@@ -198,8 +210,10 @@ function monthMirror(matching: Entry[], items: CalendarItem[], now: number): str
 
   for (const entry of matching) {
     if (entry.collection === 'schools') {
+      const application = schoolDeadlineInstant(entry);
       if (
         entry.application_deadline &&
+        (application === null || application >= now) &&
         take(entry.id, 'deadline', entry.application_deadline)
       ) {
         rows.push({
@@ -214,6 +228,7 @@ function monthMirror(matching: Entry[], items: CalendarItem[], now: number): str
     }
 
     for (const occurrence of deadlineOccurrences(entry)) {
+      if (occurrence.instant < now) continue;
       if (take(entry.id, 'deadline', occurrence.date)) {
         rows.push({
           key: occurrence.date,
@@ -290,18 +305,7 @@ function archivedYear(entry: Entry): number | null {
 }
 
 function archivedEntries(entries: Entry[], now: number): Entry[] {
-  return entries.filter((entry) => {
-    if (isPastEvent(entry, now)) return true;
-    if (
-      entry.collection === 'events' &&
-      !entry.start_date &&
-      entry.dates_tba !== true &&
-      hasAnnouncedDeadline(entry)
-    ) {
-      return nextDeadline(entry, now) === null;
-    }
-    return false;
-  });
+  return entries.filter((entry) => isArchived(entry, now));
 }
 
 export function archiveView(

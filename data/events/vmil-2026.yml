@@ -7,7 +7,8 @@ areas:
   - compilers
 deadline: 2026-08-06T23:59:00
 deadline_timezone: AoE
-dates_tba: true
+start_date: 2026-10-03
+end_date: 2026-10-09
 location: Oakland, California
 country: United States
 colocated_with: SPLASH 2026
@@ -15,6 +16,6 @@ url: https://conf.researchr.org/home/splash-issta-2026/vmil-2026
 source: https://conf.researchr.org/home/splash-issta-2026/vmil-2026
 last_verified: 2026-08-02
 notes: >-
-  Held during SPLASH and ISSTA 2026, which runs from 3 to 9 October 2026. The
-  workshop day within that week has not been announced. Notification and the
-  work in progress deadline are both 24 August 2026.
+  The dates shown are the SPLASH and ISSTA 2026 week; the workshop day within
+  that week has not been announced. Notification and the work in progress
+  deadline are both 24 August 2026.
