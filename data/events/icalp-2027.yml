@@ -1,0 +1,37 @@
+id: icalp-2027
+name: International Colloquium on Automata, Languages and Programming
+acronym: ICALP 2027
+type: conference
+areas:
+  - logic
+  - semantics
+  - verification
+  - types
+  - concurrency
+deadline: 2026-09-15T23:59:00
+deadline_timezone: AoE
+deadlines:
+  - label: Track B round 1
+    date: 2026-09-15T23:59:00
+    timezone: AoE
+  - label: Track B round 2
+    date: 2027-02-15
+    tba: true
+    note: Early-to-mid February 2027; exact date not yet announced
+start_date: 2027-07-05
+end_date: 2027-07-09
+location: Kraków
+country: Poland
+description: >-
+  54th edition, the European Association for Theoretical Computer Science
+  flagship. Track B covers automata, logic, semantics, and theory of
+  programming: programming language semantics, program verification and
+  synthesis, type systems, concurrency models, and formal aspects of security.
+url: https://icalp.uj.edu.pl/
+source: https://icalp.uj.edu.pl/track-b/
+last_verified: 2026-08-30
+notes: >-
+  Track B moves to two submission rounds for this edition; a paper may go to
+  one round only, and round 1 rejections cannot be resubmitted. Round 1
+  rebuttal is 5 to 9 November 2026 with notification on 8 December 2026. Track
+  A dates are not yet announced.

@@ -6,12 +6,16 @@ areas:
   - programming-languages
   - compilers
   - program-analysis
-deadline_tba: true
+deadline: 2026-11-12T23:59:00
+deadline_timezone: AoE
 start_date: 2027-06-05
 end_date: 2027-06-11
 location: Atlanta, Georgia
 country: United States
 url: https://conf.researchr.org/home/pldi-2027
-source: https://conf.researchr.org/home/pldi-2027
-last_verified: 2026-08-02
-notes: Part of FCRC 2027. No call for papers has been published yet.
+source: https://conf.researchr.org/track/pldi-2027/pldi-2027-papers
+last_verified: 2026-08-30
+notes: >-
+  Part of FCRC 2027, held at the Hyatt Regency Atlanta. Single-round
+  reviewing with a double-blind process, an author response period on 16 to 18
+  February 2027, and acceptance notification on 4 March 2027.

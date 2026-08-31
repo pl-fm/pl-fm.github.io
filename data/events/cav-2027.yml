@@ -1,0 +1,28 @@
+id: cav-2027
+name: International Conference on Computer-Aided Verification
+acronym: CAV 2027
+type: conference
+areas:
+  - verification
+  - model-checking
+  - formal-methods
+  - program-analysis
+deadline: 2027-01-20T23:59:00
+deadline_timezone: AoE
+start_date: 2027-07-19
+end_date: 2027-07-23
+location: Amsterdam
+country: Netherlands
+description: >-
+  39th edition. The flagship venue for computer-aided verification, spanning
+  theory, algorithms, implementation techniques, and applications across
+  hardware and software verification, machine learning, quantum verification,
+  autonomous systems, and security.
+url: https://conferences.i-cav.org/2027/
+source: https://conferences.i-cav.org/2027/
+last_verified: 2026-08-30
+notes: >-
+  Held at KIT (formerly the Royal Tropical Institute). Single submission
+  round with an author response period on 5 to 8 April 2027 and notification
+  on 23 April 2027. The workshop proposal deadline of 15 September 2026 has
+  passed.

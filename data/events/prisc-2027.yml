@@ -1,0 +1,27 @@
+id: prisc-2027
+name: Workshop on Principles of Secure Compilation
+acronym: PriSC 2027
+type: workshop
+areas:
+  - security
+  - compilers
+  - verification
+  - programming-languages
+deadline: 2026-10-15T23:59:00
+deadline_timezone: AoE
+start_date: 2027-01-11
+end_date: 2027-01-11
+location: Mexico City
+country: Mexico
+colocated_with: POPL 2027
+description: >-
+  11th edition. An informal workshop, without published proceedings, on
+  compilers that preserve security properties: attacker models, secure
+  compilation criteria, enforcement mechanisms, language interoperability, and
+  formal verification of compilation chains.
+url: https://popl27.sigplan.org/home/prisc-2027
+source: https://popl27.sigplan.org/home/prisc-2027
+last_verified: 2026-08-30
+notes: >-
+  Extended abstracts of up to two pages, reviewed lightly. Author notification
+  is 3 December 2026.

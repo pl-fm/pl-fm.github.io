@@ -12,9 +12,10 @@ end_date: 2027-08-27
 location: Nijmegen
 country: Netherlands
 colocated_with: FSCD 2027
-url: https://cadeinc.org/conferences
-source: https://www.fmeurope.org/feature/upcoming_conferences/
-last_verified: 2026-08-02
+url: https://fscd-cade.science.ru.nl/
+source: https://fscd-cade.science.ru.nl/
+last_verified: 2026-08-30
 notes: >-
-  No call for papers has been published yet. CADE Inc confirms the location and
-  the month, and Formal Methods Europe lists the exact days.
+  Held jointly with FSCD 2027 as FSCD-CADE 2027, at the Van der Valk Hotel in
+  Nijmegen, with workshops on 22 and 27 August. The joint site is live but the
+  submission timeline is still placeholder text; no call for papers yet.

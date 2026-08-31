@@ -6,16 +6,25 @@ areas:
   - programming-languages
   - program-analysis
   - compilers
-deadline_tba: true
-start_date: 2027-08-11
-end_date: 2027-08-13
-location: Denver, Colorado
-country: United States
+deadline: 2026-10-14T23:59:00
+deadline_timezone: AoE
+deadlines:
+  - label: OOPSLA round 1
+    date: 2026-10-14T23:59:00
+    timezone: AoE
+  - label: OOPSLA round 2
+    date: 2027-04-07T23:59:00
+    timezone: AoE
+start_date: 2027-10-10
+end_date: 2027-10-15
+location: Prague
+country: Czechia
 description: Hosts OOPSLA and Onward!, published in PACMPL.
-url: https://www.sigplan.org/Conferences/SPLASH/
-source: https://pl-conferences.com/event/2027/oopsla/
-last_verified: 2026-08-09
+url: https://2027.splashcon.org/
+source: https://conf.researchr.org/track/splash-2027/splashoopsla2027
+last_verified: 2026-08-30
 notes: >-
-  The conference moves from October to August for this edition. The OOPSLA 2027
-  submission rounds have not been announced and there is no conference site yet,
-  so confirm the dates before relying on them.
+  Held at the Diplomat Hotel Prague. OOPSLA runs two submission rounds: round 1
+  notification is 18 December 2026 with a revision round closing 22 January
+  2027, and round 2 notification is 2 July 2027. Papers accepted in either
+  round appear in the 2027 PACMPL(OOPSLA) volume.

@@ -13,10 +13,12 @@ end_date: 2027-08-26
 location: Nijmegen
 country: Netherlands
 description: >-
-  12th edition, held at Radboud University and colocated with CADE-31.
-url: https://fscd-conference.org/editions/upcoming/
-source: https://www.fmeurope.org/feature/upcoming_conferences/
-last_verified: 2026-08-02
+  12th edition, held at the Van der Valk Hotel in Nijmegen and colocated with
+  CADE-31 as FSCD-CADE 2027. Workshops run on 22 and 27 August.
+url: https://fscd-cade.science.ru.nl/
+source: https://fscd-cade.science.ru.nl/
+last_verified: 2026-08-30
 notes: >-
-  No call for papers has been published yet. The FSCD site confirms the
-  location and the month, and Formal Methods Europe lists the exact days.
+  The joint FSCD-CADE 2027 site is live but the submission timeline is still
+  placeholder text; only the final-version date of 31 May 2027 is set. No call
+  for papers has been published yet.

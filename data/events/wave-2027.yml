@@ -1,0 +1,28 @@
+id: wave-2027
+name: Workshop on Auto-active Verification
+acronym: WAVE 2027
+type: workshop
+areas:
+  - verification
+  - formal-methods
+  - theorem-proving
+  - programming-languages
+deadline: 2026-10-07T23:59:00
+deadline_timezone: AoE
+start_date: 2027-01-10
+end_date: 2027-01-10
+location: Mexico City
+country: Mexico
+colocated_with: POPL 2027
+description: >-
+  4th edition. Brings together developers and users of verification-aware
+  languages and auto-active verifiers such as Dafny, SPARK, F*, Why3, Viper,
+  and Whiley, covering SMT automation, industry-scale verification, AI for
+  verification, and verification in teaching.
+url: https://popl27.sigplan.org/home/wave-2027
+source: https://popl27.sigplan.org/home/wave-2027
+last_verified: 2026-08-30
+notes: >-
+  Extended abstracts of two to six pages in ACM SIGPLAN two-column format,
+  submitted via HotCRP. The workshop page also shows a 21 October 2026 date, so
+  confirm the deadline with the organisers.
