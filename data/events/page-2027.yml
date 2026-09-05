@@ -1,0 +1,26 @@
+id: page-2027
+name: Workshop on Principles of Agentic Engineering
+acronym: PAgE 2027
+type: workshop
+areas:
+  - formal-methods
+  - verification
+  - programming-languages
+  - synthesis
+deadline: 2026-10-11T23:59:00
+deadline_timezone: AoE
+dates_tba: true
+location: Mexico City
+country: Mexico
+colocated_with: POPL 2027
+description: >-
+  The formal methods and AI communities together on safe agentic engineering:
+  tool-use specifications, agent verification and testing, runtime systems, and
+  safety for multi-agent systems.
+url: https://popl27.sigplan.org/home/page-2027
+source: https://popl27.sigplan.org/home/page-2027
+last_verified: 2026-09-04
+notes: >-
+  Held during POPL 2027, which runs from 10 to 16 January 2027; the workshop day
+  within that week has not been announced. Peer-reviewed submissions of up to
+  six pages in the SIGPLAN conference format, alongside talk proposals.

@@ -1,0 +1,27 @@
+id: frida-2027
+name: Workshop on Formal Reasoning in Distributed Algorithms
+acronym: FRIDA 2027
+type: workshop
+areas:
+  - concurrency
+  - verification
+  - formal-methods
+  - model-checking
+deadline: 2026-10-30T23:59:00
+deadline_timezone: AoE
+dates_tba: true
+location: Mexico City
+country: Mexico
+colocated_with: POPL 2027
+description: >-
+  Distributed algorithms, formal methods, and programming languages together on
+  concurrent systems: modelling, correctness properties such as linearizability,
+  theorem proving, model checking, parameterized verification, and synthesis.
+url: https://popl27.sigplan.org/home/frida-2027
+source: https://popl27.sigplan.org/home/frida-2027
+last_verified: 2026-09-04
+notes: >-
+  Held during POPL 2027, which runs from 10 to 16 January 2027; the workshop day
+  within that week has not been announced. Non-archival with no proceedings.
+  Novel work, already published results, tools, experience reports, and position
+  statements are all in scope.

@@ -1,0 +1,30 @@
+id: esslli-2027
+name: European Summer School in Logic, Language and Information
+acronym: ESSLLI 2027
+type: summer-school
+areas:
+  - logic
+  - semantics
+  - types
+eligibility:
+  - students
+  - phd
+  - postdocs
+recurring: annual
+start_date: 2027-08-02
+end_date: 2027-08-13
+location: Tartu
+country: Estonia
+application_deadline_tba: true
+description: >-
+  38th edition, hosted by the University of Tartu at the Delta Centre. Around
+  fifty foundational, introductory, and advanced courses and workshops at the
+  interface of logic, linguistics, and computation.
+url: https://digits.ut.ee/esslli-2027/
+source: https://easychair.org/cfp/ESSLLI27
+last_verified: 2026-09-04
+notes: >-
+  Runs over two weeks, with each course or workshop given as five 90-minute
+  daily sessions in a single week. Course and workshop titles are due 1 October
+  2026 and full proposals 15 October 2026, with notification on 10 December
+  2026. Participant registration opens in spring 2027.

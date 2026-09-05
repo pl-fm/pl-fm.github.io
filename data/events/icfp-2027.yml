@@ -1,0 +1,24 @@
+id: icfp-2027
+name: ACM SIGPLAN International Conference on Functional Programming
+acronym: ICFP 2027
+type: conference
+areas:
+  - functional-programming
+  - programming-languages
+  - types
+deadline: 2027-02-25
+start_date: 2027-09-26
+end_date: 2027-10-01
+location: Nijmegen
+country: Netherlands
+description: >-
+  Held at the Van der Valk Hotel Nijmegen. The main conference runs Monday to
+  Wednesday, with co-located events on the Sunday, Thursday, and Friday.
+url: https://icfp27.sigplan.org/
+source: https://icfp27.sigplan.org/dates
+last_verified: 2026-09-04
+notes: >-
+  Single submission round. Reviews are released on 19 April 2027 with an author
+  response period from 19 to 22 April, conditional acceptance on 7 May, revised
+  papers due 1 June, and final notification on 11 June 2027. Main conference
+  talks are recorded; co-located events are not.

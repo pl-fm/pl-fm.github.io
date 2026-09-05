@@ -1,0 +1,29 @@
+id: mgs-2027
+name: Midlands Graduate School in the Foundations of Computing Science
+acronym: MGS 2027
+type: doctoral-school
+areas:
+  - logic
+  - semantics
+  - types
+  - verification
+eligibility:
+  - phd
+  - students
+recurring: annual
+start_date: 2027-04-05
+end_date: 2027-04-09
+location: Birmingham
+country: United Kingdom
+application_deadline_tba: true
+description: >-
+  Five days of technical courses on introductory, advanced, and emerging topics
+  in the mathematical foundations of computing, including category theory,
+  logic, proof theory, type theory, and verification.
+url: https://www.cs.nott.ac.uk/MGS/
+source: https://www.cs.nott.ac.uk/MGS/
+last_verified: 2026-09-04
+notes: >-
+  Held over the Easter vacation and hosted by the University of Birmingham. A
+  dedicated site, the course list, and registration details for this edition
+  have not been published yet.

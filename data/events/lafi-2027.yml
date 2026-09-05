@@ -1,0 +1,26 @@
+id: lafi-2027
+name: Workshop on Languages for Inference
+acronym: LAFI 2027
+type: workshop
+areas:
+  - probabilistic-programming
+  - programming-languages
+  - semantics
+  - types
+deadline: 2026-10-30T23:59:00
+deadline_timezone: AoE
+dates_tba: true
+location: Mexico City
+country: Mexico
+colocated_with: POPL 2027
+description: >-
+  Languages with built-in support for expressing probabilistic or differentiable
+  models: language design for inference, automatic differentiation, formal
+  semantics and verification, and applications.
+url: https://popl27.sigplan.org/home/lafi-2027
+source: https://popl27.sigplan.org/home/lafi-2027
+last_verified: 2026-09-04
+notes: >-
+  Held during POPL 2027, which runs from 10 to 16 January 2027 at the Hilton
+  Mexico City Reforma; the workshop day within that week has not been announced.
+  Informal and non-archival, with remote participation welcome.

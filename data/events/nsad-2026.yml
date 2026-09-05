@@ -8,7 +8,8 @@ areas:
   - verification
   - formal-methods
   - programming-languages
-dates_tba: true
+start_date: 2026-10-07
+end_date: 2026-10-07
 location: Oakland, California
 country: United States
 colocated_with: SPLASH 2026
@@ -18,8 +19,8 @@ description: >-
   blockchain, and distributed systems.
 url: https://conf.researchr.org/home/splash-issta-2026/nsad-2026
 source: https://conf.researchr.org/home/splash-issta-2026/nsad-2026
-last_verified: 2026-08-02
+last_verified: 2026-09-04
 notes: >-
-  Held during SPLASH and ISSTA 2026, which runs from 3 to 9 October 2026. The
-  workshop day within that week has not been announced. Both submission phases
-  closed, on 21 June and 17 July 2026, with notification on 17 August 2026.
+  Held during SPLASH and ISSTA 2026, which runs from 4 to 9 October 2026. Both
+  submission phases closed, on 21 June and 17 July 2026, with notification on 17
+  August 2026.
