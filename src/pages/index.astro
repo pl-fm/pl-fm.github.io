@@ -5,6 +5,7 @@ import { SITE } from '../../site.config.mjs';
 import { loadEntries } from '../lib/data.ts';
 import { todayKey } from '../lib/dates.ts';
 import { EMPTY_FILTER } from '../lib/filter.ts';
+import { calendarJsonLd, jsonLdPayload } from '../lib/jsonld.ts';
 import { jsonPayload } from '../lib/render.ts';
 import { SHOW_OPTIONS } from '../lib/taxonomy.ts';
 import { homeView } from '../lib/views.ts';
@@ -13,11 +14,13 @@ const today = todayKey();
 const [year, month] = today.split('-').map(Number);
 const entries = loadEntries();
 
+const now = Date.now();
+
 const show = 'all';
 const view = homeView({
   entries,
   state: { ...EMPTY_FILTER, show },
-  now: Date.now(),
+  now,
   today,
   year: year!,
   month: month!,
@@ -25,6 +28,13 @@ const view = homeView({
 ---
 
 <Base>
+  <script
+    slot="head"
+    type="application/ld+json"
+    is:inline
+    set:html={jsonLdPayload(calendarJsonLd(entries, now))}
+  />
+
   <div data-page="home" data-year={year} data-month={month} data-built-day={today}>
     <div class="viewtabs" role="group" aria-label="Show" data-filter-group="show">
       {

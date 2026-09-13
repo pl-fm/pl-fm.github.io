@@ -6,6 +6,7 @@ import Contribute from '../components/Contribute.astro';
 import DetailDialog from '../components/DetailDialog.astro';
 import { SITE } from '../../site.config.mjs';
 import { url } from '../lib/paths.ts';
+import { jsonLdPayload, websiteJsonLd } from '../lib/jsonld.ts';
 
 export interface Props {
   title?: string;
@@ -42,6 +43,9 @@ const ogImage = new URL(url('/og.png'), SITE.url).href;
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
+
+    <script type="application/ld+json" is:inline set:html={jsonLdPayload(websiteJsonLd())} />
+    <slot name="head" />
 
     <meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#101012" media="(prefers-color-scheme: dark)" />

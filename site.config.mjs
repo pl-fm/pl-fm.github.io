@@ -6,7 +6,7 @@
  */
 export const SITE = {
   /** Origin the site is served from. No trailing slash. */
-  url: 'https://plfm-community.github.io',
+  url: 'https://pl-fm.github.io',
 
   /**
    * Sub-path the site is served from. Use '/' for a user/organisation page or
