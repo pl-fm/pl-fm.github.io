@@ -13,10 +13,6 @@ import type { Entry } from './types.ts';
 
 type JsonLd = Record<string, unknown>;
 
-function absolute(path: string): string {
-  return new URL(url(path), SITE.url).href;
-}
-
 function place(entry: Entry): JsonLd | undefined {
   const { location, country } = entry;
   if (!location && !country) return undefined;
@@ -98,33 +94,26 @@ export function websiteJsonLd(): JsonLd {
     '@type': 'WebSite',
     name: SITE.title,
     alternateName: 'Programming Languages & Formal Methods Calendar',
-    url: absolute('/'),
+    url: new URL(url('/'), SITE.url).href,
     description: SITE.description,
     inLanguage: 'en',
   };
 }
 
-export function calendarJsonLd(entries: Entry[], now: number): JsonLd {
-  const items = entries
+/**
+ * One standalone Event per upcoming entry. Google reads several top-level
+ * events on a page; wrapping them in an ItemList would instead invoke the
+ * carousel rules, which do not admit events at all.
+ */
+export function calendarJsonLd(entries: Entry[], now: number): JsonLd[] {
+  return entries
     .filter((entry) => !isPastEvent(entry, now))
     .map((entry) => eventJsonLd(entry, now))
     .filter((item): item is JsonLd => item !== null)
-    .sort((a, b) => String(a.startDate).localeCompare(String(b.startDate)));
-
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    name: 'Upcoming programming languages and formal methods events',
-    url: absolute('/'),
-    numberOfItems: items.length,
-    itemListElement: items.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      item,
-    })),
-  };
+    .sort((a, b) => String(a.startDate).localeCompare(String(b.startDate)))
+    .map((item) => ({ '@context': 'https://schema.org', ...item }));
 }
 
-export function jsonLdPayload(value: JsonLd): string {
+export function jsonLdPayload(value: JsonLd | JsonLd[]): string {
   return JSON.stringify(value).replace(/</g, '\\u003c');
 }
