@@ -7,7 +7,7 @@ areas:
   - verification
   - programming-languages
   - synthesis
-deadline: 2026-10-11T23:59:00
+deadline: 2026-10-31T23:59:00
 deadline_timezone: AoE
 dates_tba: true
 location: Mexico City
@@ -19,8 +19,9 @@ description: >-
   safety for multi-agent systems.
 url: https://popl27.sigplan.org/home/page-2027
 source: https://popl27.sigplan.org/home/page-2027
-last_verified: 2026-09-04
+last_verified: 2026-09-13
 notes: >-
-  Held during POPL 2027, which runs from 10 to 16 January 2027; the workshop day
-  within that week has not been announced. Peer-reviewed submissions of up to
-  six pages in the SIGPLAN conference format, alongside talk proposals.
+  The deadline was moved from 11 October to 31 October 2026. Held during POPL
+  2027, which runs from 10 to 16 January 2027; the workshop day within that
+  week has not been announced. Peer-reviewed submissions of up to six pages in
+  the SIGPLAN conference format, alongside talk proposals.

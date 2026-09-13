@@ -1,0 +1,33 @@
+id: csf-2027
+name: IEEE Computer Security Foundations Symposium
+acronym: CSF 2027
+type: symposium
+areas:
+  - security
+  - formal-methods
+  - verification
+  - programming-languages
+deadline: 2027-01-28T23:59:00
+deadline_timezone: AoE
+deadlines:
+  - label: Fall cycle
+    date: 2026-10-15T23:59:00
+    timezone: AoE
+  - label: Winter cycle
+    date: 2027-01-28T23:59:00
+    timezone: AoE
+dates_tba: true
+location: Tokyo
+country: Japan
+description: >-
+  40th edition, on the foundations of computer security: formal security
+  models, verification techniques, language-based security, information flow,
+  and security protocols.
+url: https://csf2027.ieee-security.org/
+source: https://www.mail-archive.com/types-announce@lists.seas.upenn.edu/msg12187.html
+last_verified: 2026-09-13
+notes: >-
+  Held in summer 2027; exact dates are not yet announced. Papers are reviewed
+  in three cycles: the summer cycle closed 3 August 2026 (notification 7
+  October), the fall cycle is notified 14 December 2026, and the winter cycle
+  5 April 2027. Submissions via HotCRP.

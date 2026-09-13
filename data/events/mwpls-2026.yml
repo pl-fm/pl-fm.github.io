@@ -1,0 +1,29 @@
+id: mwpls-2026
+name: Midwest Programming Languages Summit
+acronym: MWPLS 2026
+type: community-meeting
+areas:
+  - programming-languages
+  - compilers
+deadline: 2026-10-09
+deadlines:
+  - label: Talk and poster abstracts
+    date: 2026-10-09
+  - label: Registration
+    date: 2026-10-26
+start_date: 2026-11-06
+end_date: 2026-11-06
+location: Iowa City, Iowa
+country: United States
+description: >-
+  Ninth edition, an informal one-day meeting for anyone interested in
+  programming languages and compilers, including their application to systems,
+  software engineering, and HCI. Held at the University of Iowa's Old Capitol
+  Museum.
+url: https://2026.mwpls.org/
+source: https://2026.mwpls.org/
+last_verified: 2026-09-13
+notes: >-
+  Registration is free and includes meals. No formal proceedings; abstracts and
+  slides are shared online afterwards. NSF-funded student travel awards will
+  open closer to the event. No cut-off time is given for the abstract deadline.

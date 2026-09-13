@@ -1,0 +1,24 @@
+id: tfp-2027
+name: International Symposium on Trends in Functional Programming
+acronym: TFP 2027
+type: symposium
+areas:
+  - functional-programming
+  - programming-languages
+deadline_tba: true
+start_date: 2027-03-13
+end_date: 2027-03-15
+location: Kyoto
+country: Japan
+colocated_with: TFPIE 2027
+description: >-
+  28th edition, organised by the SIG on Programming and Programming Languages
+  of the Japan Society for Software Science and Technology. Held in Kyoto in
+  the same week as the ‹Programming› 2027 conference.
+url: https://trendsfp.github.io/2027/
+source: https://trendsfp.github.io/2027/
+last_verified: 2026-09-13
+notes: >-
+  The call for papers is still to be announced. TFP usually runs a
+  pre-symposium round in late autumn and a post-symposium round after the
+  event. TFPIE 2027 takes place the day before, on 12 March 2027.

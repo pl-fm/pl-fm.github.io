@@ -1,0 +1,32 @@
+id: plmw-popl-2027
+name: Programming Languages Mentoring Workshop at POPL 2027
+acronym: PLMW at POPL 2027
+type: mentoring
+areas:
+  - programming-languages
+  - semantics
+  - types
+  - verification
+start_date: 2027-01-10
+end_date: 2027-01-10
+location: Mexico City
+country: Mexico
+application_deadline: 2026-10-19T23:59:00
+application_deadline_timezone: AoE
+eligibility:
+  - students
+  - phd
+funding: Scholarships covering airfare, hotel, and registration for PLMW and POPL, by application
+recurring: annual
+description: >-
+  15th edition. Technical sessions on current PL research combined with
+  mentoring on preparing for a research career, aimed at senior undergraduates
+  and graduate students considering PL research.
+url: https://popl27.sigplan.org/home/PLMW-POPL-2027
+source: https://popl27.sigplan.org/home/PLMW-POPL-2027
+last_verified: 2026-09-13
+notes: >-
+  Held at the Hilton Mexico City Reforma on the Sunday before POPL 2027.
+  Scholarship decisions are announced by 7 December 2026. Women, members of
+  underrepresented minorities, and people with disabilities are especially
+  encouraged to apply.

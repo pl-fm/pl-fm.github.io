@@ -1,0 +1,27 @@
+id: bob-2027
+name: BOB Conference
+acronym: BOB 2027
+type: conference
+areas:
+  - functional-programming
+  - formal-methods
+  - types
+  - programming-languages
+deadline: 2026-11-02
+start_date: 2027-02-26
+end_date: 2027-02-26
+location: Berlin
+country: Germany
+description: >-
+  A practitioner conference on "what's best for a change": functional
+  programming, formal methods, expressive type systems, program synthesis, and
+  AI in real software projects. Solicits 45-minute talks and 90-minute
+  beginner tutorials, in English or German.
+url: https://bobkonf.de/2027/
+source: https://bobkonf.de/2027/cfc.html
+last_verified: 2026-09-13
+notes: >-
+  Notification is 23 November 2026. The conference fee is waived for
+  presenters, speaker grants are available for people from groups
+  underrepresented in technology, and all speakers are offered shepherding. No
+  cut-off time is given for the deadline.

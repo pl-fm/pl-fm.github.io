@@ -1,0 +1,34 @@
+id: nwpt-2026
+name: Nordic Workshop on Programming Theory
+acronym: NWPT 2026
+type: workshop
+areas:
+  - programming-languages
+  - semantics
+  - formal-methods
+  - types
+  - logic
+deadline: 2026-10-05T23:59:00
+deadline_timezone: AoE
+deadlines:
+  - label: Abstract
+    date: 2026-10-05T23:59:00
+    timezone: AoE
+  - label: Registration
+    date: 2026-11-02T23:59:00
+    timezone: AoE
+start_date: 2026-11-19
+end_date: 2026-11-20
+location: Tartu
+country: Estonia
+description: >-
+  36th edition, an informal forum for researchers in programming theory across
+  the Nordic and Baltic countries: semantics, type systems, verification,
+  concurrency, logic, and program construction.
+url: https://kodu.ut.ee/~nester/nwpt-2026/main.html
+source: https://www.mail-archive.com/types-announce@lists.seas.upenn.edu/msg12196.html
+last_verified: 2026-09-13
+notes: >-
+  Held at the University of Tartu. Submissions are abstracts of two to three
+  pages in EasyChair style; notification is 30 October and final abstracts are
+  due 6 November 2026.

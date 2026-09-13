@@ -1,0 +1,28 @@
+id: pepm-2027
+name: Workshop on Partial Evaluation and Program Manipulation
+acronym: PEPM 2027
+type: workshop
+areas:
+  - programming-languages
+  - semantics
+  - program-analysis
+  - compilers
+deadline: 2026-10-23T23:59:00
+deadline_timezone: AoE
+start_date: 2027-01-12
+end_date: 2027-01-12
+location: Mexico City
+country: Mexico
+colocated_with: POPL 2027
+description: >-
+  Semantics-based program manipulation: partial evaluation, metaprogramming,
+  staging, optimisation, analysis, verification, synthesis, and transformation,
+  and their applications across scientific, embedded, distributed, and web
+  computing.
+url: https://popl27.sigplan.org/home/pepm-2027
+source: https://popl27.sigplan.org/home/pepm-2027
+last_verified: 2026-09-13
+notes: >-
+  Accepts regular research papers of up to twelve pages, short papers of up to
+  six pages, and talk proposals of up to two pages. Held at the Hilton Mexico
+  City Reforma during POPL 2027.

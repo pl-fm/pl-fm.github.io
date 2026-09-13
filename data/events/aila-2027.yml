@@ -1,0 +1,31 @@
+id: aila-2027
+name: International Conference on Artificial Intelligence Logic and Applications
+acronym: AILA 2027
+type: conference
+areas:
+  - logic
+  - theorem-proving
+  - verification
+deadline: 2026-11-07T23:59:00
+deadline_timezone: AoE
+deadlines:
+  - label: Abstract
+    date: 2026-10-31T23:59:00
+    timezone: AoE
+  - label: Paper
+    date: 2026-11-07T23:59:00
+    timezone: AoE
+start_date: 2027-04-08
+end_date: 2027-04-10
+location: Belfast
+country: United Kingdom
+description: >-
+  Sixth edition, on logic in artificial intelligence: logical theories and
+  formalisms, automated reasoning, neuro-symbolic systems, knowledge graphs,
+  verification, and trustworthy AI.
+url: http://ailasym.com/AILA2027/AILA2027.html
+source: https://www.mail-archive.com/types-announce@lists.seas.upenn.edu/msg12207.html
+last_verified: 2026-09-13
+notes: >-
+  Notification is 10 January 2027. Papers must have a substantial logical
+  component; work primarily about AI techniques is out of scope.

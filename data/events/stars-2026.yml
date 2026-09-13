@@ -6,15 +6,29 @@ areas:
   - verification
   - formal-methods
   - program-analysis
-deadline_tba: true
+deadline: 2026-09-15T23:59:00
+deadline_timezone: AoE
+deadlines:
+  - label: Full papers
+    date: 2026-09-08T23:59:00
+    timezone: AoE
+  - label: Talk proposals
+    date: 2026-09-15T23:59:00
+    timezone: AoE
 start_date: 2026-11-23
 end_date: 2026-11-23
 location: Valletta
 country: Malta
 colocated_with: SEFM 2026
-url: https://sefm-conference.github.io/2026/workshops/
-source: https://sefm-conference.github.io/2026/workshops/
-last_verified: 2026-08-02
+description: >-
+  First edition, on combining static analysis with runtime verification. Full
+  papers of up to fifteen pages in an LNCS-like style appear in formal
+  post-proceedings; talk proposals may present new, preliminary, or published
+  work.
+url: https://stars-workshop.github.io/
+source: https://stars-workshop.github.io/
+last_verified: 2026-09-13
 notes: >-
-  First edition, a SEFM 2026 satellite event on combining static analysis with
-  runtime verification. No submission deadline is published yet.
+  Full papers were due 8 September 2026 (abstracts 3 September); talk
+  proposals remain open until 15 September. Notification is 7 October 2026.
+  Submissions via EasyChair.

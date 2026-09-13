@@ -1,0 +1,24 @@
+id: cicm-2027
+name: Conference on Intelligent Computer Mathematics
+acronym: CICM 2027
+type: conference
+areas:
+  - theorem-proving
+  - logic
+  - formal-methods
+  - types
+deadline_tba: true
+start_date: 2027-07-19
+end_date: 2027-07-23
+location: Erlangen
+country: Germany
+description: >-
+  20th edition, covering formal mathematics, interactive and automated theorem
+  proving, proof systems, mathematical knowledge management, and type theory.
+url: https://cicm-conference.org/
+source: https://europroofnet.github.io/conferences/
+last_verified: 2026-09-13
+notes: >-
+  Dates and location are as announced on the EuroProofNet conference list; the
+  CICM 2027 site and call for papers are not yet online. CICM deadlines
+  usually fall in February or March.

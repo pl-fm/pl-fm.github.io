@@ -8,15 +8,19 @@ areas:
   - formal-methods
   - logic
   - semantics
-deadline_tba: true
+deadline: 2026-09-16T23:59:00
+deadline_timezone: AoE
 start_date: 2026-11-24
 end_date: 2026-11-24
 location: Valletta
 country: Malta
 colocated_with: SEFM 2026
-url: https://sefm-conference.github.io/2026/workshops/
-source: https://sefm-conference.github.io/2026/workshops/
-last_verified: 2026-08-02
+url: https://reacts-workshop.github.io/2026/
+source: https://reacts-workshop.github.io/2026/
+last_verified: 2026-09-13
 notes: >-
-  3rd edition, a SEFM 2026 satellite event. The workshop page does not yet list
-  a submission deadline; check with the organisers before relying on one.
+  3rd edition, a SEFM 2026 satellite event held at the University of Malta.
+  The paper deadline was extended from 13 to 16 September 2026; optional
+  abstracts were due 8 September. Notification is 16 October 2026. Accepted
+  full papers appear in a Springer LNCS volume of selected SEFM 2026 workshop
+  proceedings.

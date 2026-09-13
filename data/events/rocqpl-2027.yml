@@ -1,0 +1,27 @@
+id: rocqpl-2027
+name: Workshop on Rocq for Programming Languages
+acronym: RocqPL 2027
+type: workshop
+areas:
+  - theorem-proving
+  - programming-languages
+  - verification
+  - semantics
+deadline: 2026-10-23T23:59:00
+deadline_timezone: AoE
+start_date: 2027-01-16
+end_date: 2027-01-16
+location: Mexico City
+country: Mexico
+colocated_with: POPL 2027
+description: >-
+  Formerly CoqPL. Formalisations of programming languages research in the Rocq
+  proof assistant, domain-specific libraries, verification tools, and
+  experience reports.
+url: https://popl27.sigplan.org/home/rocqpl-2027
+source: https://popl27.sigplan.org/home/rocqpl-2027
+last_verified: 2026-09-13
+notes: >-
+  Extended abstracts of one to two pages in two-column ACM SIGPLAN style,
+  submitted via HotCRP with single-blind review. Notification is 20 November
+  2026. Non-archival; talks may be recorded and shared.

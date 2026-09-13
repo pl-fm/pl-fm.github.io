@@ -1,0 +1,38 @@
+id: tfpie-2027
+name: International Workshop on Trends in Functional Programming in Education
+acronym: TFPIE 2027
+type: workshop
+areas:
+  - functional-programming
+  - programming-languages
+deadline: 2026-11-19T23:59:00
+deadline_timezone: AoE
+deadlines:
+  - label: Full papers
+    date: 2026-11-19T23:59:00
+    timezone: AoE
+    note: Formal review before the workshop; 7 to 20 pages
+  - label: Draft papers
+    date: 2027-02-04T23:59:00
+    timezone: AoE
+    note: Extended abstracts of 4 to 6 pages or full drafts
+  - label: Post-workshop papers
+    date: 2027-04-08T23:59:00
+    timezone: AoE
+start_date: 2027-03-12
+end_date: 2027-03-12
+location: Kyoto
+country: Japan
+colocated_with: TFP 2027
+description: >-
+  16th edition, on teaching functional programming at every level, including
+  its use in the arts, robotics, AI, computational thinking, and engaging
+  students in research.
+url: https://wiki.tfpie.science.ru.nl/TFPIE2027
+source: https://wiki.tfpie.science.ru.nl/TFPIE2027
+last_verified: 2026-09-13
+notes: >-
+  Held at Kyoto University the day before TFP 2027. Full papers are notified on
+  17 December 2026, draft papers on 11 February 2027; the post-workshop review
+  concludes 12 May 2027. Submissions in EPTCS style, bibliography excluded from
+  the page counts.
