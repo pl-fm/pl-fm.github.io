@@ -16,7 +16,8 @@ deadlines:
   - label: Winter cycle
     date: 2027-01-28T23:59:00
     timezone: AoE
-dates_tba: true
+start_date: 2027-09-13
+end_date: 2027-09-17
 location: Tokyo
 country: Japan
 description: >-
@@ -24,10 +25,9 @@ description: >-
   models, verification techniques, language-based security, information flow,
   and security protocols.
 url: https://csf2027.ieee-security.org/
-source: https://www.mail-archive.com/types-announce@lists.seas.upenn.edu/msg12187.html
-last_verified: 2026-09-13
+source: https://csf2027.ieee-security.org/
+last_verified: 2026-09-23
 notes: >-
-  Held in summer 2027; exact dates are not yet announced. Papers are reviewed
-  in three cycles: the summer cycle closed 3 August 2026 (notification 7
+  Papers are reviewed in three cycles: the summer cycle closed 3 August 2026 (notification 7
   October), the fall cycle is notified 14 December 2026, and the winter cycle
   5 April 2027. Submissions via HotCRP.

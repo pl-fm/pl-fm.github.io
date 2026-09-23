@@ -7,14 +7,16 @@ areas:
   - formal-methods
   - model-checking
 start_date: 2026-12-01
-end_date: 2026-12-05
+end_date: 2026-12-04
 location: Hong Kong
 country: China
 colocated_with: APLAS 2026
 url: https://conf.researchr.org/track/aplas-atva-2026/atva-2026
 source: https://conf.researchr.org/home/aplas-atva-2026
-last_verified: 2026-08-02
+last_verified: 2026-09-23
 notes: >-
   Held jointly with APLAS 2026 at the Hong Kong University of Science and
-  Technology. Paper submissions have closed. Tool papers carry mandatory
-  artifact evaluation.
+  Technology; ATVA continues alone on 4 December. Paper submissions have
+  closed. Tool papers carry mandatory artifact evaluation. The Spotlights of
+  Verification workshop runs alongside on 1 December. Early registration closes
+  15 October 2026 (Hong Kong time).

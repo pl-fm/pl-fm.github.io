@@ -1,0 +1,30 @@
+id: spotlights-verification-2026
+name: Spotlights of Verification
+acronym: Spotlights 2026
+type: workshop
+areas:
+  - verification
+  - formal-methods
+  - model-checking
+  - program-analysis
+deadline: 2026-10-08
+deadlines:
+  - label: Abstract
+    date: 2026-10-08
+    note: One to two pages, at most one submission per speaker
+start_date: 2026-12-01
+end_date: 2026-12-01
+location: Hong Kong
+country: China
+colocated_with: ATVA 2026
+description: >-
+  Short talks of about ten minutes across the theory and practice of
+  computer-aided formal analysis, modelled on Highlights. Recently published,
+  forthcoming, and ongoing work are all welcome.
+url: https://conf.researchr.org/track/aplas-atva-2026/atva-2026
+source: https://www.mail-archive.com/types-announce@lists.seas.upenn.edu/msg12256.html
+last_verified: 2026-09-23
+notes: >-
+  No proceedings. Submissions via atva26.hotcrp.com, with notification on 20
+  October 2026. The program committee is shared with ATVA. Included in APLAS
+  and ATVA 2026 registration. No cut-off time is given for the deadline.

@@ -8,6 +8,8 @@ areas:
   - types
   - verification
 deadlines:
+  - label: Tutorial proposals
+    date: 2026-10-09
   - label: Student research competition
     date: 2026-10-12T23:59:00
     timezone: AoE
@@ -18,9 +20,10 @@ location: Mexico City
 country: Mexico
 url: https://popl27.sigplan.org/
 source: https://popl27.sigplan.org/dates
-last_verified: 2026-09-04
+last_verified: 2026-09-23
 notes: >-
   The paper submission deadline of 9 July 2026 has passed; notification is 5
-  October 2026. Held at the Hilton Mexico City Reforma. Colocated and still
-  open: CPP 2027, VMCAI 2027, and the FPBT, FRIDA, LAFI, PAgE, PLanQC, PriSC,
-  TPSA, and WAVE workshops. Tutorial proposals close 9 October 2026.
+  October 2026. Held at the Hilton Mexico City Reforma. Colocated calls still
+  open: VMCAI 2027, PLMW, and the FPBT, FRIDA, LAFI, PAgE, PEPM, PLanQC, PriSC,
+  RocqPL, TPSA, and WAVE workshops. No cut-off time is given for tutorial
+  proposals.

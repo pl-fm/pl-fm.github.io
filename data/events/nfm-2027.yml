@@ -1,0 +1,33 @@
+id: nfm-2027
+name: NASA Formal Methods Symposium
+acronym: NFM 2027
+type: symposium
+areas:
+  - formal-methods
+  - verification
+  - theorem-proving
+  - model-checking
+deadline: 2027-01-11T23:59:00
+deadline_timezone: AoE
+deadlines:
+  - label: Abstract
+    date: 2027-01-04T23:59:00
+    timezone: AoE
+  - label: Paper
+    date: 2027-01-11T23:59:00
+    timezone: AoE
+start_date: 2027-05-11
+end_date: 2027-05-13
+location: Houston, Texas
+country: United States
+description: >-
+  19th edition, on formal methods for mission- and safety-critical systems:
+  specification, verification, validation, and certification, with
+  applications in aerospace, robotics, and autonomous systems.
+url: https://conf.researchr.org/home/nfm-2027
+source: https://conf.researchr.org/home/nfm-2027
+last_verified: 2026-09-23
+notes: >-
+  Held at the University of Houston Clear Lake. Regular papers of up to 16
+  pages and short tool or case-study papers of up to 8 pages, in LNCS format
+  via CMT. Notification is 26 February 2027. Registration is free.

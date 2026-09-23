@@ -7,18 +7,23 @@ areas:
   - types
   - theorem-proving
   - semantics
-deadline_tba: true
+deadlines:
+  - label: Workshop and tutorial proposals
+    date: 2026-12-04
+    note: Up to three pages, by email to the workshop chair
+  - label: Paper
+    tba: true
 start_date: 2027-08-23
 end_date: 2027-08-26
 location: Nijmegen
 country: Netherlands
 description: >-
   12th edition, held at the Van der Valk Hotel in Nijmegen and colocated with
-  CADE-31 as FSCD-CADE 2027. Workshops run on 22 and 27 August.
+  CADE-31 as FSCD-CADE 2027. FSCD workshops run on 21 and 22 August.
 url: https://fscd-cade.science.ru.nl/
-source: https://fscd-cade.science.ru.nl/
-last_verified: 2026-08-30
+source: https://fscd-cade.science.ru.nl/calls/workshops-and-tutorials
+last_verified: 2026-09-23
 notes: >-
-  The joint FSCD-CADE 2027 site is live but the submission timeline is still
-  placeholder text; only the final-version date of 31 May 2027 is set. No call
-  for papers has been published yet.
+  The paper submission timeline is still placeholder text; only the
+  final-version date of 31 May 2027 is set. Workshop notification is January
+  2027.

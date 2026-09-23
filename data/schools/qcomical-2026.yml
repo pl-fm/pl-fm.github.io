@@ -1,0 +1,29 @@
+id: qcomical-2026
+name: QCOMICAL School on Quantum Programming Languages and Semantics
+acronym: QCOMICAL 2026
+type: doctoral-school
+areas:
+  - quantum
+  - programming-languages
+  - semantics
+  - logic
+eligibility:
+  - everyone
+start_date: 2026-11-16
+end_date: 2026-11-20
+location: Pisa
+country: Italy
+application_deadline: 2026-10-16
+funding: Free of charge, with lunches and coffee breaks; travel and accommodation are not covered
+description: >-
+  Second edition. Courses on quantum programming languages, quantum process
+  calculi, computational quantum logic, categories for quantum computing, and
+  quantum Bayesian networks, plus a tool session on verifying quantum
+  protocols.
+url: https://qcomical2026.github.io
+source: https://www.mail-archive.com/types-announce@lists.seas.upenn.edu/msg12247.html
+last_verified: 2026-09-23
+notes: >-
+  The 16 October 2026 deadline is for registration; no cut-off time is given.
+  Lecturers include Alejandro Díaz-Caro, Claudia Faggian, Fabio Gadducci, Benoît
+  Valiron, and Vladimir Zamdzhiev. Funded by an MSCA Staff Exchanges project.
