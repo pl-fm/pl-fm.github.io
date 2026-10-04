@@ -1,0 +1,23 @@
+id: fm-update-2026
+name: Formal Methods Update Meeting
+acronym: FM Update 2026
+type: community-meeting
+areas:
+  - formal-methods
+  - verification
+  - model-checking
+  - theorem-proving
+start_date: 2026-07-02
+end_date: 2026-07-03
+location: Sri City
+country: India
+description: >-
+  An informal annual meeting of the Indian formal methods community to present
+  and discuss recent developments in verification, synthesis, model checking,
+  theorem proving, and theoretical computer science.
+url: https://fm-update.github.io/index.html
+source: https://fm-update.github.io/index.html
+last_verified: 2026-10-03
+notes: >-
+  Hosted by Krea University, with tutorials on 1 and 4 July. Organised by
+  Inzemamul Haque, Aalok Thakkar, and T V H Prathamesh.

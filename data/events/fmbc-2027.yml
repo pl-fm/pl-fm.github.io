@@ -1,0 +1,25 @@
+id: fmbc-2027
+name: Workshop on Formal Methods for Blockchains
+acronym: FMBC 2027
+type: workshop
+areas:
+  - formal-methods
+  - verification
+  - security
+  - programming-languages
+deadline_tba: true
+start_date: 2027-04-11
+end_date: 2027-04-11
+location: Copenhagen
+country: Denmark
+colocated_with: ETAPS 2027
+description: >-
+  Formal methods for blockchains and smart contracts: specification,
+  verification, and analysis of contracts, protocols, and the languages used
+  to write them.
+url: https://etaps.org/2027/sat-events
+source: https://etaps.org/2027/sat-events
+last_verified: 2026-10-03
+notes: >-
+  Organised by Elvira Albert and Alejandro Hernández Cerezo. A satellite event
+  of ETAPS 2027; no call for papers has been published yet.

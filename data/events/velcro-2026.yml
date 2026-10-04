@@ -1,0 +1,24 @@
+id: velcro-2026
+name: Workshop on Verification, Logic, and Cryptography
+acronym: VeLCrO 2026
+type: workshop
+areas:
+  - verification
+  - logic
+  - formal-methods
+  - security
+start_date: 2026-12-11
+end_date: 2026-12-11
+location: Chennai
+country: India
+description: >-
+  A one-day workshop of talks and discussion on formal verification, logic,
+  cryptography, and related areas of computer science, held at the Chennai
+  Mathematical Institute.
+url: https://aalok-thakkar.github.io/velcro/index.html
+source: https://aalok-thakkar.github.io/velcro/index.html
+last_verified: 2026-10-03
+notes: >-
+  Organised by B. Srivathsan (CMI), Léonard Brice (ISTA), and Aalok Thakkar
+  (Ashoka University). Registration is open on the workshop page; speakers and
+  schedule are yet to be announced.

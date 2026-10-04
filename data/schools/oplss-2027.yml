@@ -1,0 +1,28 @@
+id: oplss-2027
+name: Oregon Programming Languages Summer School
+acronym: OPLSS 2027
+type: summer-school
+areas:
+  - programming-languages
+  - types
+  - semantics
+  - theorem-proving
+eligibility:
+  - phd
+  - students
+  - everyone
+recurring: annual
+dates_tba: true
+location: Eugene, Oregon
+country: United States
+application_deadline_tba: true
+description: >-
+  A two-week school on the foundations of programming languages, with lectures
+  on type theory, semantics, program logics, and proof assistants. Held at the
+  University of Oregon since 2002.
+url: https://www.cs.uoregon.edu/research/summerschool
+source: https://www.cs.uoregon.edu/research/summerschool
+last_verified: 2026-10-03
+notes: >-
+  Not yet announced. The 2026 school, on types, proofs, and program logics,
+  ran from 22 June to 4 July; the school usually runs in late June.

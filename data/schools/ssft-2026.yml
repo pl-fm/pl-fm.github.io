@@ -1,0 +1,29 @@
+id: ssft-2026
+name: Summer School on Formal Techniques
+acronym: SSFT 2026
+type: summer-school
+areas:
+  - formal-methods
+  - verification
+  - theorem-proving
+  - security
+eligibility:
+  - phd
+  - postdocs
+start_date: 2026-05-23
+end_date: 2026-05-29
+location: Atherton, California
+country: United States
+application_deadline: 2026-03-31
+recurring: annual
+funding: NSF funding covers travel, food, and lodging for selected US-based students; others pay about $150 a day
+description: >-
+  15th edition, organised by SRI. Hands-on courses on Tamarin, PVS, Verus,
+  quantum compilers, and privacy-preserving reasoning, preceded by a two-day
+  background course on logic and formal techniques.
+url: https://ssft-sri.github.io/
+source: https://www.sigplan.org/announce/2026-02-13-ssft-2026/
+last_verified: 2026-10-03
+notes: >-
+  Held at Menlo College in hybrid mode. Lecturers were Aws Albarghouthi, Cas
+  Cremers, César Muñoz, Ruzica Piskac, and Chris Hawblitzel.

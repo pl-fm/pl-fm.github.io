@@ -1,0 +1,27 @@
+id: rhpl-2026
+name: Workshop on Research Highlights in Programming Languages
+acronym: RHPL 2026
+type: workshop
+areas:
+  - programming-languages
+  - verification
+  - program-analysis
+  - compilers
+deadline: 2026-10-04
+deadline_timezone: UTC+5:30
+start_date: 2026-12-16
+end_date: 2026-12-18
+location: New Delhi
+country: India
+colocated_with: FSTTCS 2026
+description: >-
+  Talks on recent published or mature work and posters on early ideas across
+  all areas of programming languages, organised by IARCS and iPLAN (the ACM
+  SIGPLAN India chapter) to connect PL researchers with the FSTTCS community.
+url: https://fmindia.cmi.ac.in/rhpl2026/
+source: https://mail.cmi.ac.in/mailman3/hyperkitty/list/fmindia@cmi.ac.in/thread/BIZUX7XHLLETNKBONE5FOXESFQPDX3YN/
+last_verified: 2026-10-03
+notes: >-
+  The proposal deadline moved from 28 September to 4 October 2026 IST and is
+  firm. Notification was planned for 7 October. Includes a student poster
+  competition with awards sponsored by TCS Research. Held at IIT Delhi.

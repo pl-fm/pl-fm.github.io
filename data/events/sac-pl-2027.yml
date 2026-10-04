@@ -1,0 +1,25 @@
+id: sac-pl-2027
+name: ACM Symposium on Applied Computing, Programming Languages Track
+acronym: SAC-PL 2027
+type: symposium
+areas:
+  - programming-languages
+  - compilers
+  - semantics
+  - verification
+deadline: 2026-10-16
+start_date: 2027-04-05
+end_date: 2027-04-09
+location: Gwangju
+country: South Korea
+description: >-
+  34th year of the Programming Languages track at the 42nd ACM/SIGAPP SAC, on
+  the implementation and application of programming languages: compilation,
+  DSLs, formal semantics, garbage collection, and verification of core
+  languages.
+url: https://acmsac.wp.txstate.edu/
+source: https://www.mail-archive.com/types-announce@lists.seas.upenn.edu/msg12273.html
+last_verified: 2026-10-03
+notes: >-
+  Full papers are due 16 October 2026, with notification on 20 November and
+  camera-ready copy on 11 December 2026. No cut-off time is given.

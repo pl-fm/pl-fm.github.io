@@ -1,0 +1,25 @@
+id: marktoberdorf-2027
+name: Marktoberdorf Summer School
+acronym: Marktoberdorf 2027
+type: summer-school
+areas:
+  - formal-methods
+  - verification
+eligibility:
+  - phd
+  - postdocs
+recurring: annual
+dates_tba: true
+country: Germany
+application_deadline_tba: true
+description: >-
+  Long-running summer school, held since 1970, of mini-courses on
+  specification and verification for doctoral and postdoctoral researchers,
+  organised from the Technical University of Munich.
+url: https://sites.google.com/view/marktoberdorf2026
+source: https://sites.google.com/view/marktoberdorf2026
+last_verified: 2026-10-03
+notes: >-
+  Not yet announced. Recent editions ran for about ten days in August in
+  Bavaria, with applications due in mid-May. The link points to the 2026
+  edition until a 2027 site appears.

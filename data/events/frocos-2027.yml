@@ -1,0 +1,23 @@
+id: frocos-2027
+name: International Symposium on Frontiers of Combining Systems
+acronym: FroCoS 2027
+type: symposium
+areas:
+  - logic
+  - theorem-proving
+  - verification
+deadline_tba: true
+start_date: 2027-09-29
+end_date: 2027-10-01
+location: Marseille
+country: France
+colocated_with: TABLEAUX 2027
+description: >-
+  17th edition, on combining and integrating logics, decision procedures,
+  solvers, and reasoning systems, including SMT and combinations of theories.
+url: https://tableaux-frocos27.lis-lab.fr/frocos/
+source: https://tableaux-frocos27.lis-lab.fr/frocos/
+last_verified: 2026-10-03
+notes: >-
+  Runs back to back with TABLEAUX 2027. The site is under construction and no
+  call for papers has been published yet.

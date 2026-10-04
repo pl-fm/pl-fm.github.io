@@ -1,0 +1,28 @@
+id: emw-2027
+name: ETAPS Mentoring Workshop
+acronym: EMW 2027
+type: mentoring
+areas:
+  - formal-methods
+  - programming-languages
+  - verification
+eligibility:
+  - students
+  - phd
+  - postdocs
+start_date: 2027-04-11
+end_date: 2027-04-11
+location: Copenhagen
+country: Denmark
+application_deadline_tba: true
+recurring: annual
+description: >-
+  Talks by computer science researchers at different career stages about the
+  paths they took, with discussion and social events, for master's and PhD
+  students and postdocs.
+url: https://etaps.org/2027/sat-events/mentoring-workshop/
+source: https://etaps.org/2027/sat-events
+last_verified: 2026-10-03
+notes: >-
+  Organised by Stefan Hallerstade. Attendance requires registering for the
+  ETAPS 2027 Sunday workshops; no travel grants have been announced.

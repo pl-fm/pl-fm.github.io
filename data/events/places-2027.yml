@@ -1,0 +1,27 @@
+id: places-2027
+name: >-
+  Workshop on Programming Language Approaches to Concurrency and
+  Communication-cEntric Software
+acronym: PLACES 2027
+type: workshop
+areas:
+  - concurrency
+  - programming-languages
+  - types
+  - semantics
+deadline_tba: true
+start_date: 2027-04-11
+end_date: 2027-04-11
+location: Copenhagen
+country: Denmark
+colocated_with: ETAPS 2027
+description: >-
+  Language-based approaches to concurrent and communicating systems, including
+  session and behavioural types, actors, and models of distributed
+  programming.
+url: https://etaps.org/2027/sat-events
+source: https://etaps.org/2027/sat-events
+last_verified: 2026-10-03
+notes: >-
+  A satellite event of ETAPS 2027. Organisers, a workshop site, and the call
+  for papers have not been announced yet.

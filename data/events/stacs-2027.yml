@@ -1,0 +1,28 @@
+id: stacs-2027
+name: International Symposium on Theoretical Aspects of Computer Science
+acronym: STACS 2027
+type: symposium
+areas:
+  - logic
+  - semantics
+  - types
+  - program-analysis
+  - concurrency
+deadline: 2026-10-11T23:59:00
+deadline_timezone: AoE
+start_date: 2027-03-08
+end_date: 2027-03-12
+location: Göttingen
+country: Germany
+description: >-
+  44th edition. Track B covers automata, logic, semantics, and theory of
+  programming, including type systems, program analysis, specification and
+  verification, concurrency, and rewriting; Track A covers algorithms and
+  complexity.
+url: https://stacs2027.uni-goettingen.de/
+source: https://mail.cmi.ac.in/mailman3/hyperkitty/list/fmindia@cmi.ac.in/thread/CTMITL23QYFUV3XVGY53EUV4H2TYS4TM/
+last_verified: 2026-10-03
+notes: >-
+  Papers of up to 15 pages in LIPIcs style via EasyChair, excluding title
+  page, references, and appendix. Rebuttal 30 November to 2 December, with
+  notification on 22 December 2026.

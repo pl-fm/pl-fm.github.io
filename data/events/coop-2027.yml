@@ -1,0 +1,24 @@
+id: coop-2027
+name: Workshop on Cooperative Software Verification
+acronym: COOP 2027
+type: workshop
+areas:
+  - verification
+  - formal-methods
+  - model-checking
+deadline_tba: true
+start_date: 2027-04-11
+end_date: 2027-04-11
+location: Copenhagen
+country: Denmark
+colocated_with: ETAPS 2027
+description: >-
+  Combining verification tools and techniques so that they cooperate by
+  exchanging intermediate results such as witnesses, invariants, and partial
+  proofs.
+url: https://etaps.org/2027/sat-events
+source: https://etaps.org/2027/sat-events
+last_verified: 2026-10-03
+notes: >-
+  Organised by Dirk Beyer and Heike Wehrheim. A satellite event of ETAPS 2027;
+  no workshop site or call for contributions has been published yet.

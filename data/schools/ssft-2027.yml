@@ -1,0 +1,27 @@
+id: ssft-2027
+name: Summer School on Formal Techniques
+acronym: SSFT 2027
+type: summer-school
+areas:
+  - formal-methods
+  - verification
+  - theorem-proving
+eligibility:
+  - phd
+  - postdocs
+dates_tba: true
+location: Atherton, California
+country: United States
+application_deadline_tba: true
+recurring: annual
+description: >-
+  SRI's annual week of hands-on courses on formal techniques and tools, aimed
+  at graduate students and early-career researchers, with a background course
+  for newcomers.
+url: https://ssft-sri.github.io/
+source: https://ssft-sri.github.io/
+last_verified: 2026-10-03
+notes: >-
+  Not yet announced. The school usually runs in late May at Menlo College,
+  with applications due around the end of March; NSF funding has covered
+  selected US-based students.

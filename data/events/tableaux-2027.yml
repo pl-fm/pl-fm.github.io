@@ -1,0 +1,24 @@
+id: tableaux-2027
+name: >-
+  International Conference on Automated Reasoning with Analytic Tableaux and
+  Related Methods
+acronym: TABLEAUX 2027
+type: conference
+areas:
+  - logic
+  - theorem-proving
+deadline_tba: true
+start_date: 2027-09-27
+end_date: 2027-09-29
+location: Marseille
+country: France
+colocated_with: FroCoS 2027
+description: >-
+  36th edition, on automated reasoning with analytic tableaux, sequent
+  calculi, and related proof methods for classical and non-classical logics.
+url: https://tableaux-frocos27.lis-lab.fr/tableaux/
+source: https://tableaux-frocos27.lis-lab.fr/tableaux/
+last_verified: 2026-10-03
+notes: >-
+  Runs back to back with FroCoS 2027. The site is under construction and no
+  call for papers has been published yet.

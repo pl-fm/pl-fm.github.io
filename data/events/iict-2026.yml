@@ -1,0 +1,23 @@
+id: iict-2026
+name: Workshop on Innovations in Compiler Technology
+acronym: IICT 2026
+type: workshop
+areas:
+  - compilers
+  - programming-languages
+deadline: 2026-07-01
+start_date: 2026-10-02
+end_date: 2026-10-03
+location: Bengaluru
+country: India
+description: >-
+  Third edition, an iPLAN event on compiler design, implementation, and
+  optimisation, including compilers for AI and ML, domain-specific languages,
+  and emerging hardware, with research and practice tracks.
+url: https://compilertech.org/
+source: https://mail.cmi.ac.in/mailman3/hyperkitty/list/fmindia@cmi.ac.in/thread/S4AKGPW4IQTWQWESYBZSCGMBIXOVVDUN/
+last_verified: 2026-10-03
+notes: >-
+  Held at IISc Bengaluru with keynotes by V Krishna Nandivada, Uday Khedker,
+  Girish Bharambe, and Mike Leonard. No formal proceedings. The finale of
+  SEGFAULT, a compiler hackathon, runs alongside.

@@ -1,0 +1,25 @@
+id: verifythis-2027
+name: VerifyThis Verification Competition
+acronym: VerifyThis 2027
+type: colocated
+areas:
+  - verification
+  - formal-methods
+  - theorem-proving
+deadline_tba: true
+start_date: 2027-04-10
+end_date: 2027-04-11
+location: Copenhagen
+country: Denmark
+colocated_with: ETAPS 2027
+description: >-
+  An on-site program verification competition: teams formalise, implement,
+  and verify solutions to challenges given in natural language and pseudocode,
+  using any language or verification tool.
+url: https://verifythis.github.io/onsite/
+source: https://etaps.org/2027/sat-events
+last_verified: 2026-10-03
+notes: >-
+  AI-based tools are allowed but must be declared. Solutions are judged on
+  correctness, completeness, and elegance. Registration details have not been
+  published yet.

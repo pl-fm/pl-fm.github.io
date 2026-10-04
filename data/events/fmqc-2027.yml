@@ -1,0 +1,23 @@
+id: fmqc-2027
+name: Workshop on Formal Methods in Quantum Computing
+acronym: FMQC 2027
+type: workshop
+areas:
+  - quantum
+  - formal-methods
+  - verification
+deadline_tba: true
+start_date: 2027-04-10
+end_date: 2027-04-10
+location: Copenhagen
+country: Denmark
+colocated_with: ETAPS 2027
+description: >-
+  Formal methods applied to quantum computing, including semantics,
+  verification, and analysis of quantum programs and protocols.
+url: https://etaps.org/2027/sat-events
+source: https://etaps.org/2027/sat-events
+last_verified: 2026-10-03
+notes: >-
+  Organised by Giorgio Bacci and Robin Kaarsgaard. A satellite event of ETAPS
+  2027; no call for papers has been published yet.

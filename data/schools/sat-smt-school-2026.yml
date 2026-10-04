@@ -1,0 +1,28 @@
+id: sat-smt-school-2026
+name: Indian SAT+SMT School
+acronym: SAT+SMT School 2026
+type: winter-school
+areas:
+  - formal-methods
+  - verification
+  - logic
+eligibility:
+  - students
+  - phd
+  - everyone
+recurring: annual
+dates_tba: true
+location: New Delhi
+country: India
+application_deadline_tba: true
+description: >-
+  An IARCS winter school on SAT and SMT solvers and their applications, with
+  tutorials by solver researchers and developers, invited talks, and short
+  presentations. Aimed at students, academics, and industry engineers.
+url: https://sat-smt.in
+source: https://aalok-thakkar.github.io/
+last_verified: 2026-10-03
+notes: >-
+  Announced as a pre-conference workshop of FSTTCS 2026, whose pre-conference
+  days are 14 and 15 December at IIT Delhi. The school's site still shows the
+  2025 edition, so exact dates and registration are unconfirmed.
