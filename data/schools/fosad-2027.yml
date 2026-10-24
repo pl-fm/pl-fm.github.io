@@ -1,0 +1,25 @@
+id: fosad-2027
+name: International School on Foundations of Security Analysis and Design
+acronym: FOSAD 2027
+type: summer-school
+areas:
+  - security
+  - formal-methods
+  - verification
+eligibility:
+  - phd
+  - postdocs
+  - everyone
+recurring: annual
+start_date: 2027-08-30
+end_date: 2027-09-03
+location: Bertinoro
+country: Italy
+application_deadline_tba: true
+description: >-
+  A spectrum of current research in the foundations of cyber security, for
+  graduate students and young researchers from academia or industry who intend
+  to approach the field.
+url: https://sites.google.com/uniurb.it/fosad
+source: https://sites.google.com/uniurb.it/fosad
+last_verified: 2026-10-24

@@ -1,0 +1,21 @@
+id: dare-2027
+name: ACM Europe Summer School on Distributed and Replicated Environments
+acronym: DARE 2027
+type: summer-school
+areas:
+  - concurrency
+  - verification
+  - programming-languages
+recurring: annual
+dates_tba: true
+application_deadline_tba: true
+description: >-
+  Consistency models, replicated data types, programming models for distributed
+  systems, verification of consistency, testing and debugging, and Byzantine
+  fault tolerance, run as an Erasmus+ Blended Intensive Programme.
+url: https://dare-milan.github.io/
+source: https://dare-milan.github.io/
+last_verified: 2026-10-24
+notes: >-
+  Not yet announced. The 2026 edition ran in Milan from 31 August to 4
+  September.

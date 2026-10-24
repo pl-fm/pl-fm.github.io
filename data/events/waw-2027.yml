@@ -1,0 +1,23 @@
+id: waw-2027
+name: WebAssembly Workshop
+acronym: WAW 2027
+type: workshop
+areas:
+  - programming-languages
+  - semantics
+  - compilers
+deadline: 2026-11-03T23:59:00
+deadline_timezone: AoE
+start_date: 2027-01-16
+end_date: 2027-01-16
+location: Mexico City
+country: Mexico
+colocated_with: POPL 2027
+description: >-
+  A venue to brainstorm and discuss ongoing WebAssembly research, and to learn
+  about the successes and challenges of WebAssembly's design and specification
+  from an industrial viewpoint.
+url: https://popl27.sigplan.org/home/waw-2027
+source: https://popl27.sigplan.org/home/waw-2027
+last_verified: 2026-10-24
+notes: No formal proceedings. A limited number of remote talks are supported.

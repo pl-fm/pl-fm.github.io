@@ -1,0 +1,22 @@
+id: vtsa-2027
+name: Summer School on Verification Technology, Systems and Applications
+acronym: VTSA 2027
+type: summer-school
+areas:
+  - verification
+  - logic
+  - model-checking
+  - theorem-proving
+recurring: annual
+dates_tba: true
+application_deadline_tba: true
+description: >-
+  Free week of lectures on verification technology, organised by the University
+  of Liège, the University of Luxembourg, Inria Nancy, and the Max Planck
+  Institute for Informatics.
+url: https://conferences.mpi-inf.mpg.de/rg1/vtsa26/
+source: https://conferences.mpi-inf.mpg.de/rg1/vtsa26/
+last_verified: 2026-10-24
+notes: >-
+  Not yet announced; the link points to the 2026 edition, whose applications
+  were due 5 July. Attendance is free.

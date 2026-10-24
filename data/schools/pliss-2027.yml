@@ -1,0 +1,25 @@
+id: pliss-2027
+name: Programming Language Implementation Summer School
+acronym: PLISS 2027
+type: summer-school
+areas:
+  - programming-languages
+  - compilers
+eligibility:
+  - phd
+  - students
+  - everyone
+funding: Financial support for students in need
+recurring: annual
+start_date: 2027-05-16
+end_date: 2027-05-22
+location: Bertinoro
+country: Italy
+application_deadline_tba: true
+description: >-
+  9th edition. Lectures, discussion of current research and practice, and
+  mentoring sessions that prepare students for advanced study in programming
+  language implementation.
+url: https://pliss.org/2027/
+source: https://pliss.org/2027/
+last_verified: 2026-10-24

@@ -1,0 +1,25 @@
+id: flolac-2027
+name: Formosan Summer School on Logic, Language, and Computation
+acronym: FLOLAC 2027
+type: summer-school
+areas:
+  - functional-programming
+  - logic
+  - types
+eligibility:
+  - students
+recurring: annual
+dates_tba: true
+location: Taipei
+country: Taiwan
+application_deadline_tba: true
+description: >-
+  An intensive course on functional programming, logic, and the λ-calculus,
+  taught at National Taiwan University, with a special lecture on a further
+  topic.
+url: https://flolac.iis.sinica.edu.tw/
+source: https://flolac.iis.sinica.edu.tw/en/2026/
+last_verified: 2026-10-24
+notes: >-
+  Not yet announced. In 2026 the external-student registration window lasted
+  only two days, 2 to 3 June, so watch the site from late spring.

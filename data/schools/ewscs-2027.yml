@@ -1,0 +1,24 @@
+id: ewscs-2027
+name: Estonian Winter School in Computer Science
+acronym: EWSCS 2027
+type: winter-school
+areas:
+  - logic
+  - semantics
+  - concurrency
+eligibility:
+  - phd
+  - students
+  - everyone
+recurring: annual
+dates_tba: true
+country: Estonia
+application_deadline_tba: true
+description: >-
+  A general theoretical computer science school organised by Tallinn University
+  of Technology, with four short courses spanning algorithms and complexity as
+  well as logic and semantics.
+url: https://cs.ioc.ee/ewscs/
+source: https://taltech.ee/en/events/ewscs-winter-school-2026
+last_verified: 2026-10-24
+notes: Not yet announced. The 2026 school ran from 2 to 5 March.

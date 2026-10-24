@@ -11,7 +11,8 @@ eligibility:
   - phd
   - everyone
 recurring: annual
-dates_tba: true
+start_date: 2026-12-14
+end_date: 2026-12-15
 location: New Delhi
 country: India
 application_deadline_tba: true
@@ -20,9 +21,5 @@ description: >-
   tutorials by solver researchers and developers, invited talks, and short
   presentations. Aimed at students, academics, and industry engineers.
 url: https://sat-smt.in
-source: https://sat-smt.in
-last_verified: 2026-10-03
-notes: >-
-  Announced as a pre-conference workshop of FSTTCS 2026, whose pre-conference
-  days are 14 and 15 December at IIT Delhi. The school's site still shows the
-  2025 edition, so exact dates and registration are unconfirmed.
+source: https://sat-smt-org.gitlab.io
+last_verified: 2026-10-24

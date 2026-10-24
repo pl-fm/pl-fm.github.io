@@ -1,0 +1,26 @@
+id: splv-2027
+name: Scottish Programming Languages and Verification Summer School
+acronym: SPLV 2027
+type: summer-school
+areas:
+  - programming-languages
+  - verification
+  - types
+  - semantics
+eligibility:
+  - phd
+recurring: annual
+dates_tba: true
+location: Edinburgh
+country: United Kingdom
+application_deadline_tba: true
+description: >-
+  Core and advanced classes on the principles needed to use or design new
+  languages and to verify program correctness, run jointly by the Universities
+  of Edinburgh, Glasgow, Heriot-Watt, Strathclyde, and St Andrews.
+url: https://spli.scot/splv/
+source: https://spli.scot/splv/
+last_verified: 2026-10-24
+notes: >-
+  Dates not yet announced. The 2026 school ran in early August, with early
+  registration closing on 30 June.

@@ -7,7 +7,7 @@ areas:
   - formal-methods
   - theorem-proving
   - programming-languages
-deadline: 2026-10-07T23:59:00
+deadline: 2026-10-28T23:59:00
 deadline_timezone: AoE
 start_date: 2027-01-10
 end_date: 2027-01-10
@@ -21,8 +21,7 @@ description: >-
   verification, and verification in teaching.
 url: https://popl27.sigplan.org/home/wave-2027
 source: https://popl27.sigplan.org/home/wave-2027
-last_verified: 2026-09-13
+last_verified: 2026-10-24
 notes: >-
-  Extended abstracts of two to six pages in ACM SIGPLAN two-column format,
-  submitted via HotCRP. The POPL 2027 dates table now agrees with the workshop
-  page on the 7 October 2026 deadline.
+  The deadline was extended twice, from 7 October to 28 October 2026. No formal
+  proceedings.
