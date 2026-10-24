@@ -48,12 +48,19 @@ function eventJsonLd(entry: Entry, now: number): JsonLd | null {
 
   const name = entry.acronym ? `${entry.acronym}: ${entry.name}` : entry.name;
   const areas = entry.areas.map((a) => AREA_LABELS[a] ?? a);
+  // Submission and application deadlines are the dates most readers come
+  // for. schema.org has no field for them, so they go in the description.
+  const deadline = deadlineDate(entry, now);
+  const deadlineLabel =
+    entry.collection === 'schools' ? 'Application deadline' : 'Submission deadline';
   const description = [
     `${kindLabel(entry)} on ${areas.join(', ')}.`,
+    deadline ? `${deadlineLabel}: ${dayKey(deadline) ?? deadline}.` : '',
     entry.description ?? '',
   ]
     .filter(Boolean)
     .join(' ');
+  const officialUrl = entry.url ?? entry.source;
 
   const item: JsonLd = {
     '@type': entry.collection === 'schools' ? 'EducationEvent' : 'Event',
@@ -61,7 +68,15 @@ function eventJsonLd(entry: Entry, now: number): JsonLd | null {
     startDate: start,
     endDate: end,
     description,
-    url: entry.url ?? entry.source,
+    url: officialUrl,
+    image: [new URL(url('/og.png'), SITE.url).href],
+    // We do not track organising bodies, so the event's own organisers stand
+    // in, pointed at the official page.
+    organizer: {
+      '@type': 'Organization',
+      name: `${entry.acronym ?? entry.name} organisers`,
+      url: officialUrl,
+    },
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
     keywords: [kindLabel(entry), ...areas].join(', '),
@@ -69,21 +84,6 @@ function eventJsonLd(entry: Entry, now: number): JsonLd | null {
 
   const location = place(entry);
   if (location) item.location = location;
-
-  const deadline = deadlineDate(entry, now);
-  if (deadline) {
-    // Submission and application deadlines are the dates most readers come
-    // for. schema.org has no dedicated field, so they ride along as an offer
-    // whose availability ends at the deadline.
-    item.offers = {
-      '@type': 'Offer',
-      name:
-        entry.collection === 'schools' ? 'Application deadline' : 'Submission deadline',
-      url: entry.url ?? entry.source,
-      availability: 'https://schema.org/InStock',
-      availabilityEnds: deadline,
-    };
-  }
 
   return item;
 }
