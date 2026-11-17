@@ -13,10 +13,8 @@ end_date: 2027-04-09
 location: Gwangju
 country: South Korea
 description: >-
-  34th year of the Programming Languages track at the 42nd ACM/SIGAPP SAC, on
-  the implementation and application of programming languages: compilation,
-  DSLs, formal semantics, garbage collection, and verification of core
-  languages.
+  The Programming Languages track of ACM SAC, on the implementation and
+  application of programming languages: compilation, DSLs, formal semantics,
+  garbage collection, and verification.
 url: https://acmsac.wp.txstate.edu/
-source: https://acmsac.wp.txstate.edu/
-last_verified: 2026-10-24
+last_verified: 2026-11-17

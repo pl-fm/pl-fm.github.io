@@ -1,0 +1,19 @@
+id: mplr-2027
+name: International Conference on Managed Programming Languages and Runtimes
+acronym: MPLR 2027
+type: conference
+areas:
+  - programming-languages
+  - compilers
+deadlines:
+  - label: Paper
+    date: 2027-06-11T23:59:00
+    timezone: AoE
+    tba: true
+dates_tba: true
+location: Prague
+country: Czechia
+colocated_with: SPLASH 2027
+description: On the design, implementation, and optimisation of managed languages and their runtimes.
+url: https://2027.splashcon.org/home/mplr-2027
+last_verified: 2026-11-17

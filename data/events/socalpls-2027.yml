@@ -1,0 +1,18 @@
+id: socalpls-2027
+name: Southern California Programming Languages and Systems Workshop
+acronym: SoCal PLS 2027
+type: community-meeting
+areas:
+  - programming-languages
+  - compilers
+deadline_tba: true
+start_date: 2027-02-05
+end_date: 2027-02-05
+location: Los Angeles, California
+country: United States
+description: >-
+  An informal gathering of programming languages and systems researchers in
+  Southern California, with talks and posters on new or published work; held
+  at UCLA.
+url: https://socalpls.github.io
+last_verified: 2026-11-17

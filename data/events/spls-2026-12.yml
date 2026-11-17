@@ -1,0 +1,21 @@
+id: spls-2026-12
+name: Scottish Programming Languages Seminar
+acronym: SPLS December 2026
+type: community-meeting
+areas:
+  - programming-languages
+  - types
+deadlines:
+  - label: Talk offers
+    date: 2026-11-11
+    note: By email to the organising committee
+start_date: 2026-12-02
+end_date: 2026-12-02
+location: Glasgow
+country: United Kingdom
+description: >-
+  An informal day of talks on all aspects of programming languages, held every
+  few months somewhere in Scotland; this meeting is at the University of
+  Glasgow.
+url: https://spli.scot/spls/meetings/2026/december
+last_verified: 2026-11-17

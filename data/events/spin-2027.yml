@@ -1,0 +1,25 @@
+id: spin-2027
+name: International Symposium on Model Checking of Software
+acronym: SPIN 2027
+type: symposium
+areas:
+  - model-checking
+  - verification
+  - formal-methods
+deadlines:
+  - label: Abstract
+    date: 2027-01-21T23:59:00
+    timezone: AoE
+  - label: Paper
+    date: 2027-01-28T23:59:00
+    timezone: AoE
+start_date: 2027-04-14
+end_date: 2027-04-15
+location: Copenhagen
+country: Denmark
+colocated_with: ETAPS 2027
+description: >-
+  Model checking, automated verification and testing of software and
+  concurrent systems, and the tools that support them.
+url: https://spin-web.github.io/SPIN2027/
+last_verified: 2026-11-17

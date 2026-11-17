@@ -1,0 +1,20 @@
+id: up-2027
+name: Workshop on Understanding Proofs
+acronym: UP 2027
+type: workshop
+areas:
+  - theorem-proving
+  - formal-methods
+  - verification
+deadline: 2026-12-18
+start_date: 2027-04-10
+end_date: 2027-04-10
+location: Copenhagen
+country: Denmark
+colocated_with: ETAPS 2027
+description: >-
+  Making formal proofs, including AI-generated ones, understandable to humans:
+  proof explanation, exploration, visualisation, abstraction, and extracting
+  the system knowledge they encode.
+url: http://www0.cs.ucl.ac.uk/staff/b.cook/understanding_2027.html
+last_verified: 2026-11-17

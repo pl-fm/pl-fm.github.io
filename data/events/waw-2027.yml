@@ -6,7 +6,7 @@ areas:
   - programming-languages
   - semantics
   - compilers
-deadline: 2026-11-03T23:59:00
+deadline: 2026-11-06T23:59:00
 deadline_timezone: AoE
 start_date: 2027-01-16
 end_date: 2027-01-16
@@ -18,6 +18,5 @@ description: >-
   about the successes and challenges of WebAssembly's design and specification
   from an industrial viewpoint.
 url: https://popl27.sigplan.org/home/waw-2027
-source: https://popl27.sigplan.org/home/waw-2027
-last_verified: 2026-10-24
-notes: No formal proceedings. A limited number of remote talks are supported.
+last_verified: 2026-11-17
+notes: Non-archival; some remote talks are possible.

@@ -92,7 +92,9 @@ function awaitingDeadline(entry: Entry): boolean {
 
 export function isArchived(entry: Entry, now: number): boolean {
   if (isPastEvent(entry, now)) return true;
-  if (entry.start_date) return false;
+  // An event whose dates are not out yet has not happened, even when all its
+  // deadlines have passed.
+  if (entry.start_date || entry.dates_tba) return false;
   if (awaitingDeadline(entry)) return false;
   if (entry.collection === 'schools') {
     const instant = schoolDeadlineInstant(entry);

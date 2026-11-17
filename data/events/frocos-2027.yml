@@ -13,8 +13,7 @@ location: Marseille
 country: France
 colocated_with: TABLEAUX 2027
 description: >-
-  17th edition, on combining and integrating logics, decision procedures,
-  solvers, and reasoning systems, including SMT and combinations of theories.
+  On combining logics, decision procedures, solvers, and reasoning systems,
+  including SMT and combinations of theories.
 url: https://tableaux-frocos27.lis-lab.fr/frocos/
-source: https://tableaux-frocos27.lis-lab.fr/frocos/
-last_verified: 2026-10-03
+last_verified: 2026-11-17

@@ -1,0 +1,20 @@
+id: lmw-2027
+name: Logic Mentoring Workshop
+acronym: LMW 2027
+type: mentoring
+areas:
+  - logic
+  - semantics
+eligibility:
+  - students
+  - phd
+start_date: 2027-01-25
+end_date: 2027-01-25
+location: Brighton
+country: United Kingdom
+recurring: annual
+description: >-
+  Introduces young researchers to the technical and practical aspects of a
+  career in logic research, with talks and panels; co-located with CSL 2027.
+url: https://logic-mentoring-workshop.github.io/csl27/
+last_verified: 2026-11-17

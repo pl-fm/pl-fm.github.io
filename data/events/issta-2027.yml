@@ -1,0 +1,21 @@
+id: issta-2027
+name: ACM SIGSOFT International Symposium on Software Testing and Analysis
+acronym: ISSTA 2027
+type: symposium
+areas:
+  - program-analysis
+  - verification
+deadlines:
+  - label: Abstract
+    date: 2027-01-08T23:59:00
+    timezone: AoE
+    note: Mandatory
+  - label: Paper
+    date: 2027-01-11T23:59:00
+    timezone: AoE
+start_date: 2027-09-07
+end_date: 2027-09-10
+location: Singapore
+country: Singapore
+url: https://conf.researchr.org/home/issta-2027
+last_verified: 2026-11-17

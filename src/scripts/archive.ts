@@ -18,6 +18,20 @@ export function initArchive(): void {
     if (count) count.textContent = view.count;
   }
 
+  // The built page lists the years archived on the day it was built. Entries
+  // move into the archive as their dates pass, so a stale page may be missing
+  // a year.
+  function rebuildYears(): void {
+    if (!group) return;
+    const { years } = archiveView(entries(), now(), 'all');
+    const button = (value: string, label: string, pressed: boolean): string =>
+      `<button class="filter" type="button" data-value="${value}" aria-pressed="${pressed}">${label}</button>`;
+    group.innerHTML = [
+      button('all', 'All', true),
+      ...years.map((year) => button(String(year), String(year), false)),
+    ].join('');
+  }
+
   group?.addEventListener('click', (event) => {
     const button = (event.target as HTMLElement | null)?.closest<HTMLElement>(
       'button[data-value]',
@@ -30,5 +44,8 @@ export function initArchive(): void {
     render(value === 'all' ? 'all' : Number(value));
   });
 
-  if (isStale(root)) render('all');
+  if (isStale(root)) {
+    rebuildYears();
+    render('all');
+  }
 }

@@ -14,10 +14,7 @@ end_date: 2026-11-10
 location: Bariloche
 country: Argentina
 description: >-
-  Three intensive courses on formal methods for building mission-critical
-  software in the satellite, aerospace, and nuclear sectors, taught by
-  international researchers in formal methods and software engineering.
+  Three intensive courses on formal methods for mission-critical software in the
+  satellite, aerospace, and nuclear sectors.
 url: https://ictac2026.github.io/
-source: https://ictac2026.github.io/
 last_verified: 2026-10-24
-notes: Registration has closed.

@@ -15,11 +15,10 @@ start_date: 2026-12-14
 end_date: 2026-12-15
 location: New Delhi
 country: India
-application_deadline_tba: true
 description: >-
   An IARCS winter school on SAT and SMT solvers and their applications, with
-  tutorials by solver researchers and developers, invited talks, and short
-  presentations. Aimed at students, academics, and industry engineers.
+  tutorials, invited talks, posters, and short talks, co-located with FSTTCS
+  2026 at IIT Delhi.
 url: https://sat-smt.in
-source: https://sat-smt-org.gitlab.io
-last_verified: 2026-10-24
+last_verified: 2026-11-17
+notes: Register through FSTTCS 2026.

@@ -1,0 +1,28 @@
+id: fics-2027
+name: International Workshop on Fixed Points in Computer Science
+acronym: FICS 2027
+type: workshop
+areas:
+  - logic
+  - semantics
+  - verification
+  - types
+deadlines:
+  - label: Abstract registration
+    date: 2026-11-23T23:59:00
+    timezone: AoE
+  - label: Paper
+    date: 2026-11-30T23:59:00
+    timezone: AoE
+start_date: 2027-01-25
+end_date: 2027-01-26
+location: Brighton
+country: United Kingdom
+colocated_with: CSL 2027
+description: >-
+  Fixed points in algebra, coalgebra, verification and logic: the mu-calculus,
+  programming language semantics, process algebras, type theory, and theorem
+  proving.
+url: https://fics2027.codeberg.page/
+last_verified: 2026-11-17
+notes: In-person presentation is required; published work is welcome.

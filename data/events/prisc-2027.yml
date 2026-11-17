@@ -15,10 +15,9 @@ location: Mexico City
 country: Mexico
 colocated_with: POPL 2027
 description: >-
-  11th edition. An informal workshop, without published proceedings, on
-  compilers that preserve security properties: attacker models, secure
+  Compilers that preserve security properties: attacker models, secure
   compilation criteria, enforcement mechanisms, language interoperability, and
-  formal verification of compilation chains.
+  verified compilation chains.
 url: https://popl27.sigplan.org/home/prisc-2027
-source: https://popl27.sigplan.org/home/prisc-2027
-last_verified: 2026-10-24
+last_verified: 2026-11-17
+notes: Non-archival.

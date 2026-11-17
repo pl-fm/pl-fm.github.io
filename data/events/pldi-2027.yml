@@ -12,6 +12,6 @@ start_date: 2027-06-05
 end_date: 2027-06-11
 location: Atlanta, Georgia
 country: United States
-url: https://conf.researchr.org/home/pldi-2027
-source: https://conf.researchr.org/track/pldi-2027/pldi-2027-papers
-last_verified: 2026-10-03
+colocated_with: FCRC 2027
+url: https://pldi27.sigplan.org/
+last_verified: 2026-11-17

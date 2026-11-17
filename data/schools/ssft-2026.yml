@@ -18,9 +18,7 @@ application_deadline: 2026-03-31
 recurring: annual
 funding: NSF funding covers travel, food, and lodging for selected US-based students; others pay about $150 a day
 description: >-
-  15th edition, organised by SRI. Hands-on courses on Tamarin, PVS, Verus,
-  quantum compilers, and privacy-preserving reasoning, preceded by a two-day
-  background course on logic and formal techniques.
+  Hands-on courses on Tamarin, PVS, Verus, quantum compilers, and
+  privacy-preserving reasoning, organised by SRI.
 url: https://ssft-sri.github.io/
-source: https://www.sigplan.org/announce/2026-02-13-ssft-2026/
 last_verified: 2026-10-03

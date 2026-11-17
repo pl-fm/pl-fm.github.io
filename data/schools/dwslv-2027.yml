@@ -1,0 +1,25 @@
+id: dwslv-2027
+name: Dutch Winter School on Logic and Verification
+acronym: DWSLV 2027
+type: winter-school
+areas:
+  - logic
+  - verification
+  - types
+  - concurrency
+eligibility:
+  - phd
+  - students
+  - everyone
+start_date: 2027-01-18
+end_date: 2027-01-22
+location: Leiden
+country: Netherlands
+application_deadline: 2027-01-07
+description: >-
+  Foundational and advanced courses on proof formalisation, cyclic proofs,
+  concurrency, coalgebra, guarded type theory, runtime verification, and
+  behavioural types, at Leiden University.
+url: https://www.cyclic-structures.nl/winter-school/2027.html
+last_verified: 2026-11-17
+notes: Early registration closes on 14 December 2026.

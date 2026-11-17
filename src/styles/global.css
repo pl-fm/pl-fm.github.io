@@ -1135,3 +1135,19 @@ main {
     color: #000;
   }
 }
+
+/* The same deadline in the reader's time zone, filled in by the browser. */
+.local-time {
+  display: block;
+  font-size: var(--fs-meta);
+  color: var(--text-faint);
+}
+
+.local-time:empty {
+  display: none;
+}
+
+.detail-rounds .local-time {
+  display: inline;
+  margin-left: var(--sp-2);
+}

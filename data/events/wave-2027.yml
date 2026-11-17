@@ -15,13 +15,9 @@ location: Mexico City
 country: Mexico
 colocated_with: POPL 2027
 description: >-
-  4th edition. Brings together developers and users of verification-aware
-  languages and auto-active verifiers such as Dafny, SPARK, F*, Why3, Viper,
-  and Whiley, covering SMT automation, industry-scale verification, AI for
-  verification, and verification in teaching.
+  Developers and users of verification-aware languages and auto-active verifiers
+  such as Dafny, SPARK, F*, Why3 and Viper: SMT automation, industrial-scale
+  verification, AI for verification, and teaching.
 url: https://popl27.sigplan.org/home/wave-2027
-source: https://popl27.sigplan.org/home/wave-2027
-last_verified: 2026-10-24
-notes: >-
-  The deadline was extended twice, from 7 October to 28 October 2026. No formal
-  proceedings.
+last_verified: 2026-11-17
+notes: Non-archival.

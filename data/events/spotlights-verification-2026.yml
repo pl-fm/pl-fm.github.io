@@ -7,20 +7,16 @@ areas:
   - formal-methods
   - model-checking
   - program-analysis
-deadline: 2026-10-08
-deadlines:
-  - label: Abstract
-    date: 2026-10-08
-    note: One to two pages, at most one submission per speaker
+deadline: 2026-10-15T23:59:00
+deadline_timezone: AoE
 start_date: 2026-12-01
 end_date: 2026-12-01
 location: Hong Kong
 country: China
 colocated_with: ATVA 2026
 description: >-
-  Short talks of about ten minutes across the theory and practice of
-  computer-aided formal analysis, modelled on Highlights. Recently published,
-  forthcoming, and ongoing work are all welcome.
-url: https://conf.researchr.org/track/aplas-atva-2026/atva-2026
-source: https://conf.researchr.org/track/aplas-atva-2026/atva-2026
-last_verified: 2026-10-24
+  Ten-minute talks on recent, forthcoming, or ongoing work in computer-aided
+  formal analysis, modelled on Highlights.
+url: https://conf.researchr.org/track/aplas-atva-2026/atva-2026#Spotlights-of-Verification-Call-for-Presentations
+last_verified: 2026-11-17
+notes: Non-archival.

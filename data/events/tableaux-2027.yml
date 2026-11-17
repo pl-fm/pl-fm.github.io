@@ -14,8 +14,7 @@ location: Marseille
 country: France
 colocated_with: FroCoS 2027
 description: >-
-  36th edition, on automated reasoning with analytic tableaux, sequent
-  calculi, and related proof methods for classical and non-classical logics.
+  On automated reasoning with analytic tableaux, sequent calculi, and related
+  proof methods for classical and non-classical logics.
 url: https://tableaux-frocos27.lis-lab.fr/tableaux/
-source: https://tableaux-frocos27.lis-lab.fr/tableaux/
-last_verified: 2026-10-03
+last_verified: 2026-11-17

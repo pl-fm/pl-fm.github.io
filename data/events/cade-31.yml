@@ -7,9 +7,6 @@ areas:
   - logic
   - formal-methods
 deadlines:
-  - label: Workshop and tutorial proposals
-    date: 2026-12-04
-    note: Up to three pages, by email to the workshop chair
   - label: Abstract
     date: 2027-02-15
   - label: Paper
@@ -20,6 +17,4 @@ location: Nijmegen
 country: Netherlands
 colocated_with: FSCD 2027
 url: https://fscd-cade.science.ru.nl/
-source: https://fscd-cade.science.ru.nl/calls/papers-cade
-last_verified: 2026-10-03
-notes: No time zone is given for the deadlines.
+last_verified: 2026-11-17

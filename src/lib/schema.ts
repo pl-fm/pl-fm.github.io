@@ -56,9 +56,8 @@ const base = {
   name: z.string().min(2).max(200),
   acronym: z.string().min(1).max(60).optional(),
   areas,
-  url: url.optional(),
+  url,
   description: z.string().max(400).optional(),
-  source: url,
   last_verified: dateString,
   notes: z.string().max(400).optional(),
 };

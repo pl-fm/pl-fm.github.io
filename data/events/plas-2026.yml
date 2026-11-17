@@ -13,9 +13,8 @@ location: The Hague
 country: Netherlands
 colocated_with: CCS 2026
 description: >-
-  21st edition, on programming language and program analysis techniques for
-  software security, covering side channels, isolation, information flow,
-  fuzzing, smart contracts, and protocol verification.
+  Programming language and program analysis techniques for software security,
+  from information flow and isolation to side channels and protocol
+  verification.
 url: https://plas26.github.io/
-source: https://plas26.github.io/
-last_verified: 2026-08-02
+last_verified: 2026-11-17

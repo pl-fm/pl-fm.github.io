@@ -59,9 +59,26 @@ function locationOf(entry: Entry): string | null {
 }
 
 function websiteLink(entry: Entry): string {
-  const href = safeUrl(entry.url) ?? safeUrl(entry.source);
+  const href = safeUrl(entry.url);
   if (!href) return '';
   return `<a class="row-link" href="${escapeHtml(href)}">Website <span aria-hidden="true">&rarr;</span></a>`;
+}
+
+/** A deadline as shown to readers, flagging dates that are only estimates. */
+export function occurrenceDate(occurrence: DeadlineOccurrence): string {
+  const date = formatDeadline(occurrence.date, occurrence.timezone);
+  return occurrence.tentative ? `${date} (estimated)` : date;
+}
+
+/**
+ * A placeholder the browser fills with the deadline in the reader's own time
+ * zone (see scripts/chrome.ts). Only for deadlines whose time zone is known.
+ */
+export function localTime(instant: number | null | undefined, timezone?: string): string {
+  if (instant === null || instant === undefined || !timezone || timezone === 'local') {
+    return '';
+  }
+  return `<span class="local-time" data-instant="${instant}"></span>`;
 }
 
 interface RowParts {
@@ -72,6 +89,8 @@ interface RowParts {
   date?: string | null;
   dateClass?: string;
   hint?: string | null;
+  /** The deadline instant, shown again in the reader's time zone. */
+  local?: string;
   meta: string;
   note?: string | null;
 }
@@ -85,7 +104,7 @@ function row(parts: RowParts): string {
     '<div class="row-head">',
     `<h3 class="row-title">${escapeHtml(title)}</h3>`,
     date
-      ? `<p class="row-date${dateClass}">${escapeHtml(date)}${
+      ? `<p class="row-date${dateClass}">${escapeHtml(date)}${parts.local ?? ''}${
           hint ? `<span class="row-hint">${escapeHtml(hint)}</span>` : ''
         }</p>`
       : '',
@@ -120,12 +139,13 @@ export function deadlineRow(
     title: entry.acronym ?? entry.name,
     subtitle: entry.acronym ? entry.name : null,
     date: next
-      ? `${label}${formatDeadline(next.date, next.timezone)}`
+      ? `${label}${occurrenceDate(next)}`
       : deadlineIsTba(entry)
         ? 'Deadline TBA'
         : null,
     dateClass: next ? '' : 'is-tba',
     hint: hint || null,
+    local: next ? localTime(next.instant, next.timezone) : '',
     meta: join([
       EVENT_TYPE_LABELS[entry.type],
       ...areaNames(entry),
@@ -142,7 +162,7 @@ export function eventRow(entry: EventEntry, now: number): string {
     : formatDateRange(entry.start_date, entry.end_date);
 
   const submission = next
-    ? `Submission deadline: ${formatDeadline(next.date, next.timezone)}`
+    ? `${next.label ? `Next deadline (${next.label})` : 'Submission deadline'}: ${occurrenceDate(next)}`
     : deadlineIsTba(entry)
       ? 'Submission deadline: TBA'
       : null;
@@ -195,6 +215,9 @@ export function schoolRow(
     dateClass: date?.endsWith('TBA') ? 'is-tba' : '',
     hint:
       showApplication && instant !== null ? relativeDeadline(instant, now) : null,
+    local: showApplication
+      ? localTime(instant, entry.application_deadline_timezone)
+      : '',
     meta: join([
       SCHOOL_TYPE_LABELS[entry.type],
       ...areaNames(entry),
@@ -270,13 +293,19 @@ export function detail(entry: Entry, now: number): string {
 
   if (entry.collection === 'schools') {
     rows.push(
-      textField(
+      field(
         'Applications close',
         entry.application_deadline
-          ? formatDeadline(
-              entry.application_deadline,
-              entry.application_deadline_timezone,
-            )
+          ? escapeHtml(
+              formatDeadline(
+                entry.application_deadline,
+                entry.application_deadline_timezone,
+              ),
+            ) +
+              localTime(
+                schoolDeadlineInstant(entry),
+                entry.application_deadline_timezone,
+              )
           : entry.application_deadline_tba
             ? 'TBA'
             : null,
@@ -302,8 +331,8 @@ export function detail(entry: Entry, now: number): string {
               ? ' <span class="detail-passed">passed</span>'
               : '';
           return `<li><span class="detail-round">${escapeHtml(label)}</span> ${escapeHtml(
-            formatDeadline(occurrence.date, occurrence.timezone),
-          )}${passed}</li>`;
+            occurrenceDate(occurrence),
+          )}${localTime(occurrence.instant, occurrence.timezone)}${passed}</li>`;
         })
         .join('');
       rows.push(field('Deadlines', `<ul class="detail-rounds">${items}</ul>`));
@@ -315,7 +344,6 @@ export function detail(entry: Entry, now: number): string {
   rows.push(
     textField('Areas', areaNames(entry).join(', ')),
     linkField('Website', entry.url),
-    linkField('Source', entry.source),
     textField('Last verified', formatDate(entry.last_verified)),
     textField('Notes', entry.notes),
   );

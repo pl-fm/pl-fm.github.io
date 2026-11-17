@@ -5,19 +5,15 @@ type: conference
 areas:
   - programming-languages
   - semantics
-deadline: 2026-10-01
 deadlines:
-  - label: Papers, Volume 12 Issue 1
+  - label: Paper
     date: 2026-10-01
-    note: Last journal round feeding the 2027 conference
+    note: Journal Volume 12 Issue 1, the last round for the 2027 conference
 start_date: 2027-03-15
 end_date: 2027-03-19
 location: Kyoto
 country: Japan
 url: https://2027.programming-conference.org/
-source: https://2027.programming-conference.org/track/programming-2027-papers
-last_verified: 2026-09-13
+last_verified: 2026-11-17
 notes: >-
-  Papers go through the submission cycles of The Art, Science, and Engineering
-  of Programming journal; the 1 October 2026 round was the last for the 2027
-  conference.
+  Papers go through The Art, Science, and Engineering of Programming journal.

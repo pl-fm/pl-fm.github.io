@@ -6,7 +6,6 @@ areas:
   - logic
   - theorem-proving
   - programming-languages
-deadline: 2026-08-17
 deadlines:
   - label: Short presentation papers
     date: 2026-08-17
@@ -18,5 +17,4 @@ description: >-
   Held at the Anargyrios and Korgialenios School of Spetses. Covers automated
   reasoning, computational logic, and programming languages.
 url: https://easychair.org/smart-program/LPAR-26/
-source: https://easychair.org/smart-program/LPAR-26/
 last_verified: 2026-10-24

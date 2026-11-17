@@ -6,14 +6,14 @@ areas:
   - functional-programming
   - programming-languages
   - types
-deadline: 2027-02-25
+deadline: 2027-02-25T23:59:00
+deadline_timezone: AoE
 start_date: 2027-09-26
 end_date: 2027-10-01
 location: Nijmegen
 country: Netherlands
 description: >-
-  Held at the Van der Valk Hotel Nijmegen. The main conference runs Monday to
-  Wednesday, with co-located events on the Sunday, Thursday, and Friday.
+  The main conference runs Monday to Wednesday, with co-located events on the
+  Sunday, Thursday, and Friday.
 url: https://icfp27.sigplan.org/
-source: https://icfp27.sigplan.org/dates
-last_verified: 2026-09-13
+last_verified: 2026-11-17

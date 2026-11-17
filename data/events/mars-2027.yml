@@ -6,17 +6,16 @@ areas:
   - formal-methods
   - model-checking
   - concurrency
-deadline: 2027-01-22
+deadline: 2027-01-22T23:59:00
+deadline_timezone: AoE
 start_date: 2027-04-11
 end_date: 2027-04-11
 location: Copenhagen
 country: Denmark
 colocated_with: ETAPS 2027
 description: >-
-  Eighth edition. Formal models of real systems such as distributed and
-  cyber-physical systems, emphasising the modelling itself and large case
-  studies rather than new verification techniques.
+  Formal models of real systems such as distributed and cyber-physical
+  systems, emphasising the modelling itself and large case studies rather than
+  new verification techniques.
 url: https://mars-workshop.org/mars2027/
-source: https://mars-workshop.org/mars2027/
-last_verified: 2026-10-03
-notes: No cut-off time is given for the deadline.
+last_verified: 2026-11-17

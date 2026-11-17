@@ -11,9 +11,7 @@ end_date: 2026-10-03
 location: Bengaluru
 country: India
 description: >-
-  Third edition, an iPLAN event on compiler design, implementation, and
-  optimisation, including compilers for AI and ML, domain-specific languages,
-  and emerging hardware, with research and practice tracks.
+  An iPLAN event on compiler design, implementation, and optimisation, including
+  compilers for AI and ML and domain-specific languages.
 url: https://compilertech.org/
-source: https://mail.cmi.ac.in/mailman3/hyperkitty/list/fmindia@cmi.ac.in/thread/S4AKGPW4IQTWQWESYBZSCGMBIXOVVDUN/
 last_verified: 2026-10-03

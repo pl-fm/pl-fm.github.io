@@ -90,6 +90,10 @@ export function daysInMonth(year: number, month: number): number {
   return new Date(Date.UTC(year, month, 0)).getUTCDate();
 }
 
+/**
+ * Minutes to add to a wall-clock time in `timezone` to get UTC. AoE (UTC-12)
+ * is +720; UTC+5:30 is -330.
+ */
 export function offsetMinutes(timezone: string | undefined): number {
   if (!timezone) return 0;
   const tz = timezone.trim();
@@ -99,7 +103,7 @@ export function offsetMinutes(timezone: string | undefined): number {
   if (!match) return 0;
   const [, sign, hours, minutes] = match;
   const total = Number(hours) * 60 + Number(minutes ?? 0);
-  return sign === '+' ? total : -total;
+  return sign === '+' ? -total : total;
 }
 
 export function instantOf(
@@ -161,7 +165,8 @@ export function formatDeadline(
   const date = formatDate(value);
   if (!date) return '';
   const time = formatTime(value);
-  if (!time) return date;
+  // A date-only deadline in a named zone closes at the end of that day there.
+  if (!time) return timezone && timezone !== 'local' ? `${date} · ${timezone}` : date;
   return `${date} · ${time}${timezone ? ` ${timezone}` : ''}`;
 }
 

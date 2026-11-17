@@ -6,8 +6,6 @@ areas:
   - programming-languages
   - types
   - program-analysis
-deadline: 2026-11-19T23:59:00
-deadline_timezone: AoE
 deadlines:
   - label: Round 1
     date: 2026-11-19T23:59:00
@@ -20,5 +18,4 @@ end_date: 2027-07-02
 location: Turin
 country: Italy
 url: https://2027.ecoop.org/
-source: https://2027.ecoop.org/dates
-last_verified: 2026-09-13
+last_verified: 2026-11-17

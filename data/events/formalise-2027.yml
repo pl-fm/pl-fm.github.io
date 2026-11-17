@@ -8,13 +8,10 @@ areas:
   - program-analysis
 deadlines:
   - label: Abstract
-    date: 2026-10-30
+    date: 2026-10-30T23:59:00
     timezone: AoE
   - label: Paper
-    date: 2026-11-06
-    timezone: AoE
-  - label: Artifact
-    date: 2026-11-10
+    date: 2026-11-06T23:59:00
     timezone: AoE
 start_date: 2027-04-26
 end_date: 2027-04-27
@@ -22,6 +19,5 @@ location: Dublin
 country: Ireland
 colocated_with: ICSE 2027
 url: https://conf.researchr.org/home/Formalise-2027
-source: https://conf.researchr.org/home/Formalise-2027
-last_verified: 2026-09-13
-notes: At least one author of each accepted paper must present in person.
+last_verified: 2026-11-17
+notes: In-person presentation is required.

@@ -7,7 +7,7 @@ areas:
   - verification
   - programming-languages
   - synthesis
-deadline: 2026-10-31T23:59:00
+deadline: 2026-11-06T23:59:00
 deadline_timezone: AoE
 start_date: 2027-01-11
 end_date: 2027-01-11
@@ -19,8 +19,5 @@ description: >-
   tool-use specifications, agent verification and testing, runtime systems, and
   safety for multi-agent systems.
 url: https://popl27.sigplan.org/home/page-2027
-source: https://popl27.sigplan.org/home/page-2027
-last_verified: 2026-10-24
-notes: >-
-  The deadline was moved from 11 October to 31 October 2026. Not published in
-  the ACM Digital Library.
+last_verified: 2026-11-17
+notes: Non-archival.

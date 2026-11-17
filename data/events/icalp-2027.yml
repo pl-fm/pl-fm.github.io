@@ -6,31 +6,20 @@ areas:
   - logic
   - semantics
   - verification
-  - types
   - concurrency
-deadline: 2026-09-15T23:59:00
-deadline_timezone: AoE
 deadlines:
   - label: Track B round 1
     date: 2026-09-15T23:59:00
     timezone: AoE
-  - label: Track B round 2
-    date: 2027-02-15
+  - label: Track A and Track B round 2
     tba: true
-    note: Early-to-mid February 2027; exact date not yet announced
 start_date: 2027-07-05
 end_date: 2027-07-09
 location: Kraków
 country: Poland
 description: >-
-  54th edition, the European Association for Theoretical Computer Science
-  flagship. Track B covers automata, logic, semantics, and theory of
-  programming: programming language semantics, program verification and
-  synthesis, type systems, concurrency models, and formal aspects of security.
+  The EATCS flagship. Track B covers automata, logic, semantics, and theory of
+  programming, including verification, type systems, and concurrency.
 url: https://icalp.uj.edu.pl/
-source: https://icalp.uj.edu.pl/track-b/
-last_verified: 2026-08-30
-notes: >-
-  Track B has two submission rounds this year; a paper may go to one round only,
-  and round 1 rejections cannot be resubmitted. Track A dates are not yet
-  announced.
+last_verified: 2026-11-17
+notes: Papers rejected in Track B round 1 cannot be resubmitted to round 2.

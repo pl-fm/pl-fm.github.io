@@ -6,20 +6,12 @@ areas:
   - programming-languages
   - logic
 deadline: 2026-11-01
-deadlines:
-  - label: Talk proposals
-    date: 2026-11-01
-  - label: Registration for non-presenters
-    date: 2026-11-08
 start_date: 2026-11-14
 end_date: 2026-11-14
 location: Montreal, Quebec
 country: Canada
 description: >-
-  Fourth edition, a one-day meeting of informal talks and discussion on
-  programming languages and logic, bringing together researchers from Eastern
-  Canada and the Northeastern United States.
+  A one-day meeting of informal talks on programming languages and logic for
+  researchers in Eastern Canada and the Northeastern United States.
 url: https://llm.uqam.ca/en/eclaps/
-source: https://llm.uqam.ca/en/eclaps/eclaps26/
 last_verified: 2026-10-24
-notes: Registration is free. No cut-off time is given for either deadline.

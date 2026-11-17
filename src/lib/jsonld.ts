@@ -60,7 +60,7 @@ function eventJsonLd(entry: Entry, now: number): JsonLd | null {
   ]
     .filter(Boolean)
     .join(' ');
-  const officialUrl = entry.url ?? entry.source;
+  const officialUrl = entry.url;
 
   const item: JsonLd = {
     '@type': entry.collection === 'schools' ? 'EducationEvent' : 'Event',

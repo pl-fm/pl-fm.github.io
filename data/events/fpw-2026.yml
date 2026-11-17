@@ -12,9 +12,7 @@ location: Paris
 country: France
 colocated_with: ICFP 2026
 description: >-
-  A week of small functional programming events in Paris held alongside ICFP,
-  hosting HOPE, OCaml, PLMW, TyDe, and the ML Family Workshop, with watch
-  parties for the main conference on the afternoons in between.
+  A week of small functional programming events in Paris alongside ICFP, hosting
+  HOPE, OCaml, PLMW, TyDe, and the ML Family Workshop.
 url: https://fpw26.github.io/
-source: https://fpw26.github.io/
 last_verified: 2026-08-09

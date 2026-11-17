@@ -132,7 +132,41 @@ function initDetail(): void {
   });
 }
 
+// Deadlines are published in the venue's time zone (usually AoE). The pages
+// mark each one with its instant, and the browser adds the same moment in the
+// reader's own time zone. Lists and the detail panel are re-rendered on the
+// client, so new placeholders are filled as they appear.
+function initLocalTimes(): void {
+  let format: Intl.DateTimeFormat;
+  try {
+    format = new Intl.DateTimeFormat(undefined, {
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      timeZoneName: 'short',
+    });
+  } catch {
+    return;
+  }
+
+  const fill = (root: ParentNode): void => {
+    for (const node of root.querySelectorAll<HTMLElement>('.local-time[data-instant]:empty')) {
+      const instant = Number(node.dataset.instant);
+      if (!Number.isFinite(instant)) continue;
+      node.textContent = `${format.format(new Date(instant))} your time`;
+    }
+  };
+
+  fill(document);
+  new MutationObserver(() => fill(document)).observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+}
+
 export function initChrome(): void {
   initTheme();
   initDetail();
+  initLocalTimes();
 }

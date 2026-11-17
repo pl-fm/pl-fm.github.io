@@ -9,7 +9,8 @@ areas:
   - types
 deadline: 2026-11-02T23:59:00
 deadline_timezone: AoE
-dates_tba: true
+start_date: 2027-01-10
+end_date: 2027-01-10
 location: Mexico City
 country: Mexico
 colocated_with: POPL 2027
@@ -18,6 +19,5 @@ description: >-
   models: language design for inference, automatic differentiation, formal
   semantics and verification, and applications.
 url: https://popl27.sigplan.org/home/lafi-2027
-source: https://popl27.sigplan.org/home/lafi-2027
-last_verified: 2026-10-24
-notes: Informal and non-archival, with remote participation welcome.
+last_verified: 2026-11-17
+notes: Non-archival; remote participation is welcome.

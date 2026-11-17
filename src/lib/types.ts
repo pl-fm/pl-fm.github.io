@@ -49,9 +49,8 @@ interface BaseEntry {
   name: string;
   acronym?: string;
   areas: Area[];
-  url?: string;
+  url: string;
   description?: string;
-  source: string;
   last_verified: string;
   notes?: string;
 }

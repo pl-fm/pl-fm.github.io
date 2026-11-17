@@ -21,6 +21,8 @@ export interface DeadlineOccurrence {
   timezone?: string;
   instant: number;
   note?: string;
+  /** The date is an estimate: the slot is marked `tba` but gives a date. */
+  tentative?: boolean;
 }
 
 export function deadlineOccurrences(entry: EventEntry): DeadlineOccurrence[] {
@@ -58,6 +60,7 @@ export function deadlineOccurrences(entry: EventEntry): DeadlineOccurrence[] {
       timezone,
       instant,
       note: slot.note,
+      tentative: slot.tba === true || undefined,
     });
   }
 

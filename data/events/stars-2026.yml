@@ -6,8 +6,6 @@ areas:
   - verification
   - formal-methods
   - program-analysis
-deadline: 2026-09-15T23:59:00
-deadline_timezone: AoE
 deadlines:
   - label: Full papers
     date: 2026-09-08T23:59:00
@@ -21,10 +19,7 @@ location: Valletta
 country: Malta
 colocated_with: SEFM 2026
 description: >-
-  First edition, on combining static analysis with runtime verification. Full
-  papers of up to fifteen pages in an LNCS-like style appear in formal
-  post-proceedings; talk proposals may present new, preliminary, or published
-  work.
+  First edition, on combining static analysis with runtime verification, with
+  full papers for post-proceedings and talks on new or published work.
 url: https://stars-workshop.github.io/
-source: https://stars-workshop.github.io/
-last_verified: 2026-09-13
+last_verified: 2026-11-17

@@ -6,25 +6,19 @@ areas:
   - formal-methods
   - verification
   - programming-languages
-deadline: 2026-10-19
 deadlines:
   - label: Abstract
-    date: 2026-10-19
+    date: 2026-11-02T23:59:00
+    timezone: AoE
   - label: Paper
-    date: 2026-10-28
-  - label: Poster
-    date: 2026-10-28
+    date: 2026-11-11T23:59:00
+    timezone: AoE
 start_date: 2027-05-24
 end_date: 2027-05-25
 location: Enschede
 country: Netherlands
 description: >-
   Formal methods for software engineering, with an emphasis on applying them in
-  industry and integrating them with practical engineering techniques. Held at
-  the University of Twente.
+  industry and integrating them with practical engineering techniques.
 url: https://conf.researchr.org/home/fsen-2027
-source: https://conf.researchr.org/home/fsen-2027
-last_verified: 2026-09-23
-notes: >-
-  The poster deadline was moved from 24 February 2027 to 28 October 2026,
-  alongside papers.
+last_verified: 2026-11-17

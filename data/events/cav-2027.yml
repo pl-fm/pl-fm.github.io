@@ -13,11 +13,5 @@ start_date: 2027-07-19
 end_date: 2027-07-23
 location: Amsterdam
 country: Netherlands
-description: >-
-  39th edition. The flagship venue for computer-aided verification, spanning
-  theory, algorithms, implementation techniques, and applications across
-  hardware and software verification, machine learning, quantum verification,
-  autonomous systems, and security.
 url: https://conferences.i-cav.org/2027/
-source: https://conferences.i-cav.org/2027/
-last_verified: 2026-10-03
+last_verified: 2026-11-17

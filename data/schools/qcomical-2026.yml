@@ -15,11 +15,8 @@ location: Pisa
 country: Italy
 funding: Free of charge, with lunches and coffee breaks; travel and accommodation are not covered
 description: >-
-  Second edition. Courses on quantum programming languages, quantum process
-  calculi, computational quantum logic, categories for quantum computing, and
-  quantum Bayesian networks, plus a tool session on verifying quantum
+  Courses on quantum programming languages, process calculi, quantum logic, and
+  categorical quantum computing, plus a tool session on verifying quantum
   protocols.
 url: https://qcomical2026.github.io
-source: https://qcomical2026.github.io
-last_verified: 2026-10-24
-notes: Registration has closed.
+last_verified: 2026-11-17

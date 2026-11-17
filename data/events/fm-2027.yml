@@ -10,9 +10,6 @@ start_date: 2027-10-18
 end_date: 2027-10-22
 location: Athens
 country: Greece
-description: >-
-  28th edition, and the first of the yearly autumn schedule the FME symposium
-  moves to from 2027.
+description: The Formal Methods Europe flagship symposium, held every autumn from 2027.
 url: https://www.fmeurope.org/symposia/
-source: https://www.fmeurope.org/feature/upcoming_conferences/
-last_verified: 2026-08-02
+last_verified: 2026-11-17

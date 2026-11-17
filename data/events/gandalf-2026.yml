@@ -13,9 +13,6 @@ end_date: 2026-09-17
 location: Aalborg
 country: Denmark
 description: >-
-  17th edition, hosted by the FICS research group at Aalborg University.
-  Proceedings appear in EPTCS, with selected papers invited to a special issue
-  of Logical Methods in Computer Science.
+  Games, automata, logics, and formal verification. Proceedings appear in EPTCS.
 url: https://gandalfsymposium.github.io/2026/
-source: https://gandalfsymposium.github.io/2026/
 last_verified: 2026-08-02

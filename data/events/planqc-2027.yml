@@ -15,9 +15,7 @@ location: Mexico City
 country: Mexico
 colocated_with: POPL 2027
 description: >-
-  7th edition, bringing programming languages research to quantum information
-  science: high-level quantum languages, verification tools, circuit
-  optimisation, and error handling.
+  Programming languages research for quantum information science: high-level
+  quantum languages, verification tools, circuit optimisation, and error handling.
 url: https://popl27.sigplan.org/home/planqc-2027
-source: https://popl27.sigplan.org/home/planqc-2027
-last_verified: 2026-09-13
+last_verified: 2026-11-17

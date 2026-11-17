@@ -140,6 +140,24 @@ function checkSemantics(entry: Entry, file: string): DataIssue[] {
   }
 
   if (entry.collection === 'events') {
+    if (entry.deadline && entry.deadlines?.length) {
+      warn(
+        'use either `deadline` (one deadline) or a labelled `deadlines` list, not both',
+        'deadline',
+      );
+    }
+    // Only submission deadlines are listed: abstracts and papers (or talk
+    // proposals for meetings without papers). Workshop proposals, artifacts,
+    // registration and the like crowd out the deadline readers come for.
+    for (const slot of entry.deadlines ?? []) {
+      const label = slot.label ?? '';
+      if (
+        /proposal|registration|artifact|artefact|student research|\bsrc\b|poster|travel|doctoral/i.test(label) &&
+        !/^(talk proposals|abstract registration|paper registration)$/i.test(label)
+      ) {
+        warn(`"${label}" is not a paper deadline; list only abstract and paper deadlines`, 'deadlines');
+      }
+    }
     if (entry.deadline && !entry.deadline_timezone) {
       warn(
         'deadline has no deadline_timezone; most calls use AoE',

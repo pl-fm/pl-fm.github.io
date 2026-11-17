@@ -16,9 +16,7 @@ end_date: 2026-09-19
 location: Fischbachau
 country: Germany
 description: >-
-  10th edition, held at Aurachhof near Munich. Lecture series on predicative
-  foundations, constructive mathematics and type theory, homotopy type theory,
-  computation in higher types, coinduction, and program extraction from proofs.
+  Lecture series on constructive mathematics, type theory, homotopy type theory,
+  computation in higher types, and program extraction from proofs.
 url: https://www.mathematik.uni-muenchen.de/~schwicht/pc26.php
-source: https://www.mathematik.uni-muenchen.de/~schwicht/pc26.php
 last_verified: 2026-08-02

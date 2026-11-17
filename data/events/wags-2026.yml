@@ -1,0 +1,20 @@
+id: wags-2026
+name: Workshop on Automata and Games for Synthesis
+acronym: WAGS 2026
+type: workshop
+areas:
+  - synthesis
+  - formal-methods
+  - logic
+deadline: 2026-11-25T23:59:00
+deadline_timezone: AoE
+start_date: 2026-12-19
+end_date: 2026-12-19
+location: New Delhi
+country: India
+colocated_with: FSTTCS 2026
+description: >-
+  Automata, logic, and games as foundations for automated synthesis, with
+  invited talks and contributed short talks.
+url: https://sites.google.com/view/wagsfsttcs2026/home
+last_verified: 2026-11-17

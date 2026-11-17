@@ -6,8 +6,6 @@ areas:
   - theorem-proving
   - verification
   - types
-deadline: 2026-09-10T23:59:00
-deadline_timezone: AoE
 deadlines:
   - label: Abstract
     date: 2026-09-03T23:59:00
@@ -21,5 +19,4 @@ location: Mexico City
 country: Mexico
 colocated_with: POPL 2027
 url: https://popl27.sigplan.org/home/CPP-2027
-source: https://popl27.sigplan.org/home/CPP-2027
-last_verified: 2026-09-04
+last_verified: 2026-11-17

@@ -1,0 +1,25 @@
+id: abz-2027
+name: International Conference on Rigorous State-Based Methods
+acronym: ABZ 2027
+type: conference
+areas:
+  - formal-methods
+  - verification
+deadlines:
+  - label: Abstract
+    date: 2027-02-08T23:59:00
+    timezone: AoE
+    note: Optional
+  - label: Paper
+    date: 2027-02-15T23:59:00
+    timezone: AoE
+    note: Main, case study, and industry tracks
+start_date: 2027-06-14
+end_date: 2027-06-18
+location: Braga
+country: Portugal
+description: >-
+  On state-based formal methods such as Abstract State Machines, Alloy, B,
+  TLA+, VDM, and Z. Workshops and tutorials run on 14–15 June.
+url: https://abz-conf.org/site/2027/
+last_verified: 2026-11-17

@@ -1,4 +1,5 @@
 import { formatDeadline, formatDateRange } from './dates.ts';
+import { occurrenceDate } from './render.ts';
 import { deadlineOccurrences } from './filter.ts';
 import {
   AREA_LABELS,
@@ -14,6 +15,10 @@ function uid(id: string, suffix: string): string {
   return `${id}-${suffix}@${UID_DOMAIN}`;
 }
 
+function slug(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
 function areaNames(entry: Entry): string[] {
   return entry.areas.map((a) => AREA_LABELS[a] ?? a);
 }
@@ -26,26 +31,37 @@ function place(entry: Entry): string | undefined {
   return location ?? country;
 }
 
+/** Lower-cases a leading word unless it is an acronym such as OOPSLA. */
+function lowerFirst(value: string): string {
+  return /^[A-Z][a-z]/.test(value) ? value[0]!.toLowerCase() + value.slice(1) : value;
+}
+
 function deadlineEvents(entry: EventEntry): IcsEvent[] {
-  return deadlineOccurrences(entry).map((occurrence, index) => {
+  const used = new Set<string>();
+  return deadlineOccurrences(entry).map((occurrence) => {
     const label = occurrence.label ? `${occurrence.label} deadline` : 'Deadline';
     const short = entry.acronym ?? entry.name;
+    // Keyed by label rather than position, so adding a round keeps the other
+    // UIDs stable in subscribed calendars.
+    let key = slug(occurrence.label ?? occurrence.date);
+    if (used.has(key)) key = `${key}-${slug(occurrence.date)}`;
+    used.add(key);
     return {
-      uid: uid(entry.id, `deadline-${index}`),
-      summary: `${short} ${label.toLowerCase()}`,
+      uid: uid(entry.id, `deadline-${key}`),
+      summary: `${short} ${lowerFirst(label)}`,
       description: [
         entry.name,
-        `${label}: ${formatDeadline(occurrence.date, occurrence.timezone)}`,
+        `${label}: ${occurrenceDate(occurrence)}`,
         entry.start_date
           ? `Event: ${formatDateRange(entry.start_date, entry.end_date)}`
           : '',
         occurrence.note ?? '',
-        `Source: ${entry.source}`,
+        `Website: ${entry.url}`,
       ]
         .filter(Boolean)
         .join('\n'),
       location: place(entry),
-      url: entry.url ?? entry.source,
+      url: entry.url,
       categories: [EVENT_TYPE_LABELS[entry.type], ...areaNames(entry), 'Deadline'],
       start: occurrence.date,
     };
@@ -62,12 +78,12 @@ function eventEvents(entry: EventEntry): IcsEvent[] {
         entry.name,
         entry.description ?? '',
         entry.colocated_with ? `Colocated with ${entry.colocated_with}` : '',
-        `Source: ${entry.source}`,
+        `Website: ${entry.url}`,
       ]
         .filter(Boolean)
         .join('\n'),
       location: place(entry),
-      url: entry.url ?? entry.source,
+      url: entry.url,
       categories: [EVENT_TYPE_LABELS[entry.type], ...areaNames(entry)],
       start: entry.start_date,
       end: entry.end_date ?? entry.start_date,
@@ -93,12 +109,12 @@ function schoolEvents(entry: SchoolEntry): IcsEvent[] {
           ? `School: ${formatDateRange(entry.start_date, entry.end_date)}`
           : '',
         entry.funding ? `Funding: ${entry.funding}` : '',
-        `Source: ${entry.source}`,
+        `Website: ${entry.url}`,
       ]
         .filter(Boolean)
         .join('\n'),
       location: place(entry),
-      url: entry.url ?? entry.source,
+      url: entry.url,
       categories: [SCHOOL_TYPE_LABELS[entry.type], ...areaNames(entry), 'Deadline'],
       start: entry.application_deadline,
     });
@@ -108,11 +124,11 @@ function schoolEvents(entry: SchoolEntry): IcsEvent[] {
     out.push({
       uid: uid(entry.id, 'school'),
       summary: short,
-      description: [entry.name, entry.description ?? '', `Source: ${entry.source}`]
+      description: [entry.name, entry.description ?? '', `Website: ${entry.url}`]
         .filter(Boolean)
         .join('\n'),
       location: place(entry),
-      url: entry.url ?? entry.source,
+      url: entry.url,
       categories: [SCHOOL_TYPE_LABELS[entry.type], ...areaNames(entry)],
       start: entry.start_date,
       end: entry.end_date ?? entry.start_date,

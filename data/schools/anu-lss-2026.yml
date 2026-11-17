@@ -20,13 +20,7 @@ country: Australia
 application_deadline: 2026-09-18
 funding: Travel and accommodation grants for students, by application
 description: >-
-  34th edition. An introductory first week on metalogic, foundations, CTL model
-  checking, and Isabelle, followed by an advanced week with courses on logical
-  relations, proof theory of modal logics, proofs in programming, algorithmic
-  information theory, and infinite Ramsey theory.
+  An introductory week on logic, CTL model checking, and Isabelle, followed by
+  an advanced week including logical relations and proof theory of modal logics.
 url: https://comp.anu.edu.au/lss/
-source: https://comp.anu.edu.au/lss/grants/
-last_verified: 2026-10-24
-notes: >-
-  The 18 September 2026 deadline is for grant applications; registration
-  otherwise stays open.
+last_verified: 2026-11-17

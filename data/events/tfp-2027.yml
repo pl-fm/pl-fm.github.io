@@ -5,33 +5,25 @@ type: symposium
 areas:
   - functional-programming
   - programming-languages
-deadline: 2026-12-03T23:59:00
-deadline_timezone: AoE
 deadlines:
-  - label: Pre-symposium full paper
+  - label: Full paper
     date: 2026-12-03T23:59:00
     timezone: AoE
-    note: Formally reviewed before the meeting; notification 14 January 2027
-  - label: Pre-symposium draft paper
+    note: Reviewed before the symposium
+  - label: Draft paper
     date: 2027-01-28T23:59:00
     timezone: AoE
-    note: Notification 4 February 2027
   - label: Post-symposium paper
     date: 2027-04-29T23:59:00
     timezone: AoE
-    note: Full papers for the formal proceedings, written up after the meeting
+    tba: true
 start_date: 2027-03-13
 end_date: 2027-03-15
 location: Kyoto
 country: Japan
 colocated_with: TFPIE 2027
 description: >-
-  28th edition, organised by the SIG on Programming and Programming Languages
-  of the Japan Society for Software Science and Technology. Held in Kyoto in
+  Hosted by the JSSST SIG on Programming and Programming Languages, in Kyoto
   the same week as the ‹Programming› 2027 conference.
 url: https://trendsfp.github.io/2027/
-source: https://trendsfp.github.io/2027/
-last_verified: 2026-10-24
-notes: >-
-  Papers presented at the symposium are reviewed again afterwards for the formal
-  proceedings.
+last_verified: 2026-11-17

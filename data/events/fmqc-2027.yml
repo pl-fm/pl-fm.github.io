@@ -6,7 +6,8 @@ areas:
   - quantum
   - formal-methods
   - verification
-deadline_tba: true
+deadline: 2027-01-29T23:59:00
+deadline_timezone: AoE
 start_date: 2027-04-10
 end_date: 2027-04-10
 location: Copenhagen
@@ -15,6 +16,6 @@ colocated_with: ETAPS 2027
 description: >-
   Formal methods applied to quantum computing, including semantics,
   verification, and analysis of quantum programs and protocols.
-url: https://etaps.org/2027/sat-events
-source: https://etaps.org/2027/sat-events
-last_verified: 2026-10-03
+url: https://fmqc-workshop.github.io/2027/
+last_verified: 2026-11-17
+notes: Already-published results are welcome.

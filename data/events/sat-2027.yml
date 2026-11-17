@@ -1,0 +1,18 @@
+id: sat-2027
+name: International Conference on Theory and Applications of Satisfiability Testing
+acronym: SAT 2027
+type: conference
+areas:
+  - logic
+  - theorem-proving
+  - verification
+deadline_tba: true
+start_date: 2027-07-05
+end_date: 2027-07-09
+location: Barcelona
+country: Spain
+description: >-
+  On propositional satisfiability and related problems, including MaxSAT, QBF,
+  SMT, model counting, and constraint programming.
+url: https://satisfiability.org/SAT27/
+last_verified: 2026-11-17

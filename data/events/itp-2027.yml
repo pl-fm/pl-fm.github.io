@@ -1,0 +1,20 @@
+id: itp-2027
+name: International Conference on Interactive Theorem Proving
+acronym: ITP 2027
+type: conference
+areas:
+  - theorem-proving
+  - logic
+  - verification
+  - types
+deadline_tba: true
+start_date: 2027-08-02
+end_date: 2027-08-07
+location: Glasgow
+country: United Kingdom
+description: >-
+  Held at the University of Strathclyde, co-located with the SPLV summer school
+  in Edinburgh.
+url: https://itp-conference-2027.github.io/
+last_verified: 2026-11-17
+notes: Dates are provisional.

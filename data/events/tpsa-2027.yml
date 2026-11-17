@@ -15,10 +15,9 @@ location: Mexico City
 country: Mexico
 colocated_with: POPL 2027
 description: >-
-  4th edition. Work in progress, prototype tools, industrial case studies, and
-  the interaction between static analysis and AI: static analysis work not yet
-  ready for POPL or VMCAI.
+  Work in progress, prototype tools, industrial case studies, and the interaction
+  between static analysis and AI: static analysis work not yet ready for POPL or
+  VMCAI.
 url: https://popl27.sigplan.org/home/tpsa-2027
-source: https://popl27.sigplan.org/home/tpsa-2027
-last_verified: 2026-10-24
-notes: No proceedings; published or speculative work is welcome.
+last_verified: 2026-11-17
+notes: Non-archival; published or speculative work is welcome.
